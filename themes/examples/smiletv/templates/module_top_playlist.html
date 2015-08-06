@@ -1,0 +1,47 @@
+<div class="thumbnail no-pad no-mar">
+ <div class="bg-primary clearfix divider-bot title-block">
+  <h4 class="montserrat no-mar col-xs-9 text-15">
+   <span class="initialism clearfix">Playlists</span>
+  </h4>
+ </div>
+ <div class="clearfix space">
+  <div class="clearfix initialism">
+   <div class="clearfix text-lh-xs-21 montserrat bottom-mar ver-space">Featured This Week</div>
+  </div>
+  <div class="clearfix ver-mar">
+   <ul class="list-unstyled clearfix no-mar play-list">
+    <li ng-repeat="playlist in top_playlists">
+     <div class="clearfix">
+      <div class="pull-left">
+       <a href="#!/playlists/{{playlist.id}}" title="{{playlist.name}}" class="img-thumbnail no-pad show" ng-if="playlist.video_id==0">
+        <div ng-if="!playlist.small_thumb_thumbnail" class="img-rounded user-avatar-sm" ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/PlaylistThumbnail/0/default.png) no-repeat center top', 'background-size':'cover'}"></div>
+        <div ng-if="playlist.small_thumb_thumbnail" class="img-rounded user-avatar-sm" ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/{{playlist.small_thumb_thumbnail}}) no-repeat center top', 'background-size':'cover'}"></div>
+       </a>
+       <a href="#!/playlists/{{playlist.id}}" title="{{playlist.name}}" class="img-thumbnail no-pad show" ng-if="playlist.video_id!=0">
+        <div class="img-rounded user-avatar-sm" ng-style="{'background':'url({{playlist.thumbnail}}) no-repeat center top', 'background-size':'cover'}"></div>
+       </a>
+      </div>
+      <div class="col-xs-9 no-pad">
+       <div class="clearfix">
+        <h5 class="no-mar col-xs-12 no-pad text-12">
+         <a class="no-under htruncate col-xs-12 no-pad hor-mar gray-darkc" href="#!/playlists/{{playlist.id}}" title="{{playlist.name}}">
+          <strong>{{playlist.name}}</strong>
+         </a>
+        </h5>
+       </div>
+       <div class="col-xs-12 no-pad montserrat hor-mar text-12">
+        <span class="pull-left right-mar-sm">By</span> <a href="#!/users/{{playlist.user_id}}" title="Brand or Person Channel" class="gray-darkc htruncate col-lg-10 col-md-8 col-sm-10 col-xs-10 no-pad no-under">{{playlist.users_username}}</a>
+       </div>
+      </div>
+     </div>
+    </li>
+   </ul>
+   <a ng-if="!$root.isAuth" href="#!/users/login" ng-click="$root.login_info = 'To make and share playlists, sign in!'" class="btn btn-primary top-mar btn-lg col-xs-12 initialism" role="button" title="Make your own">
+    <span class="text-22 montserrat-600">Make your own </span>
+   </a>
+   <a ng-if="$root.isAuth" href="#!/start_playlist" class="btn btn-primary top-mar btn-lg col-xs-12 initialism" role="button" title="Make your own">
+    <span class="text-22 montserrat-600">Make your own </span>
+   </a>
+  </div>
+ </div>
+</div>

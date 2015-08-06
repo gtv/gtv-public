@@ -1,0 +1,12 @@
+<a href="javascript:void(0);" title="Category" class="dropdown-toggle cateLnk" data-toggle="dropdown">
+ <i class="fa fa-film"></i> Videos
+ <i class="fa fa-angle-down"></i>
+</a>
+<ul class="dropdown-menu sub-menu">
+ <li class="" ng-repeat="genre in main_genres" ng-class="{'dropdown-submenu dropdown': genre.sub_categories.length !== 0}">
+  <a href="#!/videos/genre/{{genre.id}}" title="{{genre.name}}">{{genre.name}}</a>
+  <ul class="dropdown-menu" ng-if="genre.sub_categories">
+   <li ng-repeat="sub_genre in genre.sub_categories"><a href="#!/videos/genre/{{sub_genre.id}}" title="{{sub_genre.name}}">{{sub_genre.name}}</a></li>
+  </ul>
+ </li>
+</ul>

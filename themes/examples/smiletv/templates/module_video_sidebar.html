@@ -1,0 +1,11 @@
+<div class="clearfix mob-space">
+ <h3 class="whitec montserrat">{{video_title}}</h3>
+ <div class="clearfix col-lg-12 block-space pr" ng-show="videoLoading">
+  <div class="cssloader top-mar"></div>
+ </div>
+ <ul class="clearfix list-inline thumb-list no-mar">
+  <li class="col-lg-12 no-pad left-mar mob-no-mar" ng-repeat="video in videos_listing">
+   <div class="clearfix " ng-include src="'templates/module_sub_video.html'"></div>
+  </li>
+ </ul>
+</div>

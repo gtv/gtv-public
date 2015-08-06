@@ -1,0 +1,53 @@
+<div id="splashBackGround">
+ <div ng-if="$root.settings.SPLASH_MEDIA_TYPE != 'image'">
+  <div class="splash-bg hidden-xs hidden-sm" ng-bind-html="$root.settings.SPLASH_BACKGROUND_VIDEO_CODE"></div>
+  <div class="splash-bg hidden-lg hidden-md" style="background:no-repeat center top; background-size:cover;" ng-style="{'background-image': 'url({{$root.settings.AWS_BASE_URL}}/{{$root.settings.BACKGROUND_IMAGE_FOR_MOBILE}})'}" ng-if="$root.settings.BACKGROUND_IMAGE_FOR_MOBILE"></div>
+  <div class="splash-bg hidden-lg hidden-md" style="background:#363636 no-repeat center top; background-size:cover;" ng-if="!$root.settings.BACKGROUND_IMAGE_FOR_MOBILE"></div>
+ </div>
+ <div ng-if="$root.settings.SPLASH_MEDIA_TYPE == 'image'">
+  <div class="splash-bg" style="background:no-repeat center top; background-size:cover;" ng-style="{'background-image': 'url({{$root.settings.AWS_BASE_URL}}/{{$root.settings.SPLASH_BACKGROUND_IMAGE}})'}" ng-if="$root.settings.SPLASH_BACKGROUND_IMAGE"></div>
+  <div class="splash-bg" style="background:#363636  center top; background-size:cover; " ng-if="!$root.settings.SPLASH_BACKGROUND_IMAGE"></div>
+ </div>
+</div>
+<div growl></div>
+<div class="col-xs-11 block-space-sm text-center col-center-block">
+ <div class="block-space-sm">
+  <img id="splashUploadLogo" ng-src="{{$root.settings.AWS_BASE_URL}}/{{$root.settings.SPLASH_LOGO}}" alt="[Image: Splash]" title="Splash" class="img-responsive center-block">
+ </div>
+ <h3 class="whitec h1 top-mar bottom-mar-sm montserrat">
+  <span class="initialism" id="splashHeaderLine">{{$root.settings.SPLASH_HEADER}}</span>
+ </h3>
+</div>
+<div class="col-xs-11 block-space text-center col-center-block">
+ <h4 class="whitec text-lh-xs-21" id="splashSecondaryLine" ng-show="$root.showSubscribeForm">{{$root.settings.SPLASH_SECONDARY_LINE}}</h4>
+ <div class="clearfix col-lg-6 col-md-7 col-sm-9 col-xs-12 col-center-block">
+  <div class="col-xs-12">
+   <div ng-show="$root.showSubscribeForm">
+    <div id="splashPlaceHolderStyle" ng-if="$root.settings.SPLASH_INPUT_PLACEHOLDER_COLOR">
+     <module-placeholder-style></module-placeholder-style>
+    </div>
+    <form class="row splash-form ver-space" name="subscribeAdd">
+     <div class="pr required " ng-class="{'error': subscribeAdd.email.$dirty && subscribeAdd.email.$invalid}">
+      <input type="email" id="splashEmail" class="form-control input-lg" ng-model="subscribe.email" name="email" placeholder="{{$root.settings.SPLASH_INPUT_PLACEHOLDER}}" required>
+      <span class="splash-btn pa col-xs-pull-0 row-xs-pull-0">
+       <input type="submit" id="splashButton" class="btn btn-primary btn-lg btn-hover" ng-style="{'background-color':$root.settings.SPLASH_SUBMIT_BUTTON_COLOR, 'color':$root.settings.SPLASH_SUBMIT_BUTTON_TEXT_COLOR}" ng-click="subscribeNew()" value="{{$root.settings.SPLASH_SUBMIT_BUTTON_TEXT}}">
+      </span>
+     </div>
+     <div class="help-block text-left" ng-show="subscribeAdd.email.$dirty && subscribeAdd.email.$invalid">
+      <span ng-show="subscribeAdd.email.$error.required"> Required</span>
+     </div>
+    </form>
+   </div>
+   <div ng-hide="$root.showSubscribeForm">
+    <strong>
+     <span class="initialism text-primary" id="splashSuccessMessage">{{$root.settings.SPLASH_SUCCESS_MESSAGE}}</span>
+    </strong>
+   </div>
+   <hr class="row">
+   <a href="#!/users/login" id="splashBetaLoginLink" ng-style="{'background-color':$root.settings.SPLASH_BETA_LOGIN_BUTTON_COLOR}" class="btn btn-default btn-hover no-shad well-sm top-mar-sm" title="Beta Login">
+    <span id="splashBetaLoginText" class="initialism well-sm" ng-style="{'color': $root.settings.SPLASH_BETA_LOGIN_BUTTON_TEXT_COLOR}">{{$root.settings.SPLASH_BETA_LOGIN_BUTTON_TEXT}}</span>
+   </a>
+  </div>
+ </div>
+ <div class="whitec block-space-sm" id="splashFooterLine" ng-bind-html="$root.settings.FOOTER_LINE"></div>
+</div>

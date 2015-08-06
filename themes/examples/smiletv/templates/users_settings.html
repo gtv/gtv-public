@@ -1,0 +1,197 @@
+<div ng-controller="UserSettingsCtrl" class="clearfix show col-lg-7 col-center-block text-muted no-pad col-md-9 col-sm-10 col-xs-11">
+ <div class="block-space">
+  <div class="lightbox-bg modalblock-lg  clearfix">
+   <div class="modal-header pr">
+    <div class="pa col-xs-pull-0 mob-space hor-space hor-mar z-top">
+     <a href="" ng-click="cancel()" class="show close" title="close">
+      <span>&times;</span>
+      <span class="hide">Close</span>
+     </a>
+    </div>
+    <h4 class="modal-title text-center">Account Settings:</h4>
+   </div>
+   <div class="clearfix hor-mar hor-space">
+    <div ng-show="providers_loading && !providers" class="clearfix  block-space pr">
+     <span class="cssloader"></span>
+    </div>
+    <span class="mob-clr whitec right-mar-sm no-pad col-xs-12 col-lg-5 col-md-5 col-sm-4" ng-show="providers">
+     <h4 class="text-18">Get More Personal! Link up with your other Social Networks!</h4>
+    </span>
+    <ul class="list-inline no-mar mob-dc clearfix account-active" ng-show="providers">
+     <li class="top-mar text-center pull-left no-pad col-center-block-sm" ng-repeat="provider in providers" ng-class="{'active': provider.isConnected }">
+      <a href="" tooltip="{{provider.provider_name}}" class="top-mar mob-no-mar text-muted" ng-confirm-click="Are you sure to disconnect?" confirmed-click="check_connect(provider.provider_id, provider.isConnected, provider.provider_slug)" ng-show="provider.isConnected">
+       <span class="text-18 show">
+        <span class="fa-stack fa-2x">
+         <i class="fa fa-stop fa-stack-2x"></i>
+         <i class="fa {{provider.provider_icon}} fa-stack-1x blackc"></i>
+        </span>
+       </span>
+       <span class="initialism whitec invisible">
+        <strong>Unlink</strong>
+       </span>
+      </a>
+      <a href="" tooltip="{{provider.provider_name}}" ng-click="check_connect(provider.provider_id, provider.isConnected, provider.provider_slug)" class="top-mar mob-no-mar text-muted" ng-show="!provider.isConnected">
+       <span class="text-18 show">
+        <span class="fa-stack fa-2x">
+         <i class="fa fa-stop fa-stack-2x"></i>
+         <i class="fa {{provider.provider_icon}} fa-stack-1x blackc"></i>
+        </span>
+       </span>
+       <span class="initialism whitec invisible">
+        <strong>Unlink</strong>
+       </span>
+      </a>
+     </li>
+    </ul>
+   </div>
+   <div class="col-lg-11 col-md-10 col-sm-11 col-center-block no-pad">
+    <hr class="divider-md" ng-show="providers">
+    <form role="form" class="top-mar montserrat clearfix" name="userSetting">
+     <div class="clearfix">
+      <div class="col-xs-7 no-pad top-mar whitec mob-clr">
+       <div class="form-group clearfix top-mar">
+        <label for="first-name" class="sr-only">First Name</label>
+        <input type="text" name="first-name" id="first-name" required ng-model="user.first_name" placeholder="First Name" class="form-control input-lg">
+        <div ng-show="userSetting.first_name.$dirty && userSetting.first_name.$invalid">
+         <span class="help-block" ng-show="userSetting.first_name.$error.required"> Required!</span>
+        </div>
+       </div>
+       <div class="form-group clearfix">
+        <label for="last-name" class="sr-only">Last Name</label>
+        <input type="text" id="last-name" placeholder="Last Name" required ng-model="user.last_name" name="last_name" class="form-control input-lg">
+        <div ng-show="userSetting.last_name.$dirty && userSetting.last_name.$invalid">
+         <span class="help-block" ng-show="userSetting.last_name.$error.required"> Required!</span>
+        </div>
+       </div>
+       <div class="form-group clearfix">
+        <label for="username" class="sr-only">Username</label>
+        <input type="text" id="username" placeholder="Username" required ng-model="user.username" class="form-control input-lg">
+        <div ng-show="userSetting.username.$dirty && userSetting.username.$invalid">
+         <span class="help-block" ng-show="userSetting.username.$error.required"> Required!</span>
+        </div>
+       </div>
+       <div class="form-group clearfix whitec">
+        <label for="date-of-birth" class="col-xs-3 whitec h4 no-pad mob-clr-xs mob-dc-xs">
+         <span class="show text-lh-sm-16">Date of Birth</span>
+        </label>
+        <input type="text" id="date-of-birth" ng-model="dob_date" class="ver-mar-sm space text-center col-xs-3 col-sm-2 col-md-2 col-lg-2 right-mar-sm mob-clr-xs mob-top-mar-xs initialism" placeholder="00" onKeyup="autotab(this, document.userSetting.dob2)" maxlength=2 name="dob1">
+        <input type="text" ng-model="dob_month" class="ver-mar-sm space text-center col-xs-3 col-sm-2 col-md-2 col-lg-2  right-mar-sm mob-clr-xs mob-top-mar-xs initialism" placeholder="00" onKeyup="autotab(this, document.userSetting.dob3)" maxlength=2 name="dob2">
+        <input type="text" ng-model="dob_year" class="col-xs-4 col-sm-3 col-md-4 col-lg-4 ver-mar-sm space text-center mob-clr-xs mob-top-mar-xs initialism" placeholder="0000" onKeyup="autotab(this, document.userSetting.phone)" maxlength=4 name="dob3">
+       </div>
+       <div class="form-group clearfix">
+        <label for="phone" class="col-xs-3 whitec h4 text-right top-mar mob-clr-xs mob-dc-xs">Phone</label>
+        <div class="col-xs-9 no-pad">
+         <input id="phone" name="phone" class="form-control input-lg" placeholder="(___)-___-____">
+        </div>
+       </div>
+       <div class="form-group clearfix whitec">
+        <label for="email" class="sr-only">Email</label>
+        <input type="email" id="email" placeholder="Email" required ng-model="user.email" class="form-control input-lg">
+        <div ng-show="userSetting.email.$dirty && userSetting.email.$invalid">
+         <span class="help-block" ng-show="userSetting.email.$error.required"> Required!</span>
+         <span class="help-block" ng-show="userSetting.email.$error.email"> Not valid email</span>
+        </div>
+       </div>
+       <div class="form-group clearfix whitec">
+        <label for="inputOldPassword" class="sr-only">Old Password</label>
+        <input type="password" class="form-control input-lg" placeholder="Old Password" id="inputEmail" ng-model="user.old_password" name="old_password">
+       </div>
+       <div class="form-group clearfix whitec">
+        <label for="start-password" class="sr-only">Change Password</label>
+        <input type="password" id="start-password" placeholder="New Password" ng-model="user.change_password" class="form-control input-lg" name="change_password">
+       </div>
+       <div class="form-group clearfix whitec">
+        <label for="confirm-password" class="sr-only">Confirm Password</label>
+        <input type="password" id="confirm-password" placeholder="Confirm New Password" ng-model="user.confirm_password" data-match="user.change_password" class="form-control input-lg" name="confirm_password">
+        <div ng-show="userSetting.confirm_password.$dirty && userSetting.confirm_password.$invalid">
+         <span class="help-block" ng-show="userSetting.confirm_password.$error.required"> Required!</span>
+        </div>
+       </div>
+       <div class="form-group clearfix">
+        <label for="username" class="sr-only">About Me</label>
+        <textarea ng-model="user.about_me" class="form-control input-lg" placeholder="About Me"></textarea>
+        <div ng-show="userSetting.about_me.$dirty && userSetting.about_me.$invalid">
+         <span class="help-block" ng-show="userSetting.about_me.$error.required"> Required!</span>
+        </div>
+       </div>
+      </div>
+      <div class="col-xs-4 no-pad top-mar pull-right whitec mob-clr mob-bottom-mar">
+       <div class="form-group clearfix">
+        <label class="sr-only">user image</label>
+        <div class="pr pull-left initialism col-center-block-sm mob-avatar-block">
+         <div class="file-input-wrapper img-thumbnail user-profile-avatar space-xs edit-show cur">
+          <span class="pa col-xs-pull-0 cur z-top" ng-confirm-click="Are you sure to delete your profile picture?" confirmed-click="delete_preview()" ng-if="user.profile_picture_url">
+           <img src="img/icon-close.png" alt="[Image: Delete]" title="Delete">
+          </span>
+          <span class="pa block-space col-xs-12 col-xs-pull-0" ng-show="profileImageLoader">
+           <span class="show  blackc row-lg1 text-center">
+            <span class="cssloader"></span>
+           </span>
+          </span>
+          <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + profileImage + ') no-repeat center center', 'background-size':'cover'}" class="back-image img-rounded center-block" ng-if="user.profile_picture_url && user.is_use_facebook_picture == false"></div>
+          <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + user.network_image_url + ') no-repeat center center', 'background-size':'cover'}" class="back-image img-rounded center-block" ng-if="!user.profile_picture_url && user.network_image_url && user.is_use_facebook_picture == false"></div>
+          <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/User/0/default.png) no-repeat center center', 'background-size':'cover'}" class="back-image img-rounded center-block" ng-if="!user.profile_picture_url && !user.network_image_url && user.is_use_facebook_picture == false"></div>
+          <div ng-style="{'background':'url(' + profileImage + ') no-repeat center center', 'background-size':'cover'}" class="back-image img-rounded center-block" ng-if="user.is_use_facebook_picture == true"></div>
+          <div class="panel-group no-mar edit-hide" id="accordion" role="tablist" aria-multiselectable="true">
+           <div class="panel-group accountsetting-edit bg-darker pa social-list no-mar">
+            <div id="settingsCollapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+             <div class="panel-body panel-body ver-space left-mar">
+              <ul class="initialism list-unstyled no-mar">
+               <li class="clearfix">
+                <div class="form-group pr clearfix no-mar">
+                 <label for="upload-img" class="text-primary cur">Upload Image</label>
+                 <input type="file" class="upload-btn" id="upload-img" on-change="changeProfileImage('avatarImage')" file-input="avatar" name="avatar">
+                </div>
+               </li>
+               <li ng-show="is_facebook_connected" class="clearfix"><a href="" ng-click="useFacebookProfileImage()" title="Use Facebook" class="show">Use Facebook</a>
+               </li>
+              </ul>
+             </div>
+            </div>
+            <div class="hor-mar" role="tab" id="headingOne">
+             <a data-toggle="collapse" data-parent="#accordion" href="" data-target="#settingsCollapseOne" aria-expanded="false" aria-controls="settingsCollapseOne" class="show text-16 collapsed">Edit <span class="fa-stack sfont bottom-mar-sm"><i class="fa fa-circle-o fa-stack-2x"></i><i class="fa fa-pencil fa-stack-1x"></i></span></a>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="form-group clearfix input-lg no-pad">
+        <div class="radio">
+         <p class="no-pad">Receive Newsletter</p>
+         <div class="form-group input-lg no-pad top-mar bottom-mar-sm">
+          <div class="radio clearfix no-mar text-center pr pull-left hor-space">
+           <input type="radio" name="is_subscribed_in_newsletter" id="is_subscribed_in_newsletter_yes" ng-model="user.is_subscribed_in_newsletter" value="true">
+           <label for="is_subscribed_in_newsletter_yes">Yes</label>
+          </div>
+          <div class="radio clearfix no-mar text-center pr pull-left">
+           <input type="radio" name="is_subscribed_in_newsletter" id="is_subscribed_in_newsletter_no" ng-model="user.is_subscribed_in_newsletter" value="false">
+           <label for="is_subscribed_in_newsletter_no">No</label>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="clearfix initialism col-xs-12 no-pad mob-dc">
+       <div class="pull-right col-xs-12 no-pad mob-top-mar">
+        <div class="form-group col-xs-5 pull-right no-mar clearfix mob-clr-sm">
+         <button title="Save" ng-click="updateuser()" class="btn btn-lg btn-primary initialism col-xs-12 space-sm no-shad divider-sm">
+          <span class="text-28">Save</span>
+          <span>
+           <i class="fa fa-angle-right cur left-mar hor-space text-28"></i>
+          </span>
+         </button>
+        </div>
+        <div class="form-group pull-left col-xs-5 no-pad clearfix top-mar bottom-mar-sm mob-clr-sm">
+         <button ng-confirm-click="Are you sure to delete your account?" confirmed-click="deleteUserAccount()" id="delete-account" title="Delete Account" class="btn btn-lg btn-link initialism col-xs-12 top-mar no-pad no-shad divider-sm row mob-no-mar">
+          <span class="pull-left text-muted space-lg text-18">Delete Account</span>
+         </button>
+        </div>
+       </div>
+      </div>
+     </div>
+    </form>
+   </div>
+  </div>
+ </div>
+</div>

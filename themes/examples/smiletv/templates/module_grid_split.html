@@ -1,0 +1,27 @@
+<div class="clsHomeScroll">
+ <div class="scroll-container" ng-repeat="row in data" style="width:1200px;">
+  <div ng-class="($index % break==0  || $index % break==4)?'	col-lg-6 col-md-6 col-sm-6 col-xs-6':'col-lg-3 col-md-3 col-sm-3 col-xs-3'" ng-repeat="video in row">
+   <article class="">
+    <header>
+     <div class="image-holder">
+      <a href="{{video.redirect_url}}" title="{{video.title}}">
+       <!--<img ng-src="{{video.upload_picture}}" alt="[Image: {{video.title}} Image]" title="{{video.title}} Image" />-->
+       <div class="back-image" ng-style="{'background':'url(' + video.upload_picture + ') no-repeat center center', 'background-size':'cover'}"></div>
+      </a>
+     </div>
+    </header>
+    <section>
+     <!--<div class="entry-like"> <a title="Like this" data-id="touchsize-likes-184" class="touchsize-likes" href="#"><span class="touchsize-likes-count icon-heart"> <i class="fa fa-smile-o"></i>395</span> <span class="touchsize-likes-postfix"></span></a> </div>-->
+     <div class="entry-title">
+      <a href="{{video.redirect_url}}" rel="category tag" title="{{video.rollover_text}}" class="">
+       <h3 class="title clearfix">{{video.rollover_text}}
+        <i class="fa fa-angle-right"></i>
+       </h3>
+      </a>
+     </div>
+     <!--<div class="entry-date"> added 10 months ago </div>-->
+    </section>
+   </article>
+  </div>
+ </div>
+</div>

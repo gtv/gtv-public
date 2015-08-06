@@ -1,0 +1,280 @@
+<header class="col-xs-12 no-pad" ng-class="{'affix-top' :$root.is_home_page}">
+ <div class="affix-header">
+  <div class="well clsTopHeader no-bor">
+   <div class="container ">
+    <div class="row">
+     <div class="col-md-8 col-sm-6 header-social">
+      <module-social-share template-url="templates/module-social-share-header.html" type="network"></module-social-share>
+     </div>
+     <div class="col-md-4 col-sm-6 ">
+      <ul class="list-unstyled nav mob-clr-xs mob-dc-xs initialism nav-menu-block row">
+       <li class="col-xs-12">
+        <div class="clearfix no-pad col-center-block ng-scope" ng-controller="SearchCtrl">
+         <div class="col-center-block col-xs-12 hor-space" id="autocomplete_search_block">
+          <form class="form-search pr ng-pristine ng-valid">
+           <div class="input-group search-autocomplete col-xs-12" id="search_autocomplete">
+            <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+            <autocomplete ng-model="keyword" class="form-control input-lg no-bg text-30 space-xs no-shad js-autocomplete-input" modelsearch="keyword" modelaction="search_manual()"></autocomplete>
+            <span class="input-group-addon no-bg no-bor pa">
+             <i class="fa fa-search fa-2x text-muted left-mar cur" title="Search"></i>
+            </span>
+            <ul class="ui-autocomplete ui-front js-search-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" tabindex="0" style="display: none;"></ul>
+           </div>
+           <div class="clearfix ver-mar hor-space pa search-load ng-hide" ng-show="searchLoading">
+            <div class="cssloader top-mar"></div>
+           </div>
+          </form>
+         </div>
+        </div>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="navbar navbar-default no-round no-mar">
+   <div class="container pr" ng-click="removePlylistBuilder()">
+    <div class="row">
+     <div class="col-lg-3 col-md-3 col-sm-12">
+      <div class="navbar-header">
+       <h1 class="no-mar no-pad">
+        <a class="clsLogo mainnav-list" href="{{root_base_url}}" title="Home">
+         <span class="normal-state">
+          <img src="themes/smiletv/img/smiletv_logo.png" alt="[Image: {{$root.domain_name}}]" title="{{$root.domain_name}}">
+         </span>
+        </a>
+       </h1>
+       <!--<p class="logSlogn">Video for the soul purpose of smiling</p>-->
+      </div>
+     </div>
+     <div class="col-lg-7 col-md-8 col-sm-10 ps">
+      <div class="clsMobileHide">
+       <ul class="list-inline main-menu">
+        <li>
+         <a href="#!/pages/15">
+          <i class="fa fa-info-circle"></i> About</a>
+        </li>
+        <li class="dropdown categoryMenu">
+         <module-category template-url="templates/module_category.html" type='all'> </module-category>
+        </li>
+        <li class="dropdown">
+         <a href="javascript:void(0);" title="Category" class="dropdown-toggle" data-toggle="dropdown">
+          <i class="fa fa-smile-o"></i> Be Happy
+          <i class="fa fa-angle-down"></i>
+         </a>
+         <ul class="dropdown-menu">
+          <li class="dropdown">
+           <a href="" title="">Positive News Articles <i class="fa fa-angle-right"></i></a>
+           <ul class="dropdown-menu sub-menu">
+            <li><a href="#!/articles/38" title="">Animal Stories</a></li>
+            <li><a href="#!/articles/28" title="">Environmental Stories</a></li>
+            <li><a href="#!/articles/29" title="">Fun Stories</a></li>
+            <li><a href="#!/articles/30" title="">Historical Stories</a></li>
+            <li><a href="#!/articles/31" title="">Humanitarian Stories</a></li>
+            <li><a href="#!/articles/32" title="">Inspiring Stories</a></li>
+            <li><a href="#!/articles/33" title="">Sports Stories</a></li>
+            <li><a href="#!/articles/34" title="">Success Stories</a></li>
+           </ul>
+          </li>
+          <li><a href="#!/articles/35">Sophie's Secret Dog Blog</a></li>
+          <li><a href="http://www.smiletvgroup.com/101-reasons-to-smile/" target="_blank">101 Reasons to Smile</a></li>
+          <li><a href="http://www.smiletvgroup.com/share-a-smile/" target="_blank">Share a Smile</a></li>
+          <li><a href="http://www.smiletvgroup.com/2012/11/play-a-game/" target="_blank">Play a Game</a></li>
+          <li><a href="#!/articles/46">Posi Music</a></li>
+         </ul>
+        </li>
+        <li class="dropdown">
+         <a href="javascript:void(0);" title="Category" class="dropdown-toggle" data-toggle="dropdown">
+          <i class="fa fa-gear"></i> Services
+          <i class="fa fa-angle-down"></i>
+         </a>
+         <ul class="dropdown-menu">
+          <li><a href="#!/pages/21">Production Services</a></li>
+          <li><a href="#!/pages/18">Testimonials</a></li>
+         </ul>
+        </li>
+        <!--<li>
+         <a href="#!/pages/17">
+          <i class="fa fa-info-circle"></i> Shop</a>
+        </li>-->
+        <li>
+         <a href="#!/pages/16">
+          <i class="fa fa-user"></i> Contact Us</a>
+        </li>
+       </ul>
+      </div>
+      <div class="clearfix clsMobileShow">
+       <div class="mobile_header">
+        <div class="clearfix">
+         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+         </button>
+        </div>
+        <div class="navbar-collapse collapse">
+         <ul class="list-inline main-menu">
+          <li>
+           <a href="#!/pages/15">
+            <i class="fa fa-info-circle"></i> About</a>
+          </li>
+          <li class="dropdown categoryMenu">
+           <module-category template-url="templates/module_category.html" type='all'> </module-category>
+          </li>
+          <li class="dropdown">
+           <a href="javascript:void(0);" title="Category" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-smile-o"></i> Be Happy
+            <i class="fa fa-angle-down"></i>
+           </a>
+           <ul class="dropdown-menu">
+            <li class="">
+             <a href="" title="">Positive News Articles <i class="fa fa-angle-right"></i></a>
+             <ul class="dropdown-menu1 sub-menu1">
+              <li><a href="" title="">Animal Stories</a></li>
+              <li><a href="" title="">Environmental Stories</a></li>
+              <li><a href="" title="">Fun Stories</a></li>
+              <li><a href="" title="">Historical Stories</a></li>
+              <li><a href="" title="">Humanitarian Stories</a></li>
+              <li><a href="" title="">Inspiring Stories</a></li>
+              <li><a href="" title="">Sports Stories</a></li>
+              <li><a href="" title="">Success Stories</a></li>
+             </ul>
+            </li>
+            <li><a href="">Sophie's Secret Dog Blog</a></li>
+            <li><a href="http://www.smiletvgroup.com/101-reasons-to-smile/" target="_blank">101 Reasons to Smile</a></li>
+            <li><a href="http://www.smiletvgroup.com/share-a-smile/" target="_blank">Share a Smile</a></li>
+            <li><a href="http://www.smiletvgroup.com/2012/11/play-a-game/" target="_blank">Play a Game</a></li>
+            <li><a href="">Posi Music</a></li>
+           </ul>
+          </li>
+          <li class="dropdown">
+           <a href="javascript:void(0);" title="Category" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-gear"></i> Services
+            <i class="fa fa-angle-down"></i>
+           </a>
+           <ul class="dropdown-menu">
+            <li><a href="">Production Services</a></li>
+            <li><a href="">Testimonials</a></li>
+           </ul>
+          </li>
+          <li>
+           <a href="#!/pages/17">
+            <i class="fa fa-info-circle"></i> Shop</a>
+          </li>
+          <li>
+           <a href="#!/pages/16">
+            <i class="fa fa-user"></i> Contact Us</a>
+          </li>
+         </ul>
+        </div>
+       </div>
+      </div>
+      <!--/.nav-collapse -->
+     </div>
+     <div class="col-lg-2 col-md-1 col-sm-2">
+      <div class="clsMobileHide">
+       <div class="clearfix">
+        <ul class="list-inline navbar-right usernavbar1 user-navbar pull-right" ng-show="$root.isAuth">
+         <li class="space clearfix dropdown js-filter-menu" ng-if="$root.settings">
+          <a href="" class="show dropdown-toggle userImg" data-toggle="dropdown" title="{{$root.auth.username}}">
+           <div class="pull-left img-rounded panel panel-default no-mar" ng-if="$root.auth.is_use_facebook_picture == false || $root.auth.is_use_facebook_picture == 'f'">
+            <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + $root.auth.very_small_thumb_profile_picture_url + ') no-repeat center center', 'background-size':'cover'}" class="user-avatar-sm img-rounded" ng-if="$root.auth.very_small_thumb_profile_picture_url"></div>
+            <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + $root.auth.network_image_url + ') no-repeat center center', 'background-size':'cover'}" class="user-avatar-sm img-rounded" ng-if="!$root.auth.very_small_thumb_profile_picture_url && $root.auth.network_image_url"></div>
+            <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/User/0/default.png) no-repeat center center', 'background-size':'cover'}" class="user-avatar-sm img-rounded" ng-if="!$root.auth.very_small_thumb_profile_picture_url && !$root.auth.network_image_url"></div>
+           </div>
+           <div class="pull-left img-rounded panel panel-default no-mar" ng-if="$root.auth.is_use_facebook_picture == true || $root.auth.is_use_facebook_picture == 't'">
+            <div ng-style="{'background':'url(' + $root.auth.profile_picture_url + ') no-repeat center center', 'background-size':'cover'}" class="user-avatar-sm img-rounded"></div>
+           </div>
+          </a>
+          <ul class="dropdown-menu montserrat no-mar">
+           <li class="dropdown-header no-pad"> <a href="#!/users/{{$root.auth.username}}" title="My {{$root.domain_name}}">My {{$root.domain_name}}</a> </li>
+           <li class="dropdown-header no-pad"> <a href="#!/users/settings" title="My Account">My Account</a> </li>
+           <li class="dropdown-header no-pad"> <a href="#!/users/genres" title="My Interests">My Interests</a> </li>
+           <li class="dropdown-header no-pad"> <a href="#!/users/invite" title="Invite Friends">Invite Friends</a> </li>
+           <li ng-if="!$root.isUser" class="dropdown-header no-pad"> <a href="ag-admin/#!/" title="Admin Tools">Admin Tools</a>
+           </li>
+           <li class="dropdown-header no-pad"> <a href="#!/pages/1">About GTV</a> </li>
+           <li class="dropdown-header no-pad"> <a href="#!/pages/2">Privacy</a> </li>
+           <li class="dropdown-header no-pad"> <a href="#!/pages/3">Terms & Conditions</a> </li>
+           <li class="dropdown-header no-pad"> <a href="#!/users/logout" title="Logout">Logout</a> </li>
+          </ul>
+         </li>
+        </ul>
+        <ul class="nav navbar-nav user-navbar pull-right mob-clr-xs mob-dc-xs" ng-show="!$root.isAuth">
+         <li>
+          <a href="javascript:void(0);" class="default-avatar">
+           <img src="themes/smiletv/img/default-avatar.png" alt="[Image: Avatar]" title="Avatar" class="img-circle">
+          </a>
+         </li>
+         <li class="clsLoginMenu">
+          <p class="no-mar"><a href="#!/users/login" title="Login">Login</a></p>
+          <p class="no-mar">
+           <span class="navbar-left right-mar-sm">or</span>
+           <a title="Sign up" href="#!/users/register" class="navbar-left">Sign up</a></p>
+         </li>
+        </ul>
+       </div>
+      </div>
+      <div class="clsMobileShow">
+       <div class="mobile_Btm clearfix">
+        <ul class="list-inline navbar-right clsAfterLoginMnu user-navbar" ng-show="$root.isAuth">
+         <li class="space clearfix dropdown js-filter-menu" ng-if="$root.settings">
+          <div class="show dropdown-toggle clearfix" data-toggle="dropdown" title="{{$root.auth.username}}">
+           <div class="pull-right">
+            <a href="">
+             <div class="pull-left img-rounded panel panel-default no-mar" ng-if="$root.auth.is_use_facebook_picture == false || $root.auth.is_use_facebook_picture == 'f'">
+              <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + $root.auth.very_small_thumb_profile_picture_url + ') no-repeat center center', 'background-size':'cover'}" class="user-avatar-sm img-rounded" ng-if="$root.auth.very_small_thumb_profile_picture_url"></div>
+              <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + $root.auth.network_image_url + ') no-repeat center center', 'background-size':'cover'}" class="user-avatar-sm img-rounded" ng-if="!$root.auth.very_small_thumb_profile_picture_url && $root.auth.network_image_url"></div>
+              <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/User/0/default.png) no-repeat center center', 'background-size':'cover'}" class="user-avatar-sm img-rounded" ng-if="!$root.auth.very_small_thumb_profile_picture_url && !$root.auth.network_image_url"></div>
+             </div>
+             <div class="pull-left img-rounded panel panel-default no-mar" ng-if="$root.auth.is_use_facebook_picture == true || $root.auth.is_use_facebook_picture == 't'">
+              <div ng-style="{'background':'url(' + $root.auth.profile_picture_url + ') no-repeat center center', 'background-size':'cover'}" class="user-avatar-sm img-rounded"></div>
+             </div>
+            </a>
+           </div>
+          </div>
+          <ul class="dropdown-menu montserrat no-mar">
+           <li class="dropdown-header no-pad"> <a href="#!/users/{{$root.auth.username}}" title="My {{$root.domain_name}}">My {{$root.domain_name}}</a> </li>
+           <li class="dropdown-header no-pad"> <a href="#!/users/settings" title="My Account">My Account</a> </li>
+           <li class="dropdown-header no-pad"> <a href="#!/users/genres" title="My Interests">My Interests</a> </li>
+           <li class="dropdown-header no-pad"> <a href="#!/users/invite" title="Invite Friends">Invite Friends</a> </li>
+           <li ng-if="!$root.isUser" class="dropdown-header no-pad"> <a href="ag-admin/#!/" title="Admin Tools">Admin Tools</a>
+           </li>
+           <li class="dropdown-header no-pad"> <a href="#!/pages/1">About GTV</a> </li>
+           <li class="dropdown-header no-pad"> <a href="#!/pages/2">Privacy</a> </li>
+           <li class="dropdown-header no-pad"> <a href="#!/pages/3">Terms & Conditions</a> </li>
+           <li class="dropdown-header no-pad"> <a href="#!/users/logout" title="Logout">Logout</a> </li>
+          </ul>
+         </li>
+        </ul>
+        <ul class="nav navbar-nav user-navbar clsBeforeLoginMnu pull-right mob-clr-xs mob-dc-xs" ng-show="!$root.isAuth">
+         <li>
+          <a href="javascript:void(0);" class="default-avatar">
+           <img src="themes/smiletv/img/default-avatar.png" alt="[Image: Avatar]" title="Avatar" class="img-circle">
+          </a>
+         </li>
+         <li class="clsLoginMenu">
+          <p class="no-mar"><a href="#!/users/login" title="Login">Login</a></p>
+          <p class="no-mar">
+           <span class="navbar-left right-mar-sm">or</span>
+           <a title="Sign up" href="#!/users/register" class="navbar-left">Sign up</a></p>
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="container-fluid pr hide">
+   <div id="main-menus" class="clearfix main-nav playlist-main-nav pa col-xs-12 hide mainnav-list">
+   </div>
+   <div id="gtv-menus" class="clearfix main-nav playlist-main-nav pa col-xs-12 hide">
+    <div ng-include src="'templates/menus.html'" class="header-container clearfix"> </div>
+   </div>
+   <div id="search-menus" class="clearfix js-over-auto main-nav playlist-main-nav pa col-xs-12 hide">
+    <div ng-include src="'templates/search_menu.html'" class="clearfix"> </div>
+   </div>
+  </div>
+ </div>
+</header>

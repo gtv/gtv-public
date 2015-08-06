@@ -1,0 +1,25 @@
+<div>
+ <div class="bot-space">
+  <h2 class="text-22 no-mar">Positive News Articles</h2>
+ </div>
+ <div class="row">
+  <div class="col-sm-3 ps" ng-repeat="article in articles">
+   <div class="clsMobileBtmSpace">
+    <div class="clsThumbImg clsH147 pr">
+     <a href="#!/articles/{{article.id}}" title="{{article.name}}">
+      <img ng-src="{{$root.AWS_BASE_URL}}/{{article.medium_thumb_thumbnail}}" alt="[Image: {{article.name}} Image]" title="{{article.name}} Image" />
+     </a>
+     <span class="clsArticleLike">
+      <a href="#">
+       <i class="fa fa-smile-o text-primary"></i> 1 </a>
+     </span>
+     <div class="clsArticleThumbCaption">
+      <span class="clsArticleNme">
+       <a href="#!/articles/{{article.id}}" title="{{article.name}}" class="hdTruncate"> {{article.name}} <i class="fa fa-angle-right"></i></a>
+      </span>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

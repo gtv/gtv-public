@@ -1,0 +1,96 @@
+<div class="clearfix" ng-init="channel_infinite_view = false; user_infinite_view = false; video_infinite_view = false">
+ <div class="container search_page">
+  <div class="bottom-mar pr" ng-controller="SearchCtrl">
+   <div class="col-center-block text-18 space bottom-mar whitec" ng-show="suggestion">
+    <div class="clearfix">Showing results for "{{suggestion}}"</div>
+    <div class="clearfix"> Search instead for <a href="" ng-click="old_term_search()">{{keyword}}</a></div>
+   </div>
+   <div class="top-space">
+    <div class="row" ng-hide="!video_loading && video_count==0">
+     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+      <div class="clearfix block-space pr" ng-show="video_loading && show_channel">
+       <div class="cssloader top-mar"></div>
+      </div>
+      <div class="clsSearchSideBar mobileBotSpace">
+       <div class="clearfix" ng-repeat="facet in facets">
+        <div class="catePart">
+         <p class="clsSearchCat textb arrow-collapse" data-toggle="collapse" data-target="#commentCollapse{{$index}}">
+          <a href="">
+           <i class="fa fa-angle-right"></i> {{facet.model}} ({{facet.terms.length}})</a>
+         </p>
+         <ul class="list-unstyled clearfix text-18 text-muted left-mar search-side-menu clearfix collapse" id="commentCollapse{{$index}}">
+          <li ng-repeat="terms in facet.terms">
+           <a href="" ng-click="filter_videos(facet.model, terms.term)" title="{{terms.term}}" class="small text-primary hor-space" ng-class="{'whitec': filter_name == terms.term}">
+        {{terms.term}} ({{terms.count}})</a>
+          </li>
+         </ul>
+        </div>
+       </div>
+       <div class="" ng-show="followers">
+        <div class="catePart">
+         <p class="clsSearchCat textb cur arrow-collapse" data-toggle="collapse" data-target="#userCollapse">
+          <a href="">
+           <i class="fa fa-angle-down"></i> Users ({{followers_count}})</a>
+         </p>
+         <ul class="list-unstyled clearfix text-18 search-side-menu userSideMenu collapse in clearfix" id="userCollapse">
+          <li ng-repeat="follower in followers" class="">
+           <a href="#!/users/{{follower.username}}" title="{{follower.username}}" class="show media">
+            <div ng-style="{'background':'url(' + follower.profile_img +') no-repeat center top', 'background-size':'cover'}" class="img-rounded user-avatar-sm pull-left"></div>
+            <span class="media-body h4 show whitec">
+             {{follower.username}}</span>
+           </a>
+          </li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+      <div class="">
+       <h2 class="text-22 no-mar heading">Top Matching for "{{search_name}}"</h3>
+        <div class="clearfix bottom-mar">
+         <div ng-show="show_channel">
+          <div class="clearfix channel_search_result" ng-show="channel_count !=0" ng-if="is_create_scope" id="searchChannel">
+           <module-channel q="{{search_id}}" template-url="templates/module_channel_carousel.html" carousel-type="angular" infinite_scroll_element='main-menus' dom_parent_id="searchChannel"> </module-channel>
+          </div>
+          <div class="clearfix playlist_search_result" ng-show="total_playlist_count != 0" id="searchPlaylist1" ng-if="is_create_scope">
+           <module-playlist q="{{search_id}}" limit="4" show_sort="true" infinite_scroll_element='main-menus' show_count="true" dom_parent_id="searchPlaylist1"></module-playlist>
+          </div>
+          <!--<hr class="bottom-mar-sm divider-md hidden-xs" ng-show="channel_count != 0 || total_playlist_count !=0">-->
+         </div>
+         <!--<div class="visible-xs" ng-show="followers">
+        <div class="clearfix bottom-mar h2">
+         
+          <strong>User</strong>
+          <span class="whitec text-18" ng-show="followers.length!=0"> ({{followers.length}})</span>
+          <a title="Users" class="h3 text-primary" href="" data-target="#users-followlist" data-toggle="collapse" ng-click="user_infinite_view = !user_infinite_view">
+           <i class="fa fa-caret-right left-mar tab-no-mar" ng-show="user_infinite_view == false"></i>
+           <i class="fa fa-caret-down left-mar tab-no-mar" ng-show="user_infinite_view == true"></i>
+          </a>
+         </h2>
+         <div class="clearfix col-lg-12 block-space pr" ng-show="video_loading">
+          <div class="cssloader top-mar"></div>
+         </div>
+         <div class="clearfix" id="users-followlist" ng-show="user_infinite_view">
+          <ul class="list-inline clearfix ver-mar col-xs-12 no-pad center-block-xs userlist-scroller collapse" ng-show="followers && !video_loading">
+           <li ng-repeat="follower in followers" class="col-xs-12 htruncate nav ver-mar">
+            <a href="#!/users/{{follower.username}}" title="{{follower.username}}" class="show media">
+             <div ng-style="{'background':'url(' + follower.profile_img +') no-repeat center top', 'background-size':'cover'}" class="img-rounded user-avatar-sm pull-left"></div>
+             <span class="media-body h4 show whitec">
+              {{follower.username}}</span>
+            </a>
+           </li>
+          </ul>
+         </div>
+        </div>
+       </div>-->
+         <div class="clearfix video_search_result" ng-show="!videoNoRecord" ng-if="is_create_scope" id="searchVideo1">
+          <module-video q="{{search_id}}" type="related" limit="20" show_sort="true" infinite_scroll_element="main-menus" show_count="true" display-type="grid" dom_parent_id="searchVideo1"></module-video>
+         </div>
+        </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>

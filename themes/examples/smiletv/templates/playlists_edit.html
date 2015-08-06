@@ -1,0 +1,174 @@
+<div class="clearfix top-mar" ng-controller="PlaylistEditCtrl">
+ <div class="clearfix video-md-loader" ng-show="loader">
+  <div class="cssloader"></div>
+ </div>
+ <div class="clearfix" ng-hide="loader">
+  <form role="form" name="playlistEdit">
+   <div class="container no-pad">
+    <div class="list-inline col-lg-10 col-sm-12 col-center-block clearfix top-mar whitec playlists-list playlists-edit device-wrap mob-dc">
+     <div class="col-lg-5 col-md-5 col-sm-3 col-xs-12 ver-mar active tab-no-pad">
+      <div class="ver-mar clearfix form-group">
+       <label class="sr-only">Playlist Name</label>
+       <input type="text" class="form-control input-lg" ng-model="playlist.name" placeholder="Playlist Name" ng-change-on-blur="editPlaylist(playlist, 'name');">
+      </div>
+      <div class="clearfix form-group">
+       <label class="sr-only">Description of play list</label>
+       <textarea rows="9" class="form-control input-lg text-left" name="description" ng-model="playlist.description" placeholder="About Playlist" ng-change-on-blur="editPlaylist(playlist, 'description');"></textarea>
+      </div>
+     </div>
+     <div class="col-lg-7 col-md-7 col-sm-9 col-xs-12 ver-mar pull-right">
+      <div class="clearfix ver-mar">
+       <div class="col-lg-5 col-md-5 col-sm-5 clearfix no-pad">
+        <div class="clearfix">
+         <div data-ride="carousel" class="carousel carousel-sm slide col-center-block" id="carousel-cover">
+          <div class="carousel-inner">
+           <div class="item carousel-img test-car js-videoicon-remove" ng-repeat="video in playlist.playlists_videos" data-video_id="{{video.video_id}}" data-video_thumbnail="{{video.videos_thumbnail_url}}" ng-class="{'active': playlist.video_id == video.video_id}" ng-swipe-left="swipeCarouselProfileImage(playlist, 'next')" ng-swipe-right="swipeCarouselProfileImage(playlist, 'prev')">
+            <div class=" file-input-wrapper">
+             <div class="form-group no-mar">
+              <span class="pa block-space col-xs-12 col-xs-pull-0" ng-show="carousel_loader">
+               <span class="show  blackc row-lg1 text-center">
+                <span class="cssloader"></span>
+               </span>
+              </span>
+              <label for="upload-img" class="carousel-img cur">
+               <div ng-style="{'background':'url({{video.videos_thumbnail_url}}) no-repeat center center', 'background-size':'cover'}" class="back-image"></div>
+              </label>
+             </div>
+            </div>
+           </div>
+           <div class="item carousel-img test-car js-videoicon-remove js-videoicon-upload" data-video_id="0" data-video_thumbnail="{{uploaded_thumbnail}}" ng-class="{'active': playlist.video_id == 0}" ng-if="playlist.video_id == 0">
+            <div class=" file-input-wrapper">
+             <div class="form-group no-mar">
+              <span class="pa block-space col-xs-12 col-xs-pull-0" ng-show="carousel_loader">
+               <span class="show  blackc row-lg1 text-center">
+                <span class="cssloader"></span>
+               </span>
+              </span>
+              <label for="upload-img" class="carousel-img cur">
+               <div ng-style="{'background':'url(' + uploaded_thumbnail_url + ') no-repeat center center', 'background-size':'cover'}" class="back-image"></div>
+              </label>
+             </div>
+            </div>
+           </div>
+          </div>
+          <!-- Controls -->
+          <a data-slide="prev" href="" data-target="#carousel-cover" ng-click="changeCarouselProfileImage(playlist, 'prev')" class="left carousel-control text-30" ng-show="playlist.playlists_videos">
+           <span class="fa fa-caret-left fa-lg text-primary"></span>
+          </a>
+          <a data-slide="next" href="" data-target="#carousel-cover" ng-click="changeCarouselProfileImage(playlist, 'next')" class="right carousel-control text-30" ng-show="playlist.playlists_videos">
+           <span class="fa fa-caret-right fa-lg text-primary"></span>
+          </a>
+         </div>
+         <div class="file-input-wrapper initialism col-xs-12 show text-center">
+          <div class="form-group no-mar">
+           <label for="upload-img" class="text-primary small cur pull-left col-center-block-sm top-mar text-left mob-dc">
+            <span ng-show="playlist.playlists_videos.length != 0">Edit icon</span>
+            <span ng-show="playlist.playlists_videos.length ==0">Upload icon</span>
+           </label>
+           <input type="file" id="upload-img" class="upload-btn" on-change="changeProfileImage()" file-input="thumbnail_icon" name="thumbnail_icon">
+          </div>
+         </div>
+         <div class="form-group block-space-sm no-mar mob-bottom-mar mob-no-pad">
+          <div class="col-sm-7 col-xs-12 clearfix">
+           <div class="radio initialism clearfix no-mar col-sm-12 col-xs-6 no-pad">
+            <input type="radio" name="is_public" id="playlist-private" ng-model="playlist.is_public" value="0" ng-change="editPlaylist(playlist, 'is_public');">
+            <label for="playlist-private" class="no-mar col-center-block-sm text-15 montserrat btn-block">Private</label>
+           </div>
+           <div class="radio initialism clearfix no-mar col-sm-12 col-xs-6 no-pad">
+            <input type="radio" id="playlist-public" name="playlist-private" name="is_public" ng-model="playlist.is_public" value="1" ng-change="editPlaylist(playlist, 'is_public');">
+            <label for="playlist-public" class="no-mar col-center-block-sm text-15 montserrat btn-block">Public</label>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="col-lg-7 clearfix col-md-6 col-sm-6 col-xs-12 no-pad">
+        <div class="clearfix bottom-mar-sm">
+         <h5 class="text-lh-sm-16 no-mar montserrat">Select a genre for your playlist:</h5>
+         <div class="playlists-category col-xs-12 no-pad top-mar">
+          <div class="col-lg-10 col-sm-11 no-pad right-mar-sm playlists-category top-mar">
+           <div class="form-group pr text-16">
+            <strong class="initialism">
+             <div dropdown-select="genres" dropdown-model="genreObj" dropdown-item-label="name" dropdown-onchange="editPlaylistGenre(selected);" dropdown-placeholder="Categories"></div>
+            </strong>
+           </div>
+           <div class="form-group pr text-16">
+            <strong class="initialism">
+             <div dropdown-select="sub_genres" dropdown-model="subGenreObj" dropdown-item-label="name" dropdown-onchange="editPlaylistGenre(selected);" dropdown-placeholder="Subcategories"></div>
+            </strong>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="clearfix ver-space">
+         <div class="form-group whitec clearfix col-lg-12 col-sm-11 no-pad">
+          <div class="input">
+           <label class="sr-only">Tags:</label>
+           <input type="text" class="form-control" placeholder="Tags:" ng-model="playlist.tags" name="tags" ng-change-on-blur="editPlaylist(playlist, 'tags');">
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <hr class="col-center-block col-lg-10" ng-show="playlist.playlists_videos.length !=0">
+    <ul class="list-inline col-md-2 col-sm-3 mob-no-pad col-center-block text-center hidden-sm hidden-xs" ng-show="playlist.playlists_videos.length !=0">
+     <li class="top-mar text-18">
+      <a title="Reorder" class="label label-primary clearfix show mob-clr" href="" ng-click="sortableOptions.disabled = sortableReorder(sortableOptions.disabled)">
+       <strong class="initialism navbar-left top-mar-sm  col-xs-9 no-pad">ReOrder </strong>
+       <span class="col-xs-3 no-pad navbar-right">
+        <img src="img/reorder.png" alt="[Image: Reorder]" title="Reorder" class="img-responsive">
+       </span>
+      </a>
+     </li>
+    </ul>
+    <ul id="list-view" class="block-reorder list-inline latest-video col-lg-10 col-sm-12 no-pad col-center-block bottom-mar whitec clearfix thumb-list playlists-newitems device-wrap-xs reorder1-list" ui-sortable="sortableOptions" ng-model="playlist.playlists_videos" ng-class="{ 'reorder1': sortableOptions.disabled !=true}">
+     <li class="col-md-3 col-sm-4 col-xs-12 no-pad bottom-mar" ng-repeat="video in playlist.playlists_videos">
+      <span class="show text-center whitec top-mar text-22">
+       <strong>{{$index + 1}}</strong>
+      </span>
+      <div class="clearfix pr playlists-items">
+       <a class="pa col-xs-pull-0  close-btn" href="" title="Remove" ng-confirm-click="Are you sure to delete video from playlist?" confirmed-click="removeVideo(video.id, video)">
+        <span class="close-block show">Remove</span>
+       </a>
+       <div class="clearfix video-title-bg pr">
+        <div class="row pr no-mar user-video-block">
+         <div class="image-holder">
+          <div class="video-img col-xs-12 no-pad">
+           <a href="#!/playlists/{{playlist.id}}/video/{{video.video_id}}">
+            <div ng-if="!video.videos_is_manual_upload" ng-style="{'background':'url(' + video.videos_thumbnail_url + ') no-repeat center top', 'background-size':'cover'}" class="back-image"></div>
+            <div ng-if="video.videos_is_manual_upload" ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + video.videos_medium_thumb_thumbnail + ') no-repeat center top', 'background-size':'cover'}" class="back-image"></div>
+           </a>
+           <div class="pa views-block">
+            <ul class="list-inline">
+             <li>
+              <a href="#" title="Likes">
+               <i class="fa fa-smile-o text-primary"></i>
+               <span class="whitec hor-space">{{video.video_rating_positive_count}}</span>
+              </a>
+             </li>
+            </ul>
+           </div>
+           <div class="caption clearfix no-pad top-mar-sm">
+            <h5 class="pull-left col-xs-10">
+             <a href="#!/videos/{{video.id}}" title="{{video.videos_name}}" class="no-under htruncate-mml2  col-xs-12 no-pad whitec">
+				     {{video.videos_name}}
+				</a>
+             <i class="fa fa-angle-right"></i>
+            </h5>
+            <span class="date-block col-xs-12 no-pad" ng-if="video.published_at">
+             added {{video.published_at | date:'yyyy-MM-dd HH:mm:ss'}}
+            </span>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </li>
+    </ul>
+   </div>
+  </form>
+ </div>
+</div>

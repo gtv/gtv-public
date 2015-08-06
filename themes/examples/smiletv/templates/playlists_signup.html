@@ -1,0 +1,170 @@
+<div class="col-lg-5 col-center-block text-muted no-pad col-md-7 col-sm-9 col-xs-11" ng-show="!showForm">
+ <div class="block-space">
+  <div class="space-lg lightbox-bg modalblock-lg clearfix">
+   <div class="bottom-mar col-lg-11 col-center-block no-pad col-md-11 col-sm-11">
+    <div class="bottom-mar">
+     <h2 class="lightbox-title mob-dc no-mar">
+      <span class="show">To make a playlist</span>
+      <span class="show">or save a video</span>
+      <span class="whitec montserrat montserrat-600">signup now!</span>
+     </h2>
+    </div>
+   </div>
+   <div class="bottom-mar col-lg-11 col-center-block no-pad col-md-11 col-sm-11 videojoin-block clearfix">
+    <div class="clearfix mob-clr mob-dc">
+     <div class="col-xs-12 no-pad ver-mar">
+      <div class="col-md-8 col-sm-8 col-xs-12 no-pad">
+       <button class="btn btn-lg btn-default col-xs-12 no-shad initialism space-sm divider-sm ver-mar" title="Facebook" ng-click="connect(network_provider.provider_id)">
+        <span class="pull-left top-mar-sm left-mar text-20">
+         <i class="fa fa-facebook fa-2x whitec"></i>
+        </span>
+        <span class="pull-left left-mar text-18 top-mar-sm">With
+         <span class="montserrat montserrat-600">Facebook</span>
+        </span>
+        <span class="text-28">
+         <i class="fa fa-angle-right cur fa-lg pull-right space-sm text-primary"></i>
+        </span>
+       </button>
+      </div>
+      <div class="col-md-8 col-sm-8 col-xs-12 no-pad">
+       <button class="btn btn-lg btn-default col-xs-12 no-shad initialism space-sm divider-sm ver-mar" title="Email" ng-click="showForm =true">
+        <span class="pull-left top-mar-sm left-mar text-20">
+         <i class="fa fa-envelope-o fa-2x whitec"></i>
+        </span>
+        <span class="pull-left left-mar-sm text-18 top-mar-sm">With
+         <span class="montserrat montserrat-600">Email Sign-up</span>
+        </span>
+        <span class="text-28">
+         <i class="fa fa-angle-right cur fa-lg pull-right space-sm text-primary"></i>
+        </span>
+       </button>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="col-xs-12 top-mar mob-no-pad">
+    <div class="clearfix top-mar row mob-no-mar mob-dc">
+     <span class="pull-left mob-clr">
+      <img src="img/gtv-certify-logo.png" title="Certify Logo" alt="[Image: Certify Logo]">
+     </span>
+     <p class="space top-mar terms-condit clearfix pull-left mob-clr mob-no-mar">
+      <span class="pull-left mob-clr">By joining {{$root.domain_name}} you agree to these</span>
+      <a href="!/pages/3" target="_blank" class="show pull-left mob-clr mob-dc left-mar-sm initialism" title="Terms &amp; Conditions">
+       <strong>Terms &amp; Conditions</strong>
+      </a>
+     </p>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+<div class="col-lg-8 col-center-block text-muted no-pad col-md-10 col-sm-11 col-xs-11" ng-show="showForm">
+ <div class="block-space">
+  <div class="space-lg lightbox-bg modalblock-lg clearfix tab-space">
+   <form role="form" class="top-mar clearfix" name="userSignup" id="signupForm" ng-submit="onSubmitted(userSignup.$valid, user)">
+    <div class="col-lg-11 col-md-11 col-sm-12 col-center-block no-pad montserrat">
+     <div class="col-lg-5 col-md-5 col-sm-6 no-pad whitec">
+      <div class="clearfix right-mar mob-no-mar">
+       <div class="form-group clearfix top-mar">
+        <label for="first-name" class="sr-only">First Name
+         <span class="text-primary">*</span>
+        </label>
+        <input type="text" id="first-name" ng-model="user.first_name" tabindex="1" placeholder="First Name *" class="space bg-darker col-xs-12 no-bor top-mar text-18" required>
+        <div ng-show="userSignup.first_name.$dirty && userSignup.first_name.$invalid">
+         <span class="help-block" ng-show="userSignup.first_name.$error.required"> Required!</span>
+        </div>
+       </div>
+       <div class="form-group clearfix">
+        <label for="email" class="sr-only">Email</label>
+        <input type="email" id="email" ng-model="user.email" tabindex="3" required placeholder="Email" class="space bg-darker col-xs-12 no-bor top-mar text-18">
+        <div ng-show="userSignup.email.$dirty && userSignup.email.$invalid">
+         <span class="help-block" ng-show="userSignup.email.$error.required"> Required!</span>
+         <span class="help-block" ng-show="userSignup.email.$error.email"> Not valid email</span>
+        </div>
+       </div>
+       <div class="form-group clearfix">
+        <label for="date-of-birth" class="mob-clr mob-dc col-xs-3 whitec text-right no-pad">
+         <span class="right-mar show text-lh-sm-16">Date of Birth:</span>
+        </label>
+        <input type="number" id="date-of-birth" ng-model="user.dob_date" tabindex="7" class="space bg-darker no-bor col-xs-3 col-sm-2 col-md-2 col-lg-2 right-mar text-18 mob-clr-xs mob-top-mar-xs" placeholder="00">
+        <input type="number" ng-model="user.dob_month" tabindex="8" class="space bg-darker no-bor col-xs-3 col-sm-2 col-md-2 col-lg-2  right-mar text-18 mob-clr-xs mob-top-mar-xs" placeholder="00">
+        <input type="number" ng-model="user.dob_year" tabindex="9" class="col-xs-5 col-sm-4 col-md-4 col-lg-4 space bg-darker no-bor text-18 mob-clr-xs mob-top-mar-xs" placeholder="0000">
+       </div>
+      </div>
+     </div>
+     <div class="col-lg-5 col-md-5 col-sm-6 no-pad whitec">
+      <div class="clearfix left-mar mob-no-mar">
+       <div class="form-group clearfix top-mar">
+        <label for="last-name" class="sr-only">Last Name</label>
+        <input type="text" id="last-name" placeholder="Last Name" tabindex="2" required ng-model="user.last_name" class="space bg-darker col-xs-12 no-bor top-mar text-18">
+        <div ng-show="userSignup.last_name.$dirty && userSignup.last_name.$invalid">
+         <span class="help-block" ng-show="userSignup.last_name.$error.required"> Required!</span>
+        </div>
+       </div>
+       <div class="form-group clearfix top-mar">
+        <label for="user-name" class="sr-only">User Name</label>
+        <input type="text" id="user-name" placeholder="User Name" tabindex="4" ng-model="user.username" class="space bg-darker col-xs-12 no-bor top-mar text-18" ng-minlength="3" ng-maxlength="20" ng-pattern="/^\s*\w*\s*$/" name="username" required>
+        <div ng-show="userSignup.username.$dirty && userSignup.username.$invalid">
+         <span class="help-block" ng-show="userSignup.username.$error.required"> Required!</span>
+         <span class="help-block" ng-show="userSignup.username.$error.pattern">Only use letters and numbers.</span>
+         <span class="help-block" ng-show="userSignup.username.$error.minlength">Must be at least 3 characters</span>
+         <span class="help-block" ng-show="userSignup.username.$error.maxlength">Must be less than 20 characters</span>
+        </div>
+       </div>
+       <div class="form-group clearfix">
+        <label for="start-password" class="sr-only">Start Password</label>
+        <input type="password" id="start-password" name="password" tabindex="5" required placeholder="Start Password" ng-model="user.password" class="space bg-darker col-xs-12 no-bor top-mar text-18">
+        <div ng-show="userSignup.password.$dirty && userSignup.password.$invalid">
+         <span class="help-block" ng-show="userSignup.password.$error.required"> Required!</span>
+        </div>
+       </div>
+       <div class="form-group clearfix">
+        <label for="confirm-password" class="sr-only">Confirm Password</label>
+        <input type="password" id="confirm-password" placeholder="Confirm Password" tabindex="6" required ng-model="user.confirm_password" data-match="user.password" name="confirm_password" class="space bg-darker col-xs-12 no-bor top-mar text-18">
+        <div ng-show="userSignup.confirm_password.$dirty && userSignup.confirm_password.$invalid">
+         <span class="help-block" ng-show="userSignup.confirm_password.$error.required"> Required!</span>
+        </div>
+        <div ng-show="userSignup.confirm_password.$error.match">Fields do not match!</div>
+       </div>
+      </div>
+     </div>
+     <div class="col-lg-2 col-md-2 col-sm-12 no-pad">
+      <div class="form-inline radiobutton-right whitec text-right top-mar mob-no-mar">
+       <div class="form-group left-mar input-lg no-pad top-mar mob-no-mar" ng-init="user.gender_id=1">
+        <div class="radio initialism clearfix no-mar text-left">
+         <input type="radio" name="male1" tabindex="10" id="male1" checked ng-model="user.gender_id" value="1">
+         <label for="male1" class="left-mar top-mar mob-clr mob-dc">Male</label>
+        </div>
+        <div class="radio initialism clearfix no-mar text-left">
+         <input type="radio" name="female1" id="female1" tabindex="11" ng-model="user.gender_id" value="2">
+         <label for="female1" class="left-mar top-mar mob-clr mob-dc">Female</label>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-xs-12 top-mar mob-no-pad tab-no-pad">
+     <div class="clearfix top-mar row mob-no-mar mob-dc col-xs-12 no-pad tab-no-mar">
+      <span class="pull-left mob-clr">
+       <img src="img/gtv-certify-logo.png" title="Certify Logo" alt="[Image: Certify Logo]">
+      </span>
+      <p class="left-mar space top-mar terms-condit clearfix pull-left mob-clr mob-no-mar">
+       <span class="pull-left mob-clr">By joining {{$root.domain_name}} you agree to these</span>
+       <a href="#!/pages/3" target="_blank" class="show pull-left mob-clr mob-dc left-mar-sm initialism" title="Terms &amp; Conditions">
+        <strong>Terms &amp; Conditions</strong>
+       </a>
+      </p>
+      <div class="text-18 pull-right col-md-4 col-sm-3 col-xs-12 no-pad mob-bottom-mar">
+       <button class="btn btn-lg btn-default col-xs-12 no-shad initialism space-sm divider-sm" tabindex="12" linked="submitMe">
+        <span class="pull-left left-mar top-mar montserrat-600">Join Now</span>
+        <span class="text-28">
+         <i class="fa fa-angle-right cur fa-lg pull-right space-sm text-primary"></i>
+        </span>
+       </button>
+      </div>
+     </div>
+    </div>
+   </form>
+  </div>
+ </div>
+</div>

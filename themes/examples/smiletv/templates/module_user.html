@@ -1,0 +1,27 @@
+<div class="clearfix top-mar-sm montserrat">
+ <div ng-show="userFollowingNoRecord" class="alert alert-warning"> No Record Found</div>
+ <div ng-show="userFollowingLoading" class="clearfix col-lg-12 block-space">
+  <span class="cssloader"></span>
+ </div>
+ <div class="carousel-inner" data-carousel data-carousel-class="col-xs-12 playlist-carousel multi-line-list no-pad top-mar" data-on-page-upcoming="loadUserFollowPage(page, tmplCb)" data-give-carousel-to="userFollowOnCarouselAvailable(carousel)" ng-show="!userFollowingNoRecord">
+  <ul class="clearfix list-unstyled follows-list mob-dc row js-list-inline pr">
+   <li class="pull-left text-center js-video-list" data-ng-repeat="user_follower in user_followers" ng-swipe-left="userFollowSwipeNext()" ng-swipe-right="userFollowSwipePrevious()" on-carousel-scope-render="userFollowFinishRender()">
+    <a href="#!/users/{{user_follower.followed_username}}" title="{{user_follower.followed_username}}" class="no-under whitec top-mar col-xs-12 no-pad">
+     <div class="follow-avatar avatar-rounded bottom-mar-sm center-block" ng-style="{ 'background': 'url(' + $root.AWS_BASE_URL + '/' + user_follower.followed_medium_thumb_profile_picture_url + ') no-repeat center center', 'background-size': 'cover'}" ng-if="user_follower.followed_medium_thumb_profile_picture_url && !user_follower.followed_is_use_facebook_picture"></div>
+     <div class="follow-avatar avatar-rounded bottom-mar-sm center-block" ng-style="{ 'background': 'url(' + user_follower.followed_medium_thumb_profile_picture_url + ') no-repeat center center', 'background-size': 'cover'}" ng-if="user_follower.followed_medium_thumb_profile_picture_url && user_follower.followed_is_use_facebook_picture"></div>
+     <div class="follow-avatar avatar-rounded bottom-mar-sm center-block" ng-style="{ 'background': 'url(' + user_follower.network_image_url + ') no-repeat center center', 'background-size': 'cover'}" ng-if="!user_follower.followed_medium_thumb_profile_picture_url && user_follower.network_image_url"></div>
+     <div class="follow-avatar avatar-rounded bottom-mar-sm center-block" ng-style="{ 'background': 'url(' + $root.AWS_BASE_URL + '/User/0/default.png) no-repeat center center', 'background-size': 'cover'}" ng-if="!user_follower.followed_medium_thumb_profile_picture_url && !user_follower.network_image_url"></div>
+     <span class="show text-center h4 htruncate no-mar">
+      <strong>{{user_follower.followed_username}}</strong>
+     </span>
+    </a>
+   </li>
+  </ul>
+ </div>
+ <a class="left carousel-control no-bg" data-ng-show="userFollowHasPrevious()" data-ng-click="userFollowPrevious()" href="" data-target="#followCarousel">
+  <span class="fa fa-angle-left fa-3x cur"></span>
+ </a>
+ <a class="right carousel-control no-bg" data-ng-show="userFollowHasNext()" data-ng-click="userFollowNext()" href="" data-target="#followCarousel">
+  <span class="fa fa-angle-right fa-3x cur"></span>
+ </a>
+</div>

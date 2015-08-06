@@ -1,0 +1,57 @@
+<div id="homeCtrlPage" class="index no-pad" ng-controller="HomeCtrl">
+ <module-content-gliders limit="30"></module-content-gliders>
+ <div class="container">
+  <div class="row">
+   <div class="col-md-9 col-sm-12 col-xs-12">
+    <div class="clsHomeTopSpace" id="homeVideo2">
+     <module-article limit="3" title="Welcome to Smile TV" template-url="templates/module_welcome_article.html" dom_parent_id="homeVideo2"></module-video>
+    </div>
+    <!--<div class="btn-block block-space-sm">
+       <div id="homeAdWidget-advertisement-4" class="widget-img1">
+       <module-ad parent_id="homeAdWidget-advertisement-4" name="WIDGET_2" slot_name="advertisement-4"></module-ad>
+      </div>
+      </div>-->
+    <div class="" ng-if="is_create_scope" id="homeVideo1">
+     <module-video filter="featured" limit="2" title="Featured Videos" template-url="templates/module_youtube_video.html" dom_parent_id="homeVideo1"></module-video>
+    </div>
+    <!--<div class="clsHomeTopSpace" ng-if="is_create_scope" id="homeVideo2">
+     <module-video sort="most_commented" limit="3" title="Top Rated Videos" template-url="templates/module_vimeo_video.html" is-infinite-scroll="false" dom_parent_id="homeVideo2"></module-video>
+    </div>-->
+    <div class="clsHomeTopSpace " ng-if="is_create_scope" id="homeVideo3">
+     <module-article sort="latest" limit="8" title="Latest Articles" template-url="templates/module_latest_article.html" dom_parent_id="homeVideo3"></module-video>
+    </div>
+   </div>
+   <div class="col-md-3 col-sm-5 col-xs-12 sidebar">
+    <div class="clearfix" ng-if="is_create_scope" id="homeVideo5">
+     <module-video sort="popular" title="Most Liked" limit="3" template-url="templates/module_widget_video.html" is-infinite-scroll="false" dom_parent_id="homeVideo5"></module-video>
+    </div>
+    <div class="clearfix navabr-btn text-center">
+     <div id="homeAdWidget-advertisement-1" class="">
+      <h2 class="pull-left no-mar mob-clr text-22 widget-title text-left">
+       Adversiting
+      </h2>
+      <div class="btn-block block-space-sm">
+       <div id="homeAdWidget-advertisement-1" class="widget-img1">
+        <module-ad parent_id="homeAdWidget-advertisement-1" name="HOME_WIDGET_1" slot_name="advertisement-1"></module-ad>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="clearfix" ng-if="is_create_scope" id="homeVideo6">
+     <module-video sort="highest_rate" title="Most Viewed" limit="8" template-url="templates/module_highly_rate_video.html" is-infinite-scroll="false" dom_parent_id="homeVideo6"></module-video>
+    </div>
+    <div id="homeAdWidget-advertisement-3" class="col-xs-12 no-pad">
+     <h2 class="pull-left no-mar mob-clr text-22 widget-title text-left">
+      Adversiting
+     </h2>
+     <div class="col-xs-12 btn-block block-space-sm">
+      <div id="homeAdWidget-advertisement-2" class="widget-img1">
+       <module-ad parent_id="homeAdWidget-advertisement-2" name="HOME_WIDGET_2" slot_name="advertisement-2"></module-ad>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+</div>

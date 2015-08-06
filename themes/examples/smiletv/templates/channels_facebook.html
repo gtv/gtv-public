@@ -1,0 +1,210 @@
+<div class="clearfix show bg-darker" ng-controller="ChannelFacebookViewCtrl" ng-init="videoNoRecord = false;videoLaoding=true;">
+ <div class="row no-mar">
+  <div class="banner-block pr">
+   <div class="banner-img" ng-style="coverImage">
+    <div class="col-xs-12 no-pad caption montserrat mob-no-mar pa row-xs-pull-0">
+     <div class="container pr">
+      <div class="sidebar-caption pa clearfix col-center-block-sm center-block">
+       <div class="pull-left">
+        <div class="form-group clearfix no-mar">
+         <label for="add-channel-image" class="sr-only">Click to Add An Image</label>
+         <div class="pr pull-left initialism col-center-block-sm user-profile-avatar">
+          <div class="file-input-wrapper img-thumbnail user-profile-avatar space-xs edit-show">
+           <div ng-style="channelImage" class="back-image img-rounded center-block"></div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <hr class="no-mar col-xs-12 no-pad">
+  </div>
+  <div class="container center-block-xs no-pad">
+   <div class="clearfix" ng-init="video_show = true" ng-show="!videoNoRecord">
+    <div class="clearfix initialism montserrat playlist-carousel device-wrap-sm col-center-block">
+     <div id="accordion">
+      <h2 class="pull-left whitec mob-clr mob-dc left-mar-sm">Videos
+       <small class="whitec" ng-show="!videoLaoding && channel_video_count != 0">({{channel_video_count}})</small>
+       <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" href="" title="Videos" ng-click="video_show = !video_show" ng-show="!videoNoRecord">
+        <span ng-show="video_show">
+         <i class="fa fa-caret-down left-mar"></i>
+        </span>
+        <span ng-show="!video_show">
+         <i class="fa fa-caret-right left-mar"></i>
+        </span>
+       </a>
+      </h2>
+     </div>
+    </div>
+    <div id="collapseOne" class="collapse in device-wrap-ld device-wrap clearfix col-center-block">
+     <div id="myCarousel" class="playlist-carousel carousel slide mob-no-pad" data-ride="carousel">
+      <div class="clearfix">
+       <div ng-show="videoNoRecord" class="alert alert-warning"> No Record Found</div>
+       <div ng-show="videoLaoding" class="clearfix col-lg-12  block-space pr">
+        <span class="cssloader"></span>
+       </div>
+       <div class="carousel-inner container no-pad" data-carousel data-carousel-class="col-xs-12 video-list2 no-pad top-mar" data-on-page-upcoming="loadPage(page, tmplCb)" data-give-carousel-to="onCarouselAvailable(carousel)" ng-show="!videoNoRecord">
+        <ul class="clearfix list-inline thumb-list no-mar js-list-inline pr">
+         <li class="col-lg-2 no-pad js-video-list" data-ng-repeat="channel_video in channel_videos" on-carousel-scope-render="finishRender()">
+          <div class="thumbnail space clearfix">
+           <div class="row pr no-mar user-video-block">
+            <div class="video-img col-xs-12 no-pad">
+             <a href="#!/videos/{{channel_video.id}}">
+              <div class="back-image" ng-if="!channel_video.is_manual_upload" ng-style="{'background':'url(' + channel_video.thumbnail_url + ') no-repeat center top', 'background-size':'cover'}"></div>
+              <div class="back-image" ng-if="channel_video.is_manual_upload" ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + channel_video.medium_thumb_thumbnail + ') no-repeat center top', 'background-size':'cover'}"></div>
+             </a>
+            </div>
+            <div class="pa col-xs-push-0 col-xs-pull-0 row-xs-pull-0 space-sm">
+             <div class="col-xs-6 bg-dark-trans panel btn-sm no-pad no-shad no-mar" ng-if="channel_video.duration != 0">
+              <span class="whitec col-xs-4 text-right no-pad">
+               <span class="hor-mar-sm">{{channel_video.duration | sec_to_min}}</span>
+              </span>
+             </div>
+            </div>
+            <ul class="clearfix list-inline no-mar row-xs-push-0 pa col-xs-pull-0 user-share-block space-xs top-user-block">
+             <li class="pull-right no-pad dropdown dropup js-dropup">
+              <a href="" title="Share" class="dropdown-toggle show small" data-toggle="dropdown">
+               <span title="Share" class="share-sprite"></span>
+              </a>
+              <ul class="dropdown-menu social-share">
+               <li class="col-xs-12 no-pad">
+                <a class="pull-right" title="Share" href="">
+                 <span title="Share" class="share-sprite active"></span>
+                </a>
+               </li>
+               <li>
+                <a href="" ng-click="share('facebook', 'videos', channel_video.id, channel_video.name, channel_video.thumbnail_url)" class="text-18">
+                 <span class="fa-stack fa-lg">
+                  <i class="fa fa-stop fa-stack-2x whitec"></i>
+                  <i class="fa fa-facebook fa-stack-1x text-primary"></i>
+                 </span>
+                </a>
+               </li>
+               <li>
+                <a href="" ng-click="share('twitter', 'videos', channel_video.id, channel_video.name, channel_video.thumbnail_url)" title="Twitter" class="text-18">
+                 <span class="fa-stack fa-lg">
+                  <i class="fa fa-stop fa-stack-2x whitec"></i>
+                  <i class="fa fa-twitter fa-stack-1x text-primary"></i>
+                 </span>
+                </a>
+               </li>
+               <li>
+                <a href="" ng-click="share('pinterest', 'videos', channel_video.id, channel_video.name, channel_video.thumbnail_url)" title="Pinterest" class="text-18">
+                 <span class="fa-stack fa-lg">
+                  <i class="fa fa-stop fa-stack-2x whitec"></i>
+                  <i class="fa fa-pinterest fa-stack-1x text-primary"></i>
+                 </span>
+                </a>
+               </li>
+               <li>
+                <a href="" ng-click="share('google', 'videos', channel_video.id, channel_video.name, channel_video.thumbnail_url)" title="Google Plus" class="text-18">
+                 <span class="fa-stack fa-lg">
+                  <i class="fa fa-stop fa-stack-2x whitec"></i>
+                  <i class="fa fa-google-plus fa-stack-1x text-primary"></i>
+                 </span>
+                </a>
+               </li>
+               <li>
+                <a href="" ng-click="share('reddit', 'videos', channel_video.id, channel_video.name, channel_video.thumbnail_url)" title="Reddit" class="text-18">
+                 <span class="fa-stack fa-lg">
+                  <i class="fa fa-stop fa-stack-2x whitec"></i>
+                  <i class="fa fa-reddit fa-stack-1x text-primary"></i>
+                 </span>
+                </a>
+               </li>
+               <li>
+                <a href="" open-dialog data-open_modal="#videoEmbeddedModal" data-share_id="{{channel_video.id}}" class="text-18">
+                 <span class="fa-stack fa-lg">
+                  <i class="fa fa-stop fa-stack-2x whitec"></i>
+                  <i class="fa fa-code fa-stack-1x text-primary"></i>
+                 </span>
+                </a>
+               </li>
+              </ul>
+             </li>
+             <li class="pull-right dropdown dropup js-dropup no-pad">
+              <a href="" title="Add" class="dropdown-toggle small" data-toggle="dropdown">
+               <span class="add-sprite" title="Like"></span>
+              </a>
+              <ul class="dropdown-menu montserrat hor-space">
+               <li>
+                <a href="" class="clearfix pr">
+                 <span title="My {{$root.domain_name}}" class="text-lh-sm-16 col-xs-12 no-pad top-mar-sm" ng-show="!is_owner" ng-click="addFavorite(channel_video)">
+                  <span class="col-xs-10 no-pad htruncate initialism">
+                   <strong>My {{$root.domain_name}}</strong>
+                  </span>
+                 </span>
+                 <span class="pull-right col-xs-pull-0 pa small">
+                  <span class="add-sprite active" title="Like"></span>
+                 </span>
+                </a>
+               </li>
+               <li class="divider no-bg dot-divider"></li>
+               <li class="addlist-scroller top-mar">
+                <div class="clearfix dummy_playlist_input hide">
+                 <span class="text-lh-sm-16 col-xs-12 bottom-mar-sm splash-form">
+                  <input ng-model="new_name" class="col-xs-12 form-control input-sm" placeholder="Name" ng-enter="addNewPlaylist(channel_video.id, new_name)" stop-event="click">
+                 </span>
+                </div>
+                <a href="" class="clearfix" ng-click="addNewDummyPlaylist()" title="Add Playlist" stop-event="click">
+                 <span class="text-lh-sm-16 col-xs-12 no-pad">
+                  <span class="col-xs-12 no-pad">
+                   <strong>Add Playlist</strong>
+                  </span>
+                 </span>
+                </a>
+                <a class="clearfix" href="" title="{{myplaylist.playlists_name}}" ng-click="add_to_playlist(channel_video.id, myplaylist.playlist_id, $index)" ng-repeat="myplaylist in $root._myplaylist">
+                 <span class="text-lh-sm-16 col-xs-12 no-pad">
+                  <span class="col-xs-12 no-pad htruncate">
+                   <strong>{{myplaylist.playlists_name}}</strong>
+                  </span>
+                 </span>
+                </a>
+               </li>
+              </ul>
+             </li>
+            </ul>
+           </div>
+           <div class="caption clearfix no-pad top-mar-sm">
+            <div class="pull-left">
+             <a ng-if="!channel_video.is_facebook_video" href="#!/channels/{{channel_video.channels_slug}}" title="{{channel_video.channel_name}}" class="img-thumbnail no-pad show">
+              <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + channel_video.channels_very_small_thumb_profile_image + ') no-repeat center top', 'background-size':'cover'}" ng-if="channel_video.channels_very_small_thumb_profile_image" class="img-rounded user-avatar-sm"></div>
+              <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/Channel/0/default.png) no-repeat center top', 'background-size':'cover'}" ng-if="!channel_video.channels_very_small_thumb_profile_image" class="img-rounded user-avatar-sm"></div>
+             </a>
+             <a ng-if="channel_video.is_facebook_video" href="#!/users/{{channel_video.users_username}}" title="{{channel_video.users_username}}" class="img-thumbnail no-pad show">
+              <div ng-style="{'background':'url(' +  channel_video.users_profile_picture_url + ') no-repeat center top', 'background-size':'cover'}" ng-if="channel_video.users_profile_picture_url" class="img-rounded user-avatar-sm"></div>
+              <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/Channel/0/default.png) no-repeat center top', 'background-size':'cover'}" ng-if="!channel_video.users_profile_picture_url" class="img-rounded user-avatar-sm"></div>
+             </a>
+            </div>
+            <div class="col-xs-9 no-pad">
+             <div class="clearfix">
+              <h5 class="pull-left no-mar col-xs-11 no-pad text-12">
+               <a href="#!/videos/{{channel_video.id}}" title="{{channel_video.name}}" class="no-under htruncate col-xs-12 hor-space gray-darkc">
+                <strong>{{channel_video.name}}</strong>
+               </a>
+              </h5>
+             </div>
+             <div class="col-xs-11 no-pad text-12 montserrat hor-mar">
+              <span class="pull-left right-mar-sm">By</span> <a ng-if="!channel_video.is_facebook_video" href="#!/channels/{{channel_video.channels_slug}}" title="{{channel_video.channel_name}}" class="gray-darkc htruncate col-lg-10 col-md-8 col-sm-10 col-xs-10 no-pad no-under">{{channel_video.channel_name}}</a>
+              <a ng-if="channel_video.is_facebook_video" href="#!/users/{{channel_video.users_username}}" title="{{channel_video.users_username}}" class="gray-darkc htruncate col-lg-10 col-md-8 col-sm-10 col-xs-10 no-pad no-under">{{channel_video.users_username}}</a>
+             </div>
+            </div>
+           </div>
+          </div>
+         </li>
+        </ul>
+       </div>
+       <a class="left carousel-control no-bg" data-ng-show="hasPrevious()" data-ng-click="previous()" href="" data-target="#myCarousel">
+        <span class="fa fa-angle-left fa-3x cur"></span>
+       </a>
+       <a class="right carousel-control no-bg" data-ng-show="hasNext()" data-ng-click="next()" href="" data-target="#myCarousel">
+        <span class="fa fa-angle-right fa-3x  cur"></span>
+       </a>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>

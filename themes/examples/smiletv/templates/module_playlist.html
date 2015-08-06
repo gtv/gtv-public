@@ -1,0 +1,65 @@
+<div class="clearfix" ng-show="total_playlist_count != 0">
+ <div class="clearfix h2">
+  <div class="bottom-mar col-lg-4 col-md-5 col-sm-6 col-xs-12 mob-top-mar pull-right no-pad text-center hidden-xs select-dropdown" ng-show="playlist_showSort">
+   <div class="form-group small no-mar">
+    <label class="control-label col-xs-4 h4 text-muted mob-clr text-right">Sort</label>
+    <div class="col-xs-8 no-pad pr mob-clr playlists-category h5 no-mar">
+     <strong class="initialism">
+      <div dropdown-select="playlist_selectOptions" dropdown-model="playlist_sortby_obj" dropdown-item-label="name" dropdown-onchange="sort_playlist(selected)" dropdown-placeholder="Sort"></div>
+     </strong>
+    </div>
+   </div>
+  </div>
+  <h2 class="initialism pull-left no-mar mob-clr text-muted whitec text-22">
+   <strong>{{playlist_title}}</strong>
+   <span class="whitec text-18" ng-show="total_playlist_count != 0 && playlist_showCount == 'true'"> ({{total_playlist_count}})</span>
+   <a title="{{playlist_title}}" class="h3 text-primary" href="javascript:void(0);" ng-click="playlist_infinite_view = !playlist_infinite_view" ng-show="playlist_displayType">
+    <i class="fa fa-caret-right left-mar tab-no-mar" ng-show="playlist_infinite_view == false"></i>
+    <i class="fa fa-caret-down left-mar tab-no-mar" ng-show="playlist_infinite_view == true"></i>
+   </a>
+  </h2>
+ </div>
+ <div ng-show="!no_playlist_found">
+  <div class="clearfix ver-mar col-xs-12 no-pad hidden-xs" ng-show="playlist_infinite_view == false">
+   <div id="playlistCarousel1" class="playlist-carousel carousel slide col-xs-offset-1 mob-no-mar" data-ride="carousel">
+    <div class="clearfix block-space pr" ng-show="playlistLoading">
+     <div class="cssloader top-mar"></div>
+    </div>
+    <div class="carousel-inner" data-carousel data-carousel-class="col-xs-12 menu-playlist-carousel no-pad" data-on-page-upcoming="loadPlaylistPage(page, tmplCb)" data-give-carousel-to="playlistOnCarouselAvailable(carousel)" ng-show="!no_playlist_found">
+     <ul class="clearfix list-inline no-mar playlist js-list-inline pr">
+      <li class="col-lg-2 no-pad mob-bottom-mar js-video-list" data-ng-repeat="playlist in playlists" ng-swipe-left="playlistSwipeNext()" ng-swipe-right="playlistSwipePrevious()" on-carousel-scope-render="playlistFinishRender()" bindonce>
+       <div class="clearfix col-xs-12" ng-include src="'templates/module_sub_playlist.html'"></div>
+      </li>
+     </ul>
+    </div>
+    <div class="control-btn pa">
+     <a class="left carousel-control no-bg" data-ng-show="playlistHasPrevious()" data-ng-click="playlistPrevious()" href="" data-target="#playlistCarousel1">
+      <span class="fa fa-angle-left fa-3x cur"></span>
+     </a>
+     <a class="right carousel-control no-bg" data-ng-show="playlistHasNext()" data-ng-click="playlistNext()" href="" data-target="#playlistCarousel1">
+      <span class="fa fa-angle-right fa-3x cur"></span>
+     </a>
+    </div>
+   </div>
+  </div>
+  <div ng-if="playlist_infiniteScrollElement">
+   <div class="clearfix ver-mar col-xs-12 no-pad" ng-show="playlist_infinite_view == true" infinite-scroll="loadMorePlaylists()" infinite-scroll-disabled='playlist_busy' infinite-scroll-element="{{playlist_infiniteScrollElement}}" infinite-scroll-distance="0">
+    <div id="searchCarouse2_1" class="playlist-carousel col-xs-offset-1 mob-no-mar">
+     <div class="clearfix block-space pr" ng-show="playlistLoading">
+      <div class="cssloader top-mar"></div>
+     </div>
+     <div class="carousel-inner" ng-show="!no_playlist_found">
+      <ul class="clearfix list-inline no-mar playlist js-list-inline pr">
+       <li class="col-lg-2 col-md-4 col-sm-6 col-xs-12 no-pad mob-no-pad mob-bottom-mar js-video-list" ng-repeat="playlist in playlists_listing">
+        <div class="clearfix col-xs-12" ng-include src="'templates/module_sub_playlist.html'"></div>
+       </li>
+      </ul>
+     </div>
+     <div class="clearfix block-space pr" ng-show="playlist_loading == true">
+      <div class="cssloader top-mar"></div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

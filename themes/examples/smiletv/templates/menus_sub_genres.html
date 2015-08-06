@@ -1,0 +1,19 @@
+<div ng-controller="MenusSubGenresCtrl" ng-init="sub_genre_loading = true;">
+ <div class="clearfix col-xs-12 ver-space h1 " ng-show="sub_genre_loading">
+  <span class="cssloader"></span>
+ </div>
+ <div class="pull-left text-20 col-xs-12 no-pad" ng-show="!sub_genre_loading">
+  <ul class="list-inline clearfix initialism">
+   <li class="col-md-4 col-sm-6 col-xs-12" ng-if="parent_id">
+    <a href="" ng-click="filterWithGenre(parent_id)" title="Discover all {{parent_name}}" class="text-muted no-under" name="sub-list">
+     <strong>Discover all {{parent_name}}</strong>
+    </a>
+   </li>
+   <li class="col-md-4 col-sm-6 col-xs-12" ng-repeat="s_genre in subGenres">
+    <a href="" ng-click="filterWithGenre(s_genre.id)" title="{{s_genre.name}}" class="text-muted no-under" name="sub-list">
+     <strong>{{s_genre.name}}</strong>
+    </a>
+   </li>
+  </ul>
+ </div>
+</div>

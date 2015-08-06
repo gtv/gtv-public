@@ -1,0 +1,116 @@
+<div class="clearfix show" ng-controller="ChannelViewCtrl" ng-init="videoNoRecord = false;playlistNoRecord = false;videoLaoding=true;playlistLoading=true;">
+ <div class="row no-mar">
+  <form role="form" method="post">
+   <div class="banner-block pr">
+    <div class="clearfix banner-img" ng-show="!channel">
+     <span class="cssloader"></span>
+    </div>
+    <div class="banner-img" ng-style="coverImage" ng-show="channel">
+     <div class="col-xs-12 no-pad caption montserrat mob-no-mar pa row-xs-pull-0">
+      <div class="container pr">
+       <div class="sidebar-caption clearfix pa row-xs-pull-0 bottom-mar-sm">
+        <div class="pull-left bottom-mar">
+         <div class="form-group clearfix no-mar">
+          <label for="add-channel-image" class="sr-only">Click to Add An Image</label>
+          <div class="pr pull-left initialism col-center-block-sm user-profile-avatar">
+           <div class="file-input-wrapper img-thumbnail user-profile-avatar space-xs edit-show">
+            <div ng-style="channelImage" ng-class="{'hover-img ': is_owner}" class="back-image img-rounded center-block"></div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="pull-left montserrat col-lg-10 col-md-9 col-sm-8 col-xs-7 caption-content">
+        <h3 class="ver-mar htruncate" title="{{channel.name}}">{{channel.name}}</h3>
+        <div class="clearfix pa col-xs-12 no-pad user-share-block thumb-list">
+         <ul class="list-inline clearfix no-mar fliplike-stats-block">
+          <li class="ver-mar-sm no-pad dropdown dropup js-dropup pull-left">
+           <a href="" title="Share" class="dropdown-toggle show small" data-toggle="dropdown">
+            <span class="fa-stack fa-lg iconright-mar-sm">
+             <span title="Share" class="share-sprite"></span>
+            </span>
+           </a>
+           <ul class="dropdown-menu social-share list-inline">
+            <li>
+             <a href="" ng-click="share('reddit', 'channels', channel.id, channel.name, channel.medium_thumb_profile_image)" title="Reddit" class="text-18">
+              <span class="fa-stack fa-lg">
+               <i class="fa fa-stop fa-stack-2x whitec"></i>
+               <i class="fa fa-reddit fa-stack-1x text-primary"></i>
+              </span>
+             </a>
+            </li>
+            <li>
+             <a href="" ng-click="share('google', 'channels', channel.id, channel.name, channel.medium_thumb_profile_image)" title="Google Plus" class="text-18">
+              <span class="fa-stack fa-lg">
+               <i class="fa fa-stop fa-stack-2x whitec"></i>
+               <i class="fa fa-google-plus fa-stack-1x text-primary"></i>
+              </span>
+             </a>
+            </li>
+            <li>
+             <a href="" ng-click="share('pinterest', 'channels', channel.id, channel.name, channel.medium_thumb_profile_image)" title="Pinterest" class="text-18">
+              <span class="fa-stack fa-lg">
+               <i class="fa fa-stop fa-stack-2x whitec"></i>
+               <i class="fa fa-pinterest fa-stack-1x text-primary"></i>
+              </span>
+             </a>
+            </li>
+            <li>
+             <a href="" ng-click="share('twitter', 'channels', channel.id, channel.name, channel.medium_thumb_profile_image)" title="Twitter" class="text-18">
+              <span class="fa-stack fa-lg">
+               <i class="fa fa-stop fa-stack-2x whitec"></i>
+               <i class="fa fa-twitter fa-stack-1x text-primary"></i>
+              </span>
+             </a>
+            </li>
+            <li>
+             <a href="" ng-click="share('facebook', 'channels', channel.id, channel.name, channel.medium_thumb_profile_image)" title="Facebook" class="text-18">
+              <span class="fa-stack fa-lg">
+               <i class="fa fa-stop fa-stack-2x whitec"></i>
+               <i class="fa fa-facebook fa-stack-1x text-primary"></i>
+              </span>
+             </a>
+            </li>
+            <li class="col-xs-12 no-pad">
+             <a href="" title="Share" class="small">
+              <span class="fa-stack fa-lg iconright-mar-sm">
+               <span title="Share" class="share-sprite active"></span>
+              </span>
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li class="ver-mar-sm no-pad" ng-class="{'active' : !is_following}" ng-show="!is_owner">
+           <a ng-click="check(channel.id)" title="{{following_text}}" class="show blackc small" href="">
+            <span class="like-sprite like-icon"></span>
+            <span class="like-sprite dislike-icon"></span>
+           </a>
+          </li>
+         </ul>
+        </div>
+        <p class="text-16 col-lg-10 col-md-11 col-xs-12 no-pad" ng-class="{'htruncate-mml2' : is_truncated}" ng-show="channel.description">{{channel.description | htmlToPlaintext}} <a ng-show="show_more" href="" ng-click="moreLess()" title="{{truncate_text}}" class="initialism no-under">{{truncate_text}}</a> </p>
+       </div>
+       <module-social-share type="channel" name="{{channelname}}"></module-social-share>
+       <div class="clearfix pa no-pad myaccount-link text-right">
+        <div class="clearfix bottom-mar-sm col-xs-12 no-pad mob-dc" ng-if="$root.auth.role_id == 1">
+         <a href="ag-admin/#!/admin/channels/edit/{{channel.id}}" title="Edit Channel" target="_blank" class="no-shad initialism montserrat btn btn-default">
+          <span>Edit Channel</span>
+         </a>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <hr class="no-mar col-xs-12 no-pad">
+  </form>
+ </div>
+ <div class="container center-block-xs no-pad bottom-mar-lg">
+  <div class="clearfix playlist-carousel" ng-init="video_show = true" ng-if="is_create_scope" id="channelViewVideo1">
+   <module-video channelname="{{channelname}}" limit="12" show_sort="true" show_count="true" dom_parent_id="channelViewVideo1"></module-video>
+  </div>
+  <div class="clearfix playlist-carousel" id="channelPlaylist1" ng-if="is_create_scope">
+   <module-playlist channel_slug="{{channelname}}" limit="5" show_count="true" show_sort="true" dom_parent_id="channelPlaylist1"></module-playlist>
+  </div>
+ </div>
+</div>

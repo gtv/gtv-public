@@ -1,0 +1,51 @@
+<div id="grid" class="js-grid-masonry clearfix deviceWrap top-mar">
+ <ul id="posts" class="clearfix list-unstyled deviceWrap-list no-mar" infinite-scroll="loadMoreSection()" infinite-scroll-disabled="load_busy" infinite-scroll-distance="0">
+  <li class="post col-xs-6 no-pad hide" on-finish-render="home" ng-class="{'video-large-block js-block-{{home_page_block.page}}{{home_page_block.level}}{{home_page_block.block}}' : home_page_block.size == 'big', 'js-playlist-block-{{home_page_block.page}}{{home_page_block.level}}': home_page_block.size == 'playlist', 'js-block-{{home_page_block.page}}{{home_page_block.level}}{{home_page_block.block}}': home_page_block.size == 'normal' || home_page_block.size == 'trending' || home_page_block.size == 'interactive'}" ng-repeat="home_page_block in home_page_blocks" bindonce>
+   <ul class="clearfix list-unstyled thumb-list" ng-if="home_page_block.size == 'big' || home_page_block.size == 'normal' || home_page_block.size == 'trending'">
+    <li id="carousel-list{{home_page_block.page}}{{home_page_block.level}}{{home_page_block.block}}" ng-controller="GetVideosCtrl" get-videos level="{{home_page_block.level}}" block="{{home_page_block.block}}" page="{{home_page_block.page}}" size="{{home_page_block.size}}" class="rotate-block carousel slide" data-ride="carousel">
+     <div class="clearfix thumbnail">
+      <div class="carousel-inner">
+       <figure ng-class="{'video-md-loader' : home_page_block.size == 'big', 'video-sm-loader' : home_page_block.size == 'trending' || home_page_block.size == 'normal'}">
+        <div class="cssloader"></div>
+       </figure>
+      </div>
+     </div>
+    </li>
+   </ul>
+   <div ng-if="home_page_block.size == 'interactive'" class="js-interactive-{{home_page_block.level}}-{{home_page_block.page}}">
+    <module-interactive-poll level="{{home_page_block.level}}" page="{{home_page_block.page}}">
+     <div class="thumbnail space">
+      <figure class="video-sm-loader">
+       <div class="cssloader"></div>
+      </figure>
+     </div>
+    </module-interactive-poll>
+   </div>
+   <div ng-if="home_page_block.size == 'advertisement'" class="js-advertisement-block hor-mar clearfix">
+    <div class="col-xs-12 no-pad widget-img1 img-thumbnail" ng-if="home_page_block.level == 1">
+     <module-ad parent_id="homeAdWidget-{{home_page_block.page}}-{{home_page_block.level}}" slot_name="{{home_page_block.page}}-{{home_page_block.level}}" name="{{home_page_block.ad_content}}"></module-ad>
+    </div>
+    <div class="col-xs-12 no-pad widget-img1 img-thumbnail" ng-if="home_page_block.level == 2">
+     <module-ad parent_id="homeAdWidget-{{home_page_block.page}}-{{home_page_block.level}}" slot_name="{{home_page_block.page}}-{{home_page_block.level}}" name="{{home_page_block.ad_content}}"></module-ad>
+    </div>
+    <div class="col-xs-12 no-pad widget-img1 img-thumbnail" ng-if="home_page_block.level == 3">
+     <module-ad parent_id="homeAdWidget-{{home_page_block.page}}-{{home_page_block.level}}" slot_name="{{home_page_block.page}}-{{home_page_block.level}}" name="{{home_page_block.ad_content}}"></module-ad>
+    </div>
+   </div>
+   <div ng-if="home_page_block.size == 'playlist'" class="hor-mar clearfix top-mar bottom-mar" id="mixedContentPlaylist1">
+    <module-playlist level="{{home_page_block.level}}" page="{{home_page_block.page}}" template_url="templates/module_top_playlist.html" dom_parent_id="mixedContentPlaylist1">
+     <div class="thumbnail space no-mar">
+      <figure class="video-sm-loader">
+       <div class="cssloader"></div>
+      </figure>
+     </div>
+    </module-playlist>
+   </div>
+  </li>
+ </ul>
+</div>
+<div ng-if="$root.homePageLoader">
+ <figure class="video-md-loader">
+  <div class="cssloader"></div>
+ </figure>
+</div>

@@ -1,0 +1,37 @@
+<div class="container no-pad">
+ <div ng-controller="gtvMenuCtrl">
+  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12 no-pad main-menu-block">
+   <ul class="list-unstyled clearfix initialism main-menu pf mob-ps montserrat">
+    <li class="h3 ver-mar" ng-click="$root.currentMenu='playlists'" ng-class="{'active' : $root.currentMenu=='playlists'}">
+     <a href="#!/menus/playlists" class="text-light no-under js-menu-list" title="Playlists">Playlists</a>
+    </li>
+    <li class="h3 ver-space" ng-click="$root.currentMenu='channels'" ng-class="{'active' : $root.currentMenu=='channels'}">
+     <a href="#!/menus/channels" class="text-light no-under js-menu-list" title="Channels">Channels</a>
+    </li>
+    <li class="h3 ver-space" ng-click="$root.currentMenu='genres'" ng-class="{'active' : $root.currentMenu=='genres'}">
+     <a href="#!/menus/genres" class="text-light no-under js-menu-list" title="Categories">Categories</a>
+    </li>
+    <li class="h3 ver-space" ng-click="$root.currentMenu='moods'" ng-class="{'active' : $root.currentMenu=='moods'}">
+     <a href="#!/menus/moods" class="text-light no-under js-menu-list" title="How are you Feeling?">
+     How are you
+     <span class="show">Feeling?</span>
+    </a>
+    </li>
+    <li class="h3 ver-space visible-ss js-home-filter-menu">
+     <a class="text-light no-under" href="#!/" title="Home">
+      <span class="small">Home</span>
+     </a>
+    </li>
+    <li class="h3 ver-space">
+     <a href="" class="text-light no-under js-close-menu" title="Close">
+      <span class="small">Close
+       <i class="fa fa-caret-up fa-lg"></i>
+      </span>
+     </a>
+    </li>
+   </ul>
+  </div>
+  <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12" id="sub-menus">
+  </div>
+ </div>
+</div>

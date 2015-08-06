@@ -1,0 +1,11 @@
+<div class="container">
+ <div class="row">
+  <div class="col-md-8 col-sm-12 tab-no-pad">
+   <div class="video-wrapper" ng-controller="videosGenreCtrl" ng-if="is_create_scope" id="videoGenreVideo1">
+    <div ng-if="genre_name">
+     <module-video genre_id="{{genre_id}}" title="{{genre_name}}" limit="15" display-type="grid" template-url="templates/module_videos_genre.html" infinite-scroll-distance="0" dom_parent_id="videoGenreVideo1"></module-video>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

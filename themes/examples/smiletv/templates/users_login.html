@@ -1,0 +1,138 @@
+<div class="modal-dialog text-muted no-pad" ng-controller="UserSignInCtrl">
+ <div class="clearfix">
+  <div class="lightbox-bg modalblock-lg  clearfix">
+   <div class="modal-header pr">
+    <div class="pa col-xs-pull-0 mob-space hor-space hor-mar z-top">
+     <a href="" ng-click="cancel('1')" class="show close" title="close">
+      <span>&times;</span>
+      <span class="hide">Close</span>
+     </a>
+    </div>
+    <h4 class="modal-title text-center">Login</h4>
+   </div>
+   <div class="col-lg-10 col-md-10 col-sm-11 col-xs-12 col-center-block no-pad clearfix">
+    <div ng-show="!show_email_form">
+     <div class="col-xs-11 col-center-block no-pad" ng-show="!showForgetpasswordForm">
+      <div class="ver-mar clearfix">
+       <div class="ver-mar clearfix mob-dc text-center">
+        <img class="ver-mar" alt="[Image: Certify Logo]" title="Certify Logo" src="themes/smiletv/img/smiletv_logo.png">
+        <h4 class="whitec text-28 top-mar">
+         <!--{{login_info}}-->Join Our Global Smile Movement instead of Join The Video Revolution.</h4>
+       </div>
+       <div class="clearfix col-lg-12 block-space pr" ng-show="networkProviderLoading">
+        <div class="cssloader top-mar"></div>
+       </div>
+       <div ng-show="!networkProviderLoading" class="col-xs-12">
+        <a ng-repeat="network_provider in network_providers" data-provider="{{network_provider.provider_name}}" ng-click="authenticate(network_provider.provider_slug)" title="Login with {{network_provider.provider_name}}" class="col-xs-12 space-sm ver-mar cur hidden-xs">
+         <span class="{{network_provider.provider_name|lowercase}}-login col-center-block show">
+          <span class="hide">{{network_provider.provider_name}}</span>
+         </span>
+        </a>
+        <a ng-repeat="network_provider in network_providers" data-provider="{{network_provider.provider_name}}" ng-click="authenticate(network_provider.provider_slug)" title="Login with {{network_provider.provider_name}}" class="col-xs-12 space-sm ver-mar hidden-sm hidden-md hidden-lg cur">
+         <img class="img-responsive center-block" title="Login with {{network_provider.provider_name}}" alt="[Image: {{network_provider.provider_name}}]" ng-src="img/{{network_provider.provider_slug}}-login.png">
+         <span class="hide">{{network_provider.provider_name}}</span>
+        </a>
+       </div>
+      </div>
+      <div class="login col-xs-10 dc pr montserrat top-mar bottom-mar text-18 col-xs-offset-1" ng-show="network_providers">
+       <span class="space or-hor pa whitec">Or</span>
+      </div>
+      <form role="form" class="clearfix col-xs-12 ver-mar ver-space" name="userAdd">
+       <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 col-center-block mob-clr mob-no-pad">
+        <div class="form-group clearfix top-mar required">
+         <label for="user-name" class="sr-only">Email or Username</label>
+         <input type="text" id="user-name" class="form-control" placeholder="Email or Username" id="inputUsername" ng-model="user.username" name="username" required autocomplete="off">
+         <div ng-show="userAdd.username.$dirty && userAdd.username.$invalid">
+          <span class="help-block" ng-show="userAdd.username.$error.required"> Required!</span>
+         </div>
+         <div ng-if="login_error">
+          <span class="help-block" ng-if="login_error">{{login_error}}</span>
+         </div>
+        </div>
+        <div class="form-group clearfix top-mar required">
+         <label for="password" class="sr-only">Password</label>
+         <input type="password" class="form-control" placeholder="Password" id="inputPassword" ng-model="user.password" ng-minlength="6" name="password" required autocomplete="off">
+         <div ng-show="userAdd.password.$dirty && userAdd.password.$invalid">
+          <span class="help-block" ng-show="userAdd.password.$error.required"> Required!</span>
+          <span class="help-block" ng-show="userAdd.password.$error.minlength"> Must be at least 6 characters</span>
+         </div>
+        </div>
+        <div class="submit clearfix text-center">
+         <button ng-click="loginUser(userAdd.$valid, user)" class="btn btn-primary no-bor initialism tab-no-pad">
+          <span class="space-xs show">Log in</span>
+         </button>
+        </div>
+        <p class="top-mar text-center bottom-mar-sm">
+         <a class="whitec btn btn-link" title="Forgot your password?" href="" ng-click="showForgetpasswordForm =true">
+			Forgot your password?
+         </a>
+        </p>
+       </div>
+       <div ng-show="login_style_change">
+        <div class="login col-xs-11 dc pr montserrat top-mar bottom-mar text-18 no-pad col-xs-push-1 row"></div>
+        <p class="top-mar-sm text-center dc ver-space col-xs-12 text-20">
+         <a class="ver-space mob-no-pad bottom-mar" title="Not a member? Sign up now" href="#!/users/register">
+          Not a member? Sign up now.
+         </a>
+        </p>
+       </div>
+       <p ng-hide="$root.IS_ENABLE_BETA_SPLASH" class="top-mar bottom-mar text-center dc col-xs-12" ng-show="!login_style_change">
+        <a class="ver-space mob-no-pad top-mar bottom-mar show" title="Not a member? Register now" href="#!/users/register">
+			Not a member? Register now.
+        </a>
+       </p>
+      </form>
+     </div>
+     <form role="form" name="userForgetpassword" ng-show="showForgetpasswordForm">
+      <p class="clearfix block-space-sm text-center text-18">Please enter your username or email address. You will receive a link to create a new password via email.</p>
+      <div class="form-group clearfix top-mar required" ng-class="{'has-error': userForgetpassword.email.$dirty && userForgetpassword.email.$invalid || error_user_email}">
+       <label for="inputEmail" class="hide">Email</label>
+       <input type="email" class="form-control" placeholder="Email Address" id="inputEmail" ng-model="user.email" name="email" required ng-change="error_user_email = false;">
+       <div ng-show="userForgetpassword.email.$dirty && userForgetpassword.email.$invalid">
+        <span class="help-block" ng-show="userForgetpassword.email.$error.required"> Required!</span>
+        <span class="help-block" ng-show="userForgetpassword.email.$error.email">Not valid email!</span>
+       </div>
+       <div ng-if="error_user_email">
+        <span class="help-block">{{error_user_email}}</span>
+       </div>
+      </div>
+      <div class="submit clearfix">
+       <button ng-click="forgetpassword(userForgetpassword.$valid, user)" class="btn  btn-primary col-xs-12 no-shad tab-no-pad">
+        <span class="space show">Send</span>
+       </button>
+      </div>
+      <p class="info top-mar dc space" ng-click="showForgetpasswordForm =false">
+       <a class="hor-space mob-no-pad" title="Login" href="">
+        <strong>Login</strong>
+       </a>
+      </p>
+     </form>
+    </div>
+   </div>
+   <div ng-show="show_email_form" class="block-space-sm">
+    <form role="form" name="userEmail">
+     <p class="clearfix block-space-sm text-center text-18">Please enter your email address. To complete registration process.</p>
+     <div class="form-group clearfix top-mar required" ng-class="{'has-error': userEmail.email.$dirty && userEmail.email.$invalid || error_user_email}">
+      <label for="inputEmail" class="hide">Email</label>
+      <input type="email" class="space bg-darker col-xs-12 no-bor top-mar text-18 no-shad" placeholder="Email Address" id="inputEmail" ng-model="user.email" name="email" required ng-change="error_user_email = false;">
+      <div ng-show="userEmail.email.$dirty && userEmail.email.$invalid">
+       <span class="help-block" ng-show="userEmail.email.$error.required"> Required!</span>
+       <span class="help-block" ng-show="userEmail.email.$error.email">Not valid email!</span>
+      </div>
+      <div ng-if="error_user_email">
+       <span class="help-block">{{error_user_email}}</span>
+      </div>
+     </div>
+     <div class="submit clearfix">
+      <button ng-click="loginnow(userEmail.$valid, user)" class="btn btn-lg btn-default col-xs-12 no-shad initialism space-sm divider-sm tab-no-pad">
+       <span class="pull-left left-mar text-18 top-mar-sm">Submit</span>
+       <span class="text-28">
+        <i class="fa fa-angle-right cur fa-lg pull-right space-sm text-primary"></i>
+       </span>
+      </button>
+     </div>
+    </form>
+   </div>
+  </div>
+ </div>
+</div>

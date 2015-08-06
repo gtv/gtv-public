@@ -1,0 +1,57 @@
+<div class="col-lg-8 col-center-block text-muted no-pad col-md-11 col-sm-11 col-xs-12 mob-space" ng-controller="UserOnboardingCntrl">
+ <div class="block-space-sm">
+  <div class="space-lg lightbox-bg modalblock-lg clearfix">
+   <div class="bottom-mar col-lg-10 col-center-block no-pad col-md-11 col-sm-11 clearfix">
+    <div class="ver-mar text-center clearfix mob-dc">
+     <img alt="[Image: Certify Logo]" title="Certify Logo" src="img/modal-certify-logo.png">
+     <h4 class="whitec text-28 top-mar ver-space">What do you like?</h4>
+    </div>
+   </div>
+   <div class="clearfix ver-mar space pr pull-left col-xs-12" ng-show="genreLoading">
+    <div class="cssloader top-mar"></div>
+   </div>
+   <div class="clearfix col-xs-12 col-center-block" ng-show="!genreLoading">
+    <ul class="list-inline onboard-interface initialism text-center montserrat">
+     <li class="post text-16 onboard-flip" ng-class="{'rotate': genre.is_followed == true}" ng-click="followGenre(genre, 1)" ng-repeat="genre in parentGenres">
+      <a href="" class="lists front" title="{{genre.name}}">
+       <div class="back-image img" ng-style="genre.genreImage"></div>
+       <h4>{{genre.name}}</h4>
+      </a>
+      <a href="" class="lists back" title="{{genre.name}}">
+       <div class="back-image img" ng-style="genre.genreImage"></div>
+       <h4>{{genre.name}}</h4>
+      </a>
+     </li>
+     <li class="col-xs-12 block-space-sm clearfix text-24 ver-mar">
+      <ul class="list-unstyled clearfix text-center ver-mar hor-space montserrat">
+       <li class="col-sm-4 pull-left mob-clr mob-top-mar">
+        <button class="btn btn-default initialism col-xs-12 space-sm no-shad" ng-click="movetoPage('register_page')">
+         <span>
+          <i class="fa fa-angle-left cur fa-lg pull-left space-sm text-primary"></i>
+         </span>
+         <span class="pull-right left-mar-sm">Back</span>
+        </button>
+       </li>
+       <li class="col-sm-4 pull-right mob-clr mob-top-mar" ng-show="show_next_button">
+        <button class="btn btn-default initialism col-xs-12 space-sm no-shad" ng-click="movetoPage('invite_page')">
+         <span class="pull-left left-mar-sm">Next</span>
+         <span>
+          <i class="fa fa-angle-right cur fa-lg pull-right space-sm text-primary"></i>
+         </span>
+        </button>
+       </li>
+       <li class="col-md-5 col-sm-6 pull-right mob-clr mob-top-mar" ng-show="!show_next_button">
+        <button class="btn btn-default initialism col-xs-12 space-sm no-shad" ng-click="movetoPage('home_page')">
+         <span class="pull-left left-mar-sm">Enter Now!</span>
+         <span>
+          <i class="fa fa-angle-right cur fa-lg pull-right space-sm text-primary"></i>
+         </span>
+        </button>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>

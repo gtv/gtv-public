@@ -1,0 +1,22 @@
+<div ng-controller="MenusGenrePlaylistsCtrl">
+ <div class="play-list1 clearfix col-xs-12 no-pad">
+  <div class="ver-mar clearfix montserrat text-22">
+   <form class="playlists-category col-lg-9 col-md-8 col-sm-7 col-xs-12 no-pad top-mar" role="form">
+    <div class="col-lg-4 col-md-7 col-sm-10 col-xs-12 no-pad right-mar-sm top-mar-sm">
+     <div class="form-group pr text-16">
+      <strong ng-if="parentGenres" class="initialism">
+       <div dropdown-select="parentGenres" dropdown-model="selectedObject" dropdown-item-label="name" dropdown-onchange="onChangeGenres(selected)" dropdown-placeholder="Subcategories"></div>
+      </strong>
+     </div>
+    </div>
+   </form>
+  </div>
+  <div class="clearfix ver-mar col-xs-12 no-pad " id="popularPlaylist1" ng-if="is_create_scope">
+   <module-playlist category_id="{{genreId}}" limit="4" infinite_scroll_element="gtv-menus" show_count="true" title="Popular" sort="popular" display_type="carousel" dom_parent_id="popularPlaylist1"></module-playlist>
+  </div>
+  <div class="ver-mar clearfix col-xs-12 no-pad" ng-if="is_create_scope" id="latestPlaylist1">
+   <module-playlist category_id="{{genreId}}" limit="4" infinite_scroll_element="gtv-menus" show_count="true" title="latest" sort="latest" display_type="carousel" dom_parent_id="latestPlaylist1"></module-playlist>
+  </div>
+ </div>
+</div>
+</div>

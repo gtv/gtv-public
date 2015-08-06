@@ -1,0 +1,28 @@
+<div id="emoji-list" class="emoji-list mob-menus-moods" ng-controller="MenusMoodsCtrl" ng-init="menu_mood_loading = true;">
+ <div class="clearfix block-space row-lg1" ng-show="menu_mood_loading">
+  <span class="cssloader"></span>
+ </div>
+ <ul class="clearfix list-inline list-img no-mar" ng-show="!menu_mood_loading">
+  <li class="no-pad text-center playlist-avatar-sm" ng-repeat="mood in moods">
+   <a href="" ng-click="filterWithMood(mood.id)" title="{{mood.name}}" class="no-under whitec img-block">
+    <div ng-if="mood.medium_thumb_thumbnail" ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + mood.medium_thumb_thumbnail + ') no-repeat center center', 'background-size':'cover'}" class="img avatar-rounded"></div>
+    <div ng-if="!mood.medium_thumb_thumbnail" ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/MoodThumbnail/0/default.png) no-repeat center center', 'background-size':'cover'}" class="img avatar-rounded"></div>
+    <span class="show initialism h6 htruncate whitec">{{mood.name}}</span>
+   </a>
+  </li>
+  <li class="no-pad text-center playlist-avatar-sm" ng-show="new_moods">
+   <a href="" title="" class="no-under whitec img-block">
+    <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/MoodThumbnail/0/default.png) no-repeat center center', 'background-size':'cover'}" class="img avatar-rounded"></div>
+    <input type="text" ng-model="new_mood" class="col-xs-12 top-mar form-control input-sm" ng-enter="addnew()" />
+   </a>
+  </li>
+  <li class="no-pad text-center playlist-avatar-sm">
+   <a href="" ng-click="suggest()" title="Suggest!" class="no-under whitec img-block">
+    <span class="img img-thumbnail bg-primary">
+     <span class="show text-center text-60">+</span>
+    </span>
+    <span class="show initialism h6 htruncate whitec">Suggest!</span>
+   </a>
+  </li>
+ </ul>
+</div>

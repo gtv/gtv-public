@@ -1,0 +1,51 @@
+<div>
+ <div class="block-space">
+  <div class="space-lg lightbox-bg modalblock-lg">
+   <div class="bottom-mar col-lg-10 col-center-block no-pad col-md-10 col-sm-10">
+    <div class="clearfix bottom-mar">
+     <div class="form-group clearfix ver-space checkbox">
+      <label for="autoplay" class="col-md-2 no-pad">
+       <strong>Auto-play</strong>
+      </label>
+      <input type='checkbox' ng-true-value="1" ng-false-value="0" ng-model="video_share.is_autoplay" name='is_autoplay' id="autoplay" />
+      <label for="autoplay"></label>
+     </div>
+     <div class="form-group clearfix ver-space">
+      <label for="size" class="clearfix col-md-2 no-pad">Video size:</label>
+      <div class="col-xs-3 no-pad">
+       <select id="size" class="form-control" ng-model="video_share.size" ng-change="changeSize()">
+        <option value="560x545">560 x 545</option>
+        <option value="640x588">640 x 588</option>
+        <option value="853x480">853 x 480</option>
+        <option value="1280x720">1280 x 720</option>
+        <option value="0x0">Custom Size</option>
+       </select>
+      </div>
+      <div class="col-xs-6" ng-if="video_share.size=='0x0'">
+       <div class="col-xs-5 no-pad">
+        <input type="number" class="space-sm bg-darker col-xs-11 no-bor text-18" ng-pattern="onlyNumbers" ng-model="video_share.width">
+       </div>
+       <div class="col-xs-1 text-18 no-pad text-center right-mar">
+        <span>x</span>
+       </div>
+       <div class="col-xs-5 no-pad">
+        <input type="number" class="space-sm bg-darker col-xs-11 no-bor text-18" ng-pattern="onlyNumbers" ng-model="video_share.height">
+       </div>
+      </div>
+     </div>
+     <div class="form-group clearfix no-mar col-xs-12 no-pad">
+      <strong>*Height Includes "Up-Next" Bar </strong>
+     </div>
+    </div>
+    <div class="bottom-mar clearfix col-lg-12 col-center-block no-pad col-md-10 col-sm-10">
+     <h4>Embed Code</h4>
+     <hr class="divider-md">
+     <div class="form-group clearfix top-mar">
+      <textarea rows="4" class="whitec space bg-darker col-xs-12 no-bor top-mar js-select-all-text">
+       <iframe width="{{video_share.width}}" height="{{video_share.height}}" src="{{embedded_code_url}}/{{video_share.is_autoplay}}{{playlist_parameters}}" frameborder="0" allowfullscreen></iframe>
+      </textarea>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>

@@ -1,0 +1,15 @@
+<div class="bot-space">
+ <h2 class="no-mar bot-sspace">{{article.name}}</h2>
+ <div class="clearfix ">
+  <ul class="list-inline clearfix initialism">
+   <li class="text-light">
+    <i class="fa fa-clock-o right-mar"></i>{{article.created}}</li>
+   <li>
+    <span class="text-light">--</span>
+   </li>
+   <li>
+    <i class="fa fa-user text-light right-mar"></i><a href="#!/users/{{article.articles_users_username}}" title="{{article.articles_users_username}}">{{article.articles_users_username}}</a></li>
+  </ul>
+ </div>
+</div>
+<p ng-bind-html="article.description | unsafe"></p>

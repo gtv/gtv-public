@@ -1,0 +1,54 @@
+<div id="myCarousel1" class="playlist-carousel carousel slide ver-mar pr" data-ride="carousel">
+ <span ng-if="videoLaoding" class="cssloader"></span>
+ <div class="reorder1-list" ng-class="{ 'reorder1': sortableOptions.disabled !=true}">
+  <div class="carousel-inner top-mar-sm" data-carousel data-carousel-class="video-list no-pad top-mar" data-on-page-upcoming="loadPage(page, tmplCb)" data-give-carousel-to="onCarouselAvailable(carousel)" ng-class="{'reorder_carousel': sortableOptions.disabled != true}" ng-show="!videoNoRecord">
+   <div class="item js-sorting-myvideo">
+    <ul class="clearfix list-inline thumb-list latest-video no-mar js-drop-items js-list-inline pr" ui-sortable="sortableOptions" ng-model="user_videos">
+     <li class="col-lg-2 no-pad js-video-list" data-ng-repeat="user_video in user_videos" data-id="{{user_video.id}}" data-video_id="{{user_video.video_id}}" ng-swipe-left="swipeNext()" ng-swipe-right="swipePrevious()" on-carousel-scope-render="videoFinishRender()">
+      <div class="clearfix video-title-bg pr">
+       <div class="row pr no-mar user-video-block">
+        <div class="image-holder">
+         <div class="video-img col-xs-12 no-pad">
+          <a href="#!/videos/{{user_video.video_id}}">
+           <div class="back-image" ng-if="!user_video.is_manual_upload" ng-style="{'background': 'url(' + user_video.video_thumbnail_url + ') no-repeat center top', 'background-size': 'cover'}"></div>
+           <div class="back-image" ng-if="user_video.is_manual_upload" ng-style="{'background': 'url(' + $root.AWS_BASE_URL + '/' + user_video.medium_thumb_thumbnail + ') no-repeat center top', 'background-size': 'cover'}"></div>
+          </a>
+          <div class="pa views-block">
+           <ul class="list-inline">
+            <li>
+             <a href="#" title="Likes">
+              <i class="fa fa-smile-o text-primary"></i>
+              <span class="whitec hor-space">{{user_video.video_rating_positive_count}}</span>
+             </a>
+            </li>
+           </ul>
+          </div>
+          <div class="caption clearfix no-pad top-mar-sm">
+           <h5 class="pull-left col-xs-10">
+            <a href="#!/videos/{{user_video.video_id}}" title="{{user_video.video_name}}" class="no-under htruncate-mml2  col-xs-12 no-pad whitec">
+							      {{user_video.video_name}}
+							     </a>
+            <i class="fa fa-angle-right"></i>
+           </h5>
+           <span class="date-block col-xs-12 no-pad" ng-if="video.published_at">
+            added {{video.published_at | date:'yyyy-MM-dd HH:mm:ss'}}
+           </span>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="control-btn video-block pa">
+  <a class="left carousel-control no-bg" data-ng-show="hasPrevious() && !videoLaoding && video_count !=0" data-ng-click="previous()" href="" data-slide="prev">
+   <span class="fa fa-angle-left fa-3x"></span>
+  </a>
+  <a class="right carousel-control no-bg" data-ng-show="hasNext() && !videoLaoding && video_count !=0" data-ng-click="next()" href="" data-slide="next">
+   <span class="fa fa-angle-right fa-3x"></span>
+  </a>
+ </div>
+</div>

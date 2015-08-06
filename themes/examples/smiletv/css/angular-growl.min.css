@@ -1,0 +1,33 @@
+/**
+ * angular-growl - v0.4.0 - 2013-11-19
+ * https://github.com/marcorinck/angular-growl
+ * Copyright (c) 2013 Marco Rinck; Licensed MIT
+ */
+
+.growl {
+	position:fixed;
+	top:10px;
+	right:10px;
+	float:right;
+	width:auto;
+	z-index: 9999;
+}
+.growl-item.ng-enter,.growl-item.ng-leave{
+	-webkit-transition:0.5s linear all;
+	-moz-transition:0.5s linear all;
+	-o-transition:0.5s linear all;
+	transition:0.5s linear all
+}
+.growl-item.ng-enter,.growl-item.ng-leave.ng-leave-active {
+	opacity:0
+}
+.growl-item.ng-leave,.growl-item.ng-enter.ng-enter-active {
+	opacity:1
+}
+.growl .alert {
+	padding: 15px 25px 15px 15px;
+}
+.growl  button.close{
+	position: absolute;
+	right: 10px;
+}

@@ -1,0 +1,13 @@
+<ul class="list-inline no-mar" ng-show="articles">
+ <li ng-repeat="article in articles">
+  <div class="list-group-item">
+   <h4>
+    <a href="#!/articles/{{article.id}}" title="{{article.name}}" class="small">
+     <span class="text-primary">{{article.name}}</span>
+    </a>
+   </h4>
+   <p>
+    <strong>By</strong> <a href="#!/users/{{article.articles_users_username}}" title="{{article.articles_users_username}}">{{article.articles_users_username}}</a> on {{article.publish_date}}</p>
+  </div>
+ </li>
+</ul>

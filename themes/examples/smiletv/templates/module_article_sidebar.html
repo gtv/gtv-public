@@ -1,0 +1,16 @@
+<h3 class="whitec montserrat">{{article_title}}</h3>
+<div class="clearfix col-lg-12 block-space pr" ng-show="articleLoader">
+ <div class="cssloader top-mar"></div>
+</div>
+<ul class="list-unstyled clearfix whitec mob-no-mar">
+ <li class="bottom-mar" ng-repeat="article in articles">
+  <div class="media">
+   <div class="media-body">
+    <h4 class="media-heading text-lh-xs-18 no-mar htruncate"><a href="#!/articles/{{article.id}}" title="{{article.name}}">{{article.name}}</a>
+    </h4>
+    <p class="htruncate-sl3 small" ng-bind-html="article.description"></p>
+   </div>
+  </div>
+ </li>
+</ul>
+</div>

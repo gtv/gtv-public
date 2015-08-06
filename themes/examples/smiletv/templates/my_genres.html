@@ -1,0 +1,45 @@
+<div class="modal-dialog text-muted no-pad" ng-controller="MyGenresCntrl">
+ <div class="clearfix">
+  <div class="clearfix lightbox-bg modalblock-lg" ng-show="!genreLoading">
+   <div class="modal-header pr">
+    <div class="pa col-xs-pull-0 mob-space hor-space hor-mar z-top">
+     <a href="" ng-click="cancel()" class="show close" title="close">
+      <span>&times;</span>
+      <span class="hide">My Interests</span>
+     </a>
+    </div>
+    <div ng-show="genreLoading" class="clearfix  block-space pr">
+     <span class="cssloader"></span>
+    </div>
+    <h4 class="modal-title text-center">My Interests</h4>
+   </div>
+   <div class="col-lg-12 col-md-12 col-sm-12 col-center-block no-pad">
+    <div class="hor-mar top-mar clearfix">
+     <div class="col-xs-12 no-pad bottom-mar" ng-init="selectedGenre=0" ng-show="!genreLoading">
+      <p class="text-center text-18">Here is a collection of all that you liked and don't liked.</p>
+      <div class="no-pad clearfix text-18 montserrat genres-block col-md-12 col-sm-11 col-xs-11 col-center-block">
+       <div class="col-sm-6 col-xs-12 mob-no-pad">
+        <span class="whitec text-24 col-xs-offset-1 hor-space show mob-no-mar">Things I Like.</span>
+        <div class="clearfix top-mar">
+         <ul class="list-unstyled top-mar bottom-mar-sm">
+          <li ng-repeat="followed_genre in followed_genres"><a class="whitec genres-close" ng-confirm-click="Are you sure you want to unfollow the genre?" confirmed-click="unFollowGenres(followed_genre)" href="" title="{{followed_genre.genre_name}}">{{followed_genre.genre_name}} <span class="close-block pull-left top-mar-sm" title="Close">Close</span></a>
+          </li>
+         </ul>
+        </div>
+       </div>
+       <div class="col-sm-5 col-xs-12 col-xs-offset-1 mob-no-pad mob-no-mar">
+        <span class="whitec text-24 col-xs-offset-1 hor-space show mob-no-mar">Things I don't.</span>
+        <div class="clearfix top-mar">
+         <ul class="list-unstyled top-mar bottom-mar-sm">
+          <li ng-repeat="user_removed_genre in user_removed_genres"><a class="whitec genres-close" ng-click="removeUserRemovedGenres(user_removed_genre)" href="" title="{{user_removed_genre.genre_name}}">{{user_removed_genre.genre_name}} <span class="close-block pull-left top-mar-sm" title="Close">Close</span></a>
+          </li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

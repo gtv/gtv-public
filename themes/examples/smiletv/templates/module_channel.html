@@ -1,0 +1,38 @@
+<ul class="list-inline clearfix ver-mar channel-list col-xs-12 no-pad">
+ <li id="jsUserFolowChannel{{user_channel.id}}" class="col-xs-6 bottom-mar pr drag-object" ng-repeat="channel in channels">
+  <a href="" title="{{channel.name}}" class="show">
+   <div ng-style="{'background': 'url(' + $root.AWS_BASE_URL + '/' + '{{channel.medium_thumb_rectangle_profile_image}}) no-repeat center center', 'background-size': 'cover'}" class="img-thumbnail no-pad channel-img" ng-if="channel.medium_thumb_rectangle_profile_image"></div>
+   <div ng-style="{'background': 'url(' + $root.AWS_BASE_URL + '/Channel/0/default.png) no-repeat center center', 'background-size': 'cover'}" class="img-thumbnail no-pad channel-img" ng-if="!channel.medium_thumb_rectangle_profile_image"></div>
+  </a>
+  <div class="clearfix text-center follow-block pa bg-primary img-rounded">
+   <div class="clearfix col-xs-12">
+    <h4 class="text-16 list-group-item-heading">
+     <a class="initialism no-under show whitec htruncate" href="#!/channels/{{channel.slug}}" title="{{channel.name}}">{{channel.name}}</a>
+    </h4>
+    <ul class="text-center list-inline left-mar">
+     <li ng-class="{'active' : channel.is_following==true}">
+      <a title="Like" href="" ng-click="followcheck({id: channel.id, is_following: channel.is_following, index: $index})" title="{{channel.following_text}}" class="no-under whitec space-sm h3 no-mar">
+       <span class="left-mar webdings wingdings-xs">
+        <span class="fa-lg">Y</span>
+       </span>
+      </a>
+     </li>
+     <li ng-class="{'active' : channel.is_disliked == true}">
+      <a title="Dislike" ng-click="dislikechannel({id: channel.id, index: $index})" href="" class="no-under whitec space-sm h2 no-mar">
+       <span class="wingdings">
+        <span class="fa-lg">M</span>
+       </span>
+      </a>
+     </li>
+    </ul>
+    <div class="top-mar-sm ver-space tab-no-mar">
+     <a href="#!/channels/{{channel.slug}}" title="Watch now" class="initialism no-under btn btn-xs btn-default">
+      <span class="hor-space">
+       <strong>Watch now</strong>
+      </span>
+     </a>
+    </div>
+   </div>
+  </div>
+ </li>
+</ul>

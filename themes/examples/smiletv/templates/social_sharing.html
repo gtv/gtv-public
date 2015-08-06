@@ -1,0 +1,48 @@
+<div>
+ <div class="block-space">
+  <div class="space-lg lightbox-bg modalblock-lg">
+   <div class="bottom-mar col-lg-10 col-center-block no-pad col-md-10 col-sm-10">
+    <div class="bottom-mar">
+     <h2 class="lightbox-title mob-dc montserrat whitec top-mar">Social Sharing: </h2>
+     <hr class="divider-md col-center-block col-lg-10 col-center-block col-md-10 col-sm-10 no-mar">
+     <ul class="list-inline top-mar mob-dc">
+      <li class="mob-clr montserrat text-primary">
+       <h4>Quick Share:</h4>
+      </li>
+      <li>
+       <a href="" ng-click="share('facebook')">
+        <span class="fa-stack fa-2x">
+         <i class="fa fa-square fa-stack-2x"></i>
+         <i class="fa fa-facebook fa-stack-1x whitec bg-darker"></i>
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="" ng-click="share('twitter')">
+        <span class="fa-stack fa-2x">
+         <i class="fa fa-square fa-stack-2x"></i>
+         <i class="fa fa-twitter fa-stack-1x whitec bg-darker"></i>
+        </span>
+       </a>
+      </li>
+      <li>
+       <a href="" ng-click="share('google')">
+        <span class="fa-stack fa-2x">
+         <i class="fa fa-square fa-stack-2x"></i>
+         <i class="fa fa-google-plus fa-stack-1x whitec bg-darker"></i>
+        </span>
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+   <div class="bottom-mar col-lg-10 col-center-block no-pad col-md-10 col-sm-10" ng-show="share_about == 'videos'">
+    <hr class="divider-md col-center-block col-lg-10 col-center-block col-md-10 col-sm-10">
+    <div class="form-group clearfix top-mar">
+     <label for="first-name" class="">Copy or paste embedded URL</label>
+     <textarea name="first-name" id="first-name" placeholder="First Name" class="whitec space bg-darker col-xs-12 no-bor top-mar"></textarea>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

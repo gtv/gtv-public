@@ -1,0 +1,321 @@
+<div class="clearfix container no-pad" ng-controller="PlaylistViewCtrl">
+ <section class="clearfix bg-darker video-wrapper">
+  <div class="no-pad pr" ng-class="{'container': !embed_view}">
+   <div class="col-center-block no-pad" ng-class="{'top-mar video-device-wrap col-xs-12': !embed_view, 'col-xs-12': embed_view}">
+    <div class="no-pad no-round no-bor clearfix no-mar">
+     <div class="row no-mar">
+      <div id="videoCarousel" class="carousel slide video-carousel" data-ride="carousel">
+       <div class="carousel-inner">
+        <div class="pr clearfix ">
+         <div class="embed-responsive embed-responsive-16by9">
+          <iframe ng-src="{{video.video_view_url}}" scrolling="no" frameborder="0" allowfullscreen class="embed-responsive-item" ng-if="video.is_manual_upload == false"></iframe>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="box-m">
+    <span class="box-more btn btn-primary" id="click-more">More &nbsp;
+     <i class="fa fa-angle-down"></i>
+    </span>
+   </div>
+  </div>
+  <a data-target="#videoList_Carousel" href="" data-ng-click="videoListNext()" data-ng-show="videoListHasNext()" class="left js-right-carousel carousel-control thumb-control hide">
+   <span class="fa fa-chevron-left"></span>
+  </a>
+  <a data-target="#videoList_Carousel" href="" data-ng-click="videoListNext()" data-ng-show="videoListHasNext()" class="right js-right-carousel carousel-control thumb-control hide">
+   <span class="fa fa-chevron-right"></span>
+  </a>
+  <div class="clearfix well-lg no-round thumbnails-carousel">
+   <div class="container no-pad">
+    <div class="clearfix player-controls pr top-mar">
+     <div class="carousel-thumbnails text-left">
+      <div class="thumb-box clearfix" data-carousel data-on-page-upcoming="loadListVideoPage(page, tmplCb)" data-give-carousel-to="videoListCarouselAvailable(carousel)">
+       <ol class="list-inline pr no-mar clearfix montserrat">
+        <li data-ng-repeat="video in video_view_playlist_videos">
+         <a href="#!/playlists/{{playlist.id}}/video/{{video.video_id}}" title="{{video.videos_name}}" class="col-xs-12 no-pad user-video-block">
+          <div ng-style="{'background':'url(' + video.videos_thumbnail_url + ') no-repeat center center', 'background-size':'cover'}" class="video-control-img center-block"></div>
+          <div class="list-view">
+           <span class="hor-space bg-primary-trans btn-block text-center list-view" ng-if="video.video_id == isUpNextVideo">
+            <span class="initialism space-sm hor-mar-sm show">up next</span>
+           </span>
+           <span class="hor-space bg-primary-trans btn-block text-center list-view" ng-if="video.video_id == isShowVideo">
+            <span class="initialism space-sm hor-mar-sm show">watching</span>
+           </span>
+           <h5 class="hor-space htruncate-ml2 ver-mar-sm">{{video.videos_name | htmlToPlaintext}}</h5>
+           <span class="whitec pa hor-space bg-dark count-block">
+            <span class="pull-right initialism">{{video.videos_duration | sec_to_min}}</span>
+           </span>
+          </div>
+          <span class="link-overlay fa fa-play whitec text-center pa"></span>
+         </a>
+        </li>
+       </ol>
+      </div>
+     </div>
+     <a class="left js-left-carousel carousel-control thumb-control" data-ng-show="videoListHasPrevious()" data-ng-click="videoListPrevious()" href="" data-target="#videoList_Carousel">
+      <span class="fa fa-chevron-left"></span>
+     </a>
+     <a class="right js-right-carousel carousel-control thumb-control" data-ng-show="videoListHasNext()" data-ng-click="videoListNext()" href="" data-target="#videoList_Carousel">
+      <span class="fa fa-chevron-right"></span>
+     </a>
+    </div>
+   </div>
+  </div>
+ </section>
+ <div class="clearfix container" ng-if="!embed_view">
+  <div class="row">
+   <div class="col-sm-12">
+    <div class="row">
+     <div class="video-info large col-md-8 col-sm-7 navbar-btn">
+      <h3 class="h2 pull-left" title="{{video.name}}">{{video.name}}</h3>
+      <span class="views hide">
+       <i class="fa fa-eye"></i> {{video.video_view_count}}</span>
+      <span class="likes hide">
+       <i class="fa fa-thumbs-up"></i> {{video.video_rating_positive_count}}</span>
+      <span class="dislikes hide">
+       <i class="fa fa-thumbs-down"></i> {{video.video_rating_negative_count}}</span>
+     </div>
+     <div class="video-options col-md-4 col-sm-5 social-share">
+      <div class="col-sm-3 col-xs-6">
+       <a href="javascript:void(0)" class="text-center share-more" title="Share">
+        <span class="show circle">
+         <i class="fa fa-share-alt"></i>
+        </span>
+        <span class="hide">Share</span>
+       </a>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+       <div class="text-center h5">
+        <a href="javascript:void(0)" title="Like">
+         <span class="show text-primary">
+          <i class="fa fa-smile-o fa-2x"></i>
+         </span>
+         <span class="show text-light">{{video.video_view_count}}</span>
+        </a>
+       </div>
+      </div>
+      <div class="col-sm-3 col-xs-6 navbar-btn">
+       <div class="text-center">
+        <div class="clearfix">
+         <div ng-show="video.name && !embed_view" ng-class="video_like_animation && current_video_rate == 'yes' ? 'active' : '' ">
+          <a ng-click="rateNow('yes', video)" class="" title="Like" href="" ng-show="!video.p_is_already_rated">
+           <i class="fa fa-thumbs-o-up fa-lg"></i>
+          </a>
+          <a ng-click="removeVideoRateVal('yes', video)" class="active" title="Like" href="" ng-show="video.p_is_already_rated">
+           <i class="fa fa-thumbs-o-up fa-lg"></i>
+          </a>
+         </div>
+         <div ng-show="video.name && !embed_view" ng-class="video_like_animation && current_video_rate == 'no' ? 'active' : '' ">
+          <a class="" ng-click="rateNow('no', video)" href="" title="UnLike" ng-show="!video.n_is_already_rated">
+           <i class="fa fa-thumbs-o-down fa-lg"></i>
+          </a>
+          <a class="active" ng-click="removeVideoRateVal('no', video)" href="" title="UnLike" ng-show="video.n_is_already_rated">
+           <i class="fa fa-thumbs-o-down fa-lg"></i>
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+       <div class="text-center navbar-btn">
+        <span class="show text-muted">
+         <strong>{{video.video_view_count}}</strong>
+        </span>
+        <span class="show text-light">views</span>
+       </div>
+      </div>
+      <div class="col-sm-3 col-xs-6 hide" ng-show="!is_favorite_video">
+       <a href="" title="Add to favorites" class="thumbnail text-center">
+        <span class="show top-mar-sm space" ng-click="addFavorite(video)">
+         <i class="fa fa-star"></i>
+        </span>
+       </a>
+      </div>
+      <div class="col-sm-3 col-xs-6 hide" ng-show="is_favorite_video">
+       <a href="" title="Favorites" class="thumbnail text-center active">
+        <span class="show top-mar-sm space" ng-click="addFavorite(video)">
+         <i class="fa fa-star fa-lg active"></i>
+        </span>
+       </a>
+      </div>
+      <div class="navbar-right col-md-2 hide">
+       <div class="clearfix navbar-btn">
+        <div class="progress no-round no-mar">
+         <div style="width:85.416666666667%" role="progressbar" class="progress-bar progress-bar-success">
+          <span class="sr-only">40% Complete (success)</span>
+         </div>
+        </div>
+        <div class="show ver-space clearfix pull-right">
+         <a ng-show="video.name && !embed_view" class="pull-left text-muted hor-space" title="Like" href="">
+          <i class="fa fa-thumbs-o-up"></i>&nbsp;{{video.video_rating_positive_count}} </a>
+         <a class="pull-left text-muted hor-space" href="" title="UnLike">
+          <i class="fa fa-thumbs-o-down"></i>&nbsp;{{video.video_rating_negative_count}} </a>
+        </div>
+       </div>
+      </div>
+      <div class="social-share-block hide col-xs-12">
+       <ul class="share-menu share-more">
+        <li class="share-menu-item">
+         <a href="" ng-click="share('facebook', 'videos', video.id, video.name, video.thumbnail_url)" title="Facebook" class="facebook">
+          <img src="themes/mars/img/facebook-icon.png" title="Facebook" class="img-circle hide">
+          <i class="fa fa-facebook"></i>
+         </a>
+        </li>
+        <li class="share-menu-item">
+         <a href="" ng-click="share('twitter', 'videos', video.id, video.name, video.thumbnail_url)" title="Twitter" class="twitter">
+          <img src="themes/mars/img/twitter-icon.png" title="Twitter" class="img-circle hide">
+          <i class="fa fa-twitter"></i>
+         </a>
+        </li>
+        <li class="share-menu-item">
+         <a href="" ng-click="share('google', 'videos', video.id, video.name, video.thumbnail_url)" title="GooglePlus" class="googleplus">
+          <img src="themes/mars/img/googleplus.png" title="GooglePlus" class="img-circle hide">
+          <i class="fa fa-google-plus"></i>
+         </a>
+        </li>
+        <li class="share-menu-item">
+         <a href="" ng-click="share('pinterest', 'videos', video.id, video.name, video.thumbnail_url)" title="Pinterest" class="pinterest">
+          <img src="themes/mars/img/pinterest.png" title="Pinterest" class="img-circle hide">
+          <i class="fa fa-pinterest"></i>
+         </a>
+        </li>
+        <li class="share-menu-item">
+         <a href="" ng-click="share('reddit', 'videos', video.id, video.name, video.thumbnail_url)" title="Reddit" class="reddit">
+          <img src="themes/mars/img/reddit.png" title="Reddit" class="img-circle hide">
+          <i class="fa fa-reddit"></i>
+         </a>
+        </li>
+        <li class="share-menu-item">
+         <a href="" open-dialog data-open_modal="#videoEmbeddedModal" data-share_id="{{video.id}}" class="text-18 code">
+          <img src="themes/mars/img/html-code.png" title="Code" class="img-circle hide">
+          <i class="fa fa-code"></i>
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+    </div>
+    <div class="video-details">
+     <span class="pull-left">
+      <a ng-if="!video.is_facebook_video" class="pull-left" title="{{video.channel_name}}" href="#!/channels/{{video.channels_slug}}" ng-show="!embed_view">
+       <div ng-style="channelProfileImage" class="img-circle playlist-user-avatar-xs  img-thumbnail"></div>
+      </a>
+      <a ng-if="video.is_facebook_video" class="pull-left" title="{{video.users_username}}" href="#!/users/{{video.users_username}}" ng-show="!embed_view">
+       <div ng-style="channelProfileImage" class="img-circle playlist-user-avatar-xs  img-thumbnail"></div>
+      </a>
+      <span class="pull-left" ng-if="!video.is_facebook_video" title="{{video.channel_name}}" ng-show="embed_view">
+       <div ng-style="channelProfileImage" class="img-circle playlist-user-avatar-xs  img-thumbnail"></div>
+      </span>
+      <span class="pull-left" ng-if="video.is_facebook_video" title="{{video.users_username}}" ng-show="embed_view">
+       <div ng-style="channelProfileImage" class="img-circle playlist-user-avatar-xs  img-thumbnail"></div>
+      </span>
+     </span>
+     <ul class="list-inline clearfix date-info navbar-btn">
+      <li class="no-pad">
+       <span ng-if="video.published_at">Published on {{video.published_at | date:'yyyy-MM-dd HH:mm:ss'}} </span>
+      </li>
+      <li class="navbar-btn">
+       <span class="text-light">by</span> <a ng-if="!video.is_facebook_video" class="small text-muted" title="{{video.channel_name}}" href="#!/channels/{{video.channels_slug}}" ng-show="video.name && !embed_view">{{video.channel_name}}</a> <a ng-if="video.is_facebook_video" class="small" title="{{video.users_username}}" href="#!/users/{{video.users_username}}" ng-show="video.name && !embed_view">{{video.users_username}}</a>
+       <span class="small" title="{{video.channel_name}}" ng-show="!video.is_facebook_video && video.name && embed_view">{{video.channel_name}}</span>
+       <span class="small" title="{{video.users_username}}" ng-show="video.is_facebook_video && video.name && embed_view">{{video.users_username}}</span>
+      </li>
+     </ul>
+     <div class="col-xs-12 btn-block description">
+      <p>{{video.description | htmlToPlaintext}}</p>
+     </div>
+     <div class="clearfix text-center video-content-open">
+      <a class="btn btn-default text-12">
+       <i class="fa fa-angle-down"></i>
+       <span class="initialism">Details</span>
+      </a>
+     </div>
+    </div>
+    <div class="col-xs-12 no-pad hide">
+     <div class="panel well-sm">
+      <div class="media well-sm">
+       <span class="pull-left">
+        <a ng-if="!video.is_facebook_video" class="pull-left" title="{{video.channel_name}}" href="#!/channels/{{video.channels_slug}}" ng-show="!embed_view">
+         <div ng-style="channelProfileImage" class="img-rounded playlist-user-avatar-xs  img-thumbnail"></div>
+        </a>
+        <a ng-if="video.is_facebook_video" class="pull-left" title="{{video.users_username}}" href="#!/users/{{video.users_username}}" ng-show="!embed_view">
+         <div ng-style="channelProfileImage" class="img-rounded playlist-user-avatar-xs  img-thumbnail"></div>
+        </a>
+        <span class="pull-left" ng-if="!video.is_facebook_video" title="{{video.channel_name}}" ng-show="embed_view">
+         <div ng-style="channelProfileImage" class="img-rounded playlist-user-avatar-xs  img-thumbnail"></div>
+        </span>
+        <span class="pull-left" ng-if="video.is_facebook_video" title="{{video.users_username}}" ng-show="embed_view">
+         <div ng-style="channelProfileImage" class="img-rounded playlist-user-avatar-xs  img-thumbnail"></div>
+        </span>
+       </span>
+       <div class="media-body text-muted">
+        <h5 class="media-heading text-primary top-space text-15">About The Channel</h5>
+        <p>
+         <span class="text-primary"> <a ng-if="!video.is_facebook_video" class="small" title="{{video.channel_name}}" href="#!/channels/{{video.channels_slug}}" ng-show="video.name && !embed_view">{{video.channel_name}}</a> <a ng-if="video.is_facebook_video" class="small" title="{{video.users_username}}" href="#!/users/{{video.users_username}}" ng-show="video.name && !embed_view">{{video.users_username}}</a>
+          <span class="small" title="{{video.channel_name}}" ng-show="!video.is_facebook_video && video.name && embed_view">{{video.channel_name}}</span>
+          <span class="small" title="{{video.users_username}}" ng-show="video.is_facebook_video && video.name && embed_view">{{video.users_username}}</span>
+         </span> - {{video.description | htmlToPlaintext}}</p>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="clearfix btn-block col-xs-12 section-header">
+     <div class="video-wrapper video-wrapper2 bg-darker" ng-if="is_create_scope && video" id="playlistViewVideo1">
+      <module-video title="Related Videos" video_id="{{video.id}}" type="related" limit="4" dom_parent_id="playlistViewVideo1"></module-video>
+     </div>
+     <hr class="hr-md">
+     <div class="clearfix">
+      <div class="media">
+       <span class="pull-left">
+        <a href="" class="show dropdown-toggle" data-toggle="dropdown" title="{{$root.auth.username}}">
+         <div class="pull-left img-rounded panel no-mar" ng-if="$root.auth.is_use_facebook_picture == false || $root.auth.is_use_facebook_picture == 'f'">
+          <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + $root.auth.very_small_thumb_profile_picture_url + ') no-repeat center center', 'background-size':'cover'}" class="user-avatar-sm img-rounded" ng-if="$root.auth.very_small_thumb_profile_picture_url"></div>
+          <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + $root.auth.network_image_url + ') no-repeat center center', 'background-size':'cover'}" class="user-avatar-sm img-rounded" ng-if="!$root.auth.very_small_thumb_profile_picture_url && $root.auth.network_image_url"></div>
+          <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/User/0/default.png) no-repeat center center', 'background-size':'cover'}" class="user-avatar-sm img-rounded" ng-if="!$root.auth.very_small_thumb_profile_picture_url && !$root.auth.network_image_url"></div>
+         </div>
+         <div class="pull-left img-rounded panel no-mar" ng-if="$root.auth.is_use_facebook_picture == true || $root.auth.is_use_facebook_picture == 't'">
+          <div class="user-avatar-sm img-rounded" ng-style="{'background':'url(' + $root.auth.profile_picture_url + ') no-repeat center top', 'background-size':'cover'}"> </div>
+         </div>
+        </a>
+       </span>
+       <div class="media-body">
+        <div id="fb-comment-box" class="fb-comments" page-href="{{url}}{{video.id}}" numposts="10" colorscheme="light" video_id="{{video.id}}"> </div>
+        <form class="form-horizontal hide">
+         <div class="form-group no-mar">
+          <label for="comment" class="sr-only">Comment</label>
+          <textarea id="comment" placeholder="Your comment ..." class="form-control"></textarea>
+         </div>
+         <div class="form-control-static form-allowed-tags">
+          <p>You may use these
+           <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:
+           <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;s&gt; &lt;strike&gt; &lt;strong&gt; </code>
+          </p>
+         </div>
+         <div class="clearfix form-group">
+          <div class="col-md-4">
+           <label for="Name" class="sr-only">Your Name *</label>
+           <input id="Name" type="text" class="form-control" placeholder="Your Name *">
+          </div>
+          <div class="col-md-4 nav">
+           <label for="Email" class="sr-only">Your Email *</label>
+           <input id="Email" type="text" class="form-control" placeholder="Your Email *">
+          </div>
+          <div class="col-md-4 nav">
+           <label for="Website" class="sr-only">Your Website</label>
+           <input id="Website" type="text" class="form-control" placeholder="Your Website">
+          </div>
+         </div>
+         <div class="form-group no-mar ver-space">
+          <input type="submit" class="btn btn-default pull-right" value="submit">
+         </div>
+        </form>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

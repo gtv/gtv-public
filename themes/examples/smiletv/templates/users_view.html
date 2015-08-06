@@ -1,0 +1,260 @@
+<div class="clearfix show" ng-controller="UserViewCtrl" ng-init="videoNoRecord=false;playlistNoRecord=false;videoLaoding=true;playlistLoading=true;userFollowingNoRecord=false;userFollowingLoading=true;channelNoRecord=false;channelLoading=true;edit_details_now=false">
+ <div class="col-xs-12 no-pad">
+  <div class="row no-mar">
+   <form role="form" method="post">
+    <div class="banner-block pr bg-dark-trans">
+     <div class="clearfix banner-img" ng-show="!user">
+      <span class="cssloader"></span>
+     </div>
+     <div ng-style="coverImage" class="banner-img" ng-show="user">
+      <div class="form-group clearfix no-mar">
+       <div class="file-input-wrapper col-xs-12 no-pad mob-top-mar-xs">
+        <span class="pa col-xs-pull-0 cur z-top" ng-confirm-click="Are you sure to delete your cover picture?" confirmed-click="delete_cover_preview()" ng-if="user.very_large_thumb_cover_image && is_owner" title="Remove cover image">
+         <img src="img/icon-close.png" alt="[Image: Delete]" title="Delete">
+        </span>
+        <div class="cover-banner-block channel-banner initialism text-18">
+         <span class="cover-input-block">
+          <span ng-if="is_owner">
+           <span class="text-muted show">
+            <i class="fa fa-picture-o fa-2x"></i>
+           </span>
+           <span class="show whitec h3">Click to Add An Image</span>
+          </span>
+         </span>
+         <span class="pa block-space col-xs-12 col-xs-pull-0" ng-show="coverImageLoader">
+          <span class="show  blackc row-lg1 text-center">
+           <span class="cssloader"></span>
+          </span>
+         </span>
+        </div>
+        <input type="file" id="add-banner-image" on-change="changeProfileImage('coverImage')" file-input="cover_image" name="cover_image" ng-show="is_owner">
+       </div>
+      </div>
+      <div class="col-xs-12 no-pad caption montserrat mob-no-mar pa row-xs-pull-0 js-over-show">
+       <div class="container pr">
+        <div class="sidebar-caption clearfix pa row-xs-pull-0 bottom-mar-sm">
+         <div class="pull-left bottom-mar">
+          <div class="form-group clearfix no-mar">
+           <label for="add-channel-image" class="sr-only">Click to Add An Image</label>
+           <div class="pr pull-left initialism col-center-block-sm user-profile-avatar">
+            <div class="file-input-wrapper img-thumbnail user-profile-avatar space-xs edit-show">
+             <span class="pa col-xs-pull-0 cur z-top js-profile-image-delete-icon" ng-confirm-click="Are you sure to delete your profile picture?" confirmed-click="delete_preview()" ng-show="($root.auth.very_small_thumb_profile_picture_url || $root.auth.profile_picture_url) && is_owner">
+              <img src="img/icon-close.png" alt="[Image: Delete]" title="Delete">
+             </span>
+             <span class="pa block-space col-xs-12 col-xs-pull-0" ng-show="profileImageLoader">
+              <span class="show  blackc row-lg1 text-center">
+               <span class="cssloader"></span>
+              </span>
+             </span>
+             <div class="back-image img-rounded center-block js-auth-user-img" ng-style="{'background':'url(' + profileImage + ') no-repeat center center', 'background-size':'cover'}" ng-show='user.profile_picture_url'></div>
+             <div class="back-image img-rounded center-block js-auth-user-img" ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + user.network_image_url + ') no-repeat center center', 'background-size':'cover'}" ng-show='!user.profile_picture_url && user.network_image_url'></div>
+             <div class="back-image img-rounded center-block js-auth-user-img" ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/User/0/default.png) no-repeat center center', 'background-size':'cover'}" ng-show='!user.profile_picture_url && !user.network_image_url'></div>
+             <div class="panel-group no-mar edit-hide" id="accordion" role="tablist" aria-multiselectable="true" ng-show="is_owner">
+              <div class="panel-group accountsetting-edit bg-darker pa no-mar" ng-class="{'social-list ': is_owner}">
+               <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false">
+                <div class="panel-body panel-body ver-space left-mar">
+                 <ul class="initialism list-unstyled no-mar">
+                  <li class="clearfix">
+                   <div class="form-group pr clearfix no-mar">
+                    <label for="upload-img" class="text-primary cur text-12">Upload Image</label>
+                    <input type="file" id="add-avatar-image" on-change="changeProfileImage('avatarImage')" file-input="avatar" name="avatar" ng-show="is_owner" class="upload-btn">
+                   </div>
+                  </li>
+                  <li ng-show="is_facebook_connected" class="clearfix"><a href="" ng-click="useFacebookProfileImage()" title="Use Facebook" class="text-12 show">Use Facebook</a>
+                  </li>
+                 </ul>
+                </div>
+               </div>
+               <div class="hor-mar" role="tab" id="headingOne"> <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" href="" aria-expanded="false" aria-controls="collapseOne" class="collapsed show text-16">Edit <span class="fa-stack sfont bottom-mar-sm"><i class="fa fa-circle-o fa-stack-2x"></i><i class="fa fa-pencil fa-stack-1x"></i></span></a> </div>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="pull-left montserrat col-lg-10 col-md-9 col-sm-8 col-xs-7 caption-content" ng-show="user">
+         <div class="clearfix pa col-xs-12 no-pad user-share-block thumb-list">
+          <ul class="list-inline clearfix no-mar fliplike-stats-block">
+           <li class="ver-mar-sm no-pad dropdown dropup js-dropup pull-left">
+            <a href="" title="Share" class="dropdown-toggle show small" data-toggle="dropdown">
+             <span class="fa-stack fa-lg iconright-mar-sm">
+              <span title="Share" class="share-sprite"></span>
+             </span>
+            </a>
+            <ul class="dropdown-menu social-share list-inline">
+             <li>
+              <a href="" ng-click="share('reddit', 'users', user.id, user.username, user.profile_picture_url)" title="Reddit" class="text-18">
+               <span class="fa-stack fa-lg">
+                <i class="fa fa-stop fa-stack-2x whitec"></i>
+                <i class="fa fa-reddit fa-stack-1x text-primary"></i>
+               </span>
+              </a>
+             </li>
+             <li>
+              <a href="" ng-click="share('google', 'users', user.id, user.username, user.profile_picture_url)" title="Google Plus" class="text-18">
+               <span class="fa-stack fa-lg">
+                <i class="fa fa-stop fa-stack-2x whitec"></i>
+                <i class="fa fa-google-plus fa-stack-1x text-primary"></i>
+               </span>
+              </a>
+             </li>
+             <li>
+              <a href="" ng-click="share('pinterest', 'users', user.id, user.username, user.profile_picture_url)" title="Pinterest" class="text-18">
+               <span class="fa-stack fa-lg">
+                <i class="fa fa-stop fa-stack-2x whitec"></i>
+                <i class="fa fa-pinterest fa-stack-1x text-primary"></i>
+               </span>
+              </a>
+             </li>
+             <li>
+              <a href="" ng-click="share('twitter', 'users', user.id, user.username, user.profile_picture_url)" title="Twitter" class="text-18">
+               <span class="fa-stack fa-lg">
+                <i class="fa fa-stop fa-stack-2x whitec"></i>
+                <i class="fa fa-twitter fa-stack-1x text-primary"></i>
+               </span>
+              </a>
+             </li>
+             <li>
+              <a href="" ng-click="share('facebook', 'users', user.id, user.username, user.profile_picture_url)" title="Facebook" class="text-18">
+               <span class="fa-stack fa-lg">
+                <i class="fa fa-stop fa-stack-2x whitec"></i>
+                <i class="fa fa-facebook fa-stack-1x text-primary"></i>
+               </span>
+              </a>
+             </li>
+             <li class="col-xs-12 no-pad">
+              <a href="" title="Share" class="small">
+               <span class="fa-stack fa-lg iconright-mar-sm">
+                <span title="Share" class="share-sprite active"></span>
+               </span>
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="ver-mar-sm no-pad" ng-class="{'active' : !is_following}" ng-show="!is_owner">
+            <a ng-click="check(user.id)" title="{{following_text}}" class="show blackc small" href="">
+             <span class="like-sprite like-icon"></span>
+             <span class="like-sprite dislike-icon"></span>
+            </a>
+           </li>
+          </ul>
+         </div>
+         <div class="" ng-show="!edit_details_now">
+          <h3 class="ver-mar">
+           <span class="js-auth-username-{{user.id}}">{{user.username}}</span>
+           <a href="" title="Edit" class="small" ng-if="is_owner" ng-click="showHideEdit()">
+            <span class="fa fa-edit text-primary fa-lg left-mar"></span>
+           </a>
+          </h3>
+          <p class="text-16 col-lg-10 col-md-11 col-xs-12 no-pad" ng-class="{'htruncate-mml2' : is_truncated}" ng-show="user.about_me">
+           <span class="js-auth-aboutMe">{{user.about_me | htmlToPlaintext}} </span><a ng-show="show_more" href="" ng-click="moreLess()" title="{{truncate_text}}" class="initialism no-under">{{truncate_text}}</a> </p>
+         </div>
+         <div class="user-edit" ng-show="edit_details_now">
+          <div class="ver-mar">
+           <div class="col-xs-9 col-sm-5 col-md-5 pull-left no-pad bottom-mar-sm">
+            <label class="sr-only" for="username">Username</label>
+            <input name="name" type="text" ng-model="edit_user.username" ng-enter="editUsers('username')" class="form-control no-bg edit-title no-pad js-auth-username-input" />
+           </div>
+           <a href="" title="Close" class="small" ng-if="is_owner" ng-click="showHideEdit()">
+            <span class="fa fa-times text-primary fa-lg left-mar"></span>
+           </a>
+          </div>
+          <div class="col-lg-10 col-md-11 col-xs-12 no-pad">
+           <label class="sr-only" for="about_me">About me</label>
+           <textarea ng-model="edit_user.about_me" name="about_me" placeholder="About Me" class="form-control no-bg no-pad edit-description text-16 js-auth-aboutMe-input" ng-enter="editUsers('about_me')">{{user.about_me}}</textarea>
+          </div>
+         </div>
+        </div>
+        <module-social-share type="user" name="{{username}}"></module-social-share>
+        <div class="clearfix pa no-pad myaccount-link text-right">
+         <div class="mob-dc col-xs-12 no-pad" ng-if="is_owner">
+          <div class="clearfix bottom-mar-sm">
+           <a href="#!/users/settings" title="My Account" class="no-shad initialism montserrat btn btn-default">
+            <span>My Account</span>
+           </a>
+          </div>
+          <div class="clearfix bottom-mar-sm">
+           <a href="#!/users/genres" title="My Interests" class="no-shad initialism montserrat btn btn-default">
+            <span>My Interests</span>
+           </a>
+          </div>
+         </div>
+         <div class="clearfix bottom-mar-sm col-xs-12 no-pad mob-dc" ng-if="$root.auth.role_id == 1">
+          <a href="ag-admin/#!/admin/users/edit/{{user.id}}" title="Edit User" target="_blank" class="no-shad initialism montserrat btn btn-default">
+           <span>Edit User</span>
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <hr class="no-mar col-xs-12 no-pad">
+   </form>
+   </div>
+   <div class="container center-block-xs no-pad bottom-mar-lg">
+    <div class="clearfix" ng-init="video_show=true" ng-show="total_video_count != 0" ng-if="is_create_scope" id="userViewVideo1">
+     <div class="clearfix initialism playlist-carousel videoblock-title-filter device-wrap-sm col-center-block" id="accordion">
+      <ul class="list-unstyled text-16 pull-right ver-space ver-mar hidden-sm hidden-xs js-reorder-button" ng-if="is_owner">
+       <li class="top-mar">
+        <a title="Reorder" class="label label-primary navbar-right mob-clr" href="" ng-click="sortableOptions.disabled = sortableReorder(sortableOptions.disabled)">
+         <strong class="initialism navbar-left top-mar-sm  col-xs-9 no-pad">ReOrder </strong>
+         <span class="col-xs-3 no-pad navbar-right">
+          <img src="img/reorder.png" alt="[Image: Reorder]" title="Reorder" class="img-responsive">
+         </span>
+        </a>
+       </li>
+      </ul>
+      <h2 class="pull-left whitec mob-clr mob-dc left-mar-sm montserrat">
+       My Videos
+       <small class="whitec" ng-show="!videoLaoding && total_video_count != 0">({{total_video_count}})</small>
+      </h2>
+     </div>
+     <div id="collapseVideo" class="collapse in  device-wrap-ld device-wrap clearfix col-center-block user-listblock">
+      <module-video username="{{username}}" template-url="templates/module_user_video.html" dom_parent_id="userViewVideo1"></module-video>
+     </div>
+    </div>
+    <div class="clearfix playlist-carousel" ng-init="playlist_show=true" id="userViewPlaylist1" ng-if="is_create_scope">
+     <module-playlist username="{{username}}" limit="5" show_sort="true" title="My Playlists" show_count="true" dom_parent_id="userViewPlaylist1" />
+    </div>
+    <div class="clearfix" ng-init="user_follower_show=true" ng-show="!userFollowingNoRecord">
+     <div class="clearfix initialism montserrat device-wrap-sm col-center-block playlist-carousel">
+      <div id="accordion">
+       <h2 class="pull-left whitec mob-clr mob-dc left-mar-sm">People i am Following
+        <small class="whitec" ng-show="user_follower_count !=0">({{user_follower_count}})</small>
+        <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" href="" title="Videos" ng-click="user_follower_show=! user_follower_show" ng-show="!userFollowingNoRecord">
+         <span ng-show="user_follower_show">
+          <i class="fa fa-caret-down left-mar"></i>
+         </span>
+         <span ng-show="!user_follower_show">
+          <i class="fa fa-caret-right left-mar"></i>
+         </span>
+        </a>
+       </h2>
+      </div>
+     </div>
+     <div class="device-wrap-ld device-wrap clearfix col-center-block">
+      <div id="collapseThree" class="collapse in clearfix top-mar-sm" ng-show="!userFollowingNoRecord">
+       <div id="followCarousel" class="playlist-carousel carousel slide ver-mar" data-ride="carousel">
+        <module-user username="{{username}}"> </module-user>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="clearfix" ng-show="user_channel_count!=0">
+     <div class="device-wrap-sm col-center-block playlist-carousel clearfix">
+      <h2 class="pull-left whitec mob-clr mob-dc left-mar-sm montserrat">
+       <span class="initialism clearfix">My Channels</span>
+      </h2>
+     </div>
+     <div class="device-wrap-ld device-wrap clearfix col-center-block">
+      <div class="clearfix playlist-carousel ver-mar" ng-if="is_create_scope" id="userViewChannel">
+       <module-channel username="{{username}}" template-url="templates/module_channel.html" dom_parent_id="userViewChannel"> </module-channel>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div class="js-user-draggable"></div>
+</div>

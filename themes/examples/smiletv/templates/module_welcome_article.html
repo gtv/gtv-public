@@ -1,0 +1,72 @@
+<div class="clearfix ">
+ <div class="bot-space">
+  <h2 class="text-22 no-mar ng-binding">Welcome to Smile TV</h2>
+ </div>
+ <div class="ng-scope">
+  <div id="search-videolist" class="collapse in clearfix">
+   <div ng-show="videoLoading" class="clearfix block-space pr ng-hide">
+    <div class="cssloader top-mar"></div>
+   </div>
+   <div ng-show="!videoNoRecord" class="carousel-inner container no-pad vimeo-video">
+    <ul ng-show="!video_loading" class="row js-list-inline unstyled">
+     <li ng-repeat="article in articles" class="col-sm-4 js-video-list ng-scope">
+      <div class="mobileBotSpace">
+       <div class="pr no-mar user-video-block">
+        <a title="{{article.name}}" data-placement="right" data-toggle="popover" data-container="body" class="row pr no-mar user-video-block popover-html show" href="#!/videos/8673">
+         <div class="image-holder default-effect">
+          <div class="">
+           <div class="clsThumbImg clsH196">
+            <img ng-src="{{$root.AWS_BASE_URL}}/{{article.medium_thumb_thumbnail}}" alt="[Image: {{article.name}} Image]" title="{{article.name}} Image" /> </div>
+           <div class="overlay-effect">
+            <div class="entry-overlay">
+             <div class="view-more">
+              <i class="fa fa-play-circle-o"></i>
+              <span>view</span>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+         <!-- ngIf: video.duration != 0 -->
+        </a>
+       </div>
+       <div class="item-head video-head">
+        <h5 class="clearfix top-sspace no-mar"><a class="hdTruncate  ng-binding" href="#!/videos/8673">{{article.name}}</a></h5>
+        <p class="text-12 htruncate-mml3 ng-binding">{{article.description}}</p>
+        <div class="panel panel-default no-shad no-round space ver-mar clearfix">
+         <div class="views-block">
+          <ul class="list-inline">
+           <li>
+            <a title="Likes" href="#">
+             <i class="fa fa-smile-o text-primary"></i>
+             <span class="text-muted hor-space ng-binding">0</span>
+            </a>
+           </li>
+           <li>
+            <a title="Views" href="#">
+             <i class="fa fa-eye text-muted"></i>
+             <span class="text-muted hor-space ng-binding">0</span>
+            </a>
+           </li>
+           <li class="pull-right">
+            <a class="play-icon" title="play" href="#!/videos/8673">
+             <span class="text-muted hor-space">play</span>
+             <i class="fa fa fa-angle-right text-primary text-center"></i>
+            </a>
+           </li>
+          </ul>
+         </div>
+        </div>
+        <div class="item-info">
+         <span class="item-author hide"><a title="" href="#!/channels/" class="ng-binding">By&nbsp;</a></span>
+        </div>
+       </div>
+      </div>
+     </li>
+     <!-- end ngRepeat: video in videos_listing -->
+    </ul>
+   </div>
+  </div>
+ </div>
+ <!-- end ngIf: video_isInfiniteScroll !== true -->
+</div>

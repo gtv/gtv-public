@@ -1,0 +1,56 @@
+<div ng-controller="UserInviteCtrl" class="col-lg-8 col-center-block text-muted no-pad col-md-10 col-sm-11 col-xs-12 mob-space">
+ <div class="block-space">
+  <div class="space-lg lightbox-bg modalblock-lg clearfix">
+   <div ng-show="!genreLoading" class="pa col-xs-pull-0 mob-space hor-space hor-mar z-top"> <a href="" ng-click="cancel()" class="modal-closer show hor-mar" title="close">Close</a> </div>
+   <div class="bottom-mar col-lg-10 col-center-block no-pad col-md-11 col-sm-11 clearfix">
+    <div class="ver-mar clearfix mob-dc text-center">
+     <img alt="[Image: Certify Logo]" title="Certify Logo" src="img/modal-certify-logo.png">
+     <h4 class="whitec text-28 top-mar ver-space">Invite your Friends</h4>
+    </div>
+   </div>
+   <div class="clearfix col-xs-11 col-center-block">
+    <div class="clearfix" ng-show="inviteLoading">
+     <div class="col-lg-12 block-space pr">
+      <div class="cssloader top-mar"></div>
+     </div>
+    </div>
+    <div id="facebook" class="clearfix col-xs-12 col-center-block" ng-show="showConnectButton">
+     <div class="alert alert-info">We couldn't find any of your friends from Facebook because you haven't connected with Facebook. Click the button below to connect.</div>
+     <div class="dc ver-space bot-mspace">
+      <div ng-click="authenticate('facebook')" title="Connect Facebook" class="col-xs-12 cur space-sm divider-sm ver-mar">
+       <span class="facebook-connect col-center-block show">
+        <span class="hide">Facebook</span>
+       </span>
+      </div>
+     </div>
+    </div>
+    <div ng-show="showInviteFriend" class="clearfix bottom-mar-lg">
+     <div class="col-xs-12 clearfix invite embed-responsive embed-responsive-4by3">
+      <div ng-show="invite_code" ng-bind-html="invite_code | unsafe"></div>
+     </div>
+    </div>
+   </div>
+   <div class="col-xs-12 block-space-sm clearfix text-24 ver-mar mob-no-pad" ng-show="show_below_buttons">
+    <ul class="list-unstyled clearfix text-center ver-mar hor-space montserrat mob-no-pad">
+     <li class="col-sm-4 pull-left mob-clr mob-top-mar">
+      <button class="btn btn-default initialism col-xs-12 space-sm no-shad" ng-click="movetoPage('onboarding_page')">
+       <span>
+        <i class="fa fa-angle-left cur fa-lg pull-left space-sm text-primary"></i>
+       </span>
+       <span class="pull-right left-mar-sm">Back</span>
+      </button>
+     </li>
+     <li class="col-md-5 col-sm-6 pull-right mob-clr mob-top-mar">
+      <button class="btn btn-default initialism col-xs-12 space-sm no-shad" ng-click="movetoPage('home_page')">
+       <span class="pull-left left-mar-sm">Enter Now!</span>
+       <span>
+        <i class="fa fa-angle-right cur fa-lg pull-right space-sm text-primary"></i>
+       </span>
+      </button>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+</div>

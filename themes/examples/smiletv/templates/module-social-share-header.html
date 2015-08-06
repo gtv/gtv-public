@@ -1,0 +1,7 @@
+<ul class="list-inline social-icons" ng-show="connected_providers">
+ <li ng-repeat="connected_provider in connected_providers">
+  <a class="{{connected_provider.linked_account_type_slug}}-bg" href="{{connected_provider.url}}" target="_blank" title="{{connected_provider.linked_account_type_name}}">
+   <i class="fa {{connected_provider.linked_account_type_icon}}"></i>
+  </a>
+ </li>
+</ul>

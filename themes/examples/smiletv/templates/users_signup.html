@@ -1,0 +1,130 @@
+<div class="col-lg-8 col-center-block text-muted no-pad col-md-10 col-sm-11 col-xs-11 register-modal" ng-controller="UserSignupCtrl">
+ <div class="clearfix">
+  <div class="lightbox-bg modalblock-lg clearfix tab-space">
+   <div class="modal-header pr">
+    <div class="pa col-xs-pull-0 mob-space hor-space hor-mar z-top">
+     <a href="" ng-click="cancel()" class="show close" title="close">
+      <span>&times;</span>
+      <span class="hide">Close</span>
+     </a>
+    </div>
+    <h4 class="modal-title text-center">Register</h4>
+   </div>
+   <div class="clearfix col-xs-12 no-pad">
+    <div class="clearfix">
+     <div class="top-mar clearfix mob-dc text-center">
+      <img class="ver-mar" alt="[Image: Certify Logo]" title="Certify Logo" src="themes/smiletv/img/smiletv_logo.png">
+      <h4 class="whitec text-28 top-mar bottom-mar-sm">Join Our Global Smile Movement instead of Join The Video Revolution.</h4>
+     </div>
+    </div>
+    <div class="genres-block col-lg-11 col-md-12 col-sm-12 col-xs-11 col-center-block  montserrat clearfix tab-no-mar">
+     <div class="col-md-6 col-sm-6 col-xs-12 clearfix">
+      <h4 class="text-graylight">Recommended</h4>
+      <a ng-repeat="network_provider in network_providers" data-provider="{{network_provider.provider_name}}" ng-click="authenticate(network_provider.provider_slug)" title="Login with {{network_provider.provider_name}}" class="col-xs-12 space-sm ver-mar cur">
+       <img class="img-responsive center-block" title="Login with {{network_provider.provider_name}}" alt="[Image: {{network_provider.provider_name}}]" ng-src="img/{{network_provider.provider_slug}}-signup.png">
+       <span class="hide">{{network_provider.provider_name}}</span>
+       </span>
+      </a>
+      <ul class="clearfix col-xs-12 text-graylight text-16 block-space-sm mob-no-mar">
+       <li>Hyper personalize your experience</li>
+       <li>See what your friends are watching</li>
+       <li>Quick and easy</li>
+      </ul>
+     </div>
+     <span class="space or-ver pa text-muted text-20 mob-ps mob-clr mob-dc mob-no-pad text-graylight">Or</span>
+     <div class="col-md-6 col-sm-6 col-xs-12 clearfix">
+      <form name="userSignup" id="signupForm" ng-submit="onSubmitted(userSignup.$valid, user)" role="form" class="top-mar clearfix">
+       <div class="col-lg-10 col-md-11 col-sm-11 pull-right right-mar mob-no-mar mob-clr no-pad montserrat tab-no-mar">
+        <div class="clearfix right-mar mob-no-mar">
+         <div class="form-group clearfix bottom-mar required">
+          <label for="first-name" class="sr-only">Full Name</label>
+          <input type="text" id="first-name" ng-model="user.first_name" name="first_name" placeholder="Full Name" tabindex="1" class="form-control input-lg" required>
+          <div ng-show="userSignup.first_name.$dirty && userSignup.first_name.$invalid">
+           <span class="help-block" ng-show="userSignup.first_name.$error.required"> Required!</span>
+          </div>
+         </div>
+         <div class="form-group clearfix bottom-mar required">
+          <label for="email" class="sr-only">Email</label>
+          <input type="email" name="email" id="email" ng-model="user.email" required placeholder="Email" tabindex="2" class="form-control input-lg">
+          <div ng-show="userSignup.email.$dirty && userSignup.email.$invalid">
+           <span class="help-block" ng-show="userSignup.email.$error.required"> Required!</span>
+           <span class="help-block" ng-show="userSignup.email.$error.email"> Not valid email</span>
+          </div>
+         </div>
+         <div class="form-group clearfix bottom-mar required">
+          <label for="username" class="sr-only">Username</label>
+          <input type="username" id="username" ng-model="user.username" name="username" required placeholder="Username" tabindex="3" class="form-control input-lg">
+          <div ng-show="userAdd.username.$dirty && userAdd.username.$invalid">
+           <span class="help-block" ng-show="userAdd.username.$error.required"> Required!</span>
+          </div>
+          <div ng-if="login_error">
+           <span class="help-block" ng-if="login_error">{{login_error}}</span>
+          </div>
+         </div>
+         <div class="form-group clearfix bottom-mar required">
+          <label for="start_password" class="sr-only">Password</label>
+          <input type="password" id="start_password" name="password" required placeholder="Password" tabindex="4" ng-minlength="6" ng-model="user.password" class="form-control input-lg">
+          <div ng-show="userSignup.password.$dirty && userSignup.password.$invalid">
+           <span class="help-block" ng-show="userSignup.password.$error.minlength"> Must be at least 6 characters</span>
+           <span class="help-block" ng-show="userSignup.password.$error.required"> Required!</span>
+          </div>
+         </div>
+         <div class="form-group clearfix no-mar text-18 required">
+          <label for="date-of-birth" class="mob-clr mob-dc col-md-3 col-sm-3 whitec text-right no-pad">
+           <span class="right-mar show text-lh-sm-16">Date of Birth:</span>
+          </label>
+          <input type="number" ng-model="user.dob_month" tabindex="5" class="ver-space text-center col-xs-3 col-sm-2 col-md-2 col-lg-2 right-mar-sm mob-clr-xs mob-top-mar-xs initialism" placeholder="MM" required onKeyup="autotab(this, '#dob1')" maxlength="2" id="dob2" name="dob2">
+          <input type="number" id="dob1" tabindex="6" ng-model="user.dob_date" class="ver-space text-center col-xs-3 col-sm-2 col-md-2 col-lg-2  right-mar-sm mob-clr-xs mob-top-mar-xs initialism" placeholder="DD" required onKeyup="autotab(this, '#dob3')" maxlength="2" name="dob1">
+          <input type="number" ng-model="user.dob_year" tabindex="7" id="dob3" class="col-xs-4 col-sm-3 col-md-4 col-lg-4 ver-space text-center mob-clr-xs mob-top-mar-xs initialism" placeholder="YYYY" required onKeyup="autotab(this, '#female')" maxlength="4" name="dob3">
+          <div ng-show="userSignup.dob_year.$invalid || userSignup.dob_month.$invalid || userSignup.dob_month.$invalid">
+           <span class="help-block" ng-show="userSignup.dob_date.$error.required"> Date Required!</span>
+           <span class="help-block" ng-show="userSignup.dob_month.$error.required"> Month Required!</span>
+           <span class="help-block" ng-show="userSignup.dob_year.$error.required"> Year Required!</span>
+          </div>
+         </div>
+         <div class="form-group clearfix no-mar">
+          <label class="mob-clr mob-dc col-md-3 col-sm-3 whitec text-right no-pad invisible">
+           <span class="right-mar show text-lh-sm-16">Gender</span>
+          </label>
+          <div class="radiobutton-right whitec text-left top-mar mob-no-mar">
+           <div class="form-group input-lg no-pad top-mar bottom-mar-sm">
+            <div class="radio clearfix no-mar text-center pr pull-left">
+             <input type="radio" name="gender_id" id="female" tabindex="8" ng-model="user.gender_id" value="2">
+             <label for="female">Female</label>
+            </div>
+            <div class="radio clearfix no-mar text-center pr pull-left">
+             <input type="radio" name="gender_id" id="male" tabindex="9" ng-model="user.gender_id" value="1">
+             <label for="male">Male</label>
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="submit clearfix text-center">
+          <div class="text-18 col-xs-12 no-pad mob-bottom-mar dc">
+           <button class="btn btn-primary no-bor initialism tab-no-pad">
+            <span class="space-xs show">Join Now</span>
+           </button>
+          </div>
+         </div>
+        </div>
+       </div>
+      </form>
+     </div>
+    </div>
+    <div class="col-xs-12 text-center tab-space">
+     <p class="bottom-mar-sm text-center col-xs-12 montserrat text-graylight">
+      <span>By joining {{$root.domain_name}} you agree to these</span>
+      <a href="#!/pages/3" target="_blank" class="left-mar-sm initialism" title="Terms &amp; Conditions">
+       <strong>Terms &amp; Conditions</strong>
+      </a>
+     </p>
+     <p class="top-mar bottom-mar-sm text-center dc col-xs-12">
+      <a class="hor-space mob-no-pad top-mar show" title="Already have an account? Login" href="#!/users/login">
+       <strong>Already have an account? Login</strong>
+      </a>
+     </p>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

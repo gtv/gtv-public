@@ -1,0 +1,74 @@
+<div class="thumbnail clearfix no-pad">
+ <div class="col-xs-12 ver-mar">
+  <h4 class="htruncate no-mar montserrat text-lh-sm-16"><a class="hor-mar-sm gray-darkc" href="#!/playlists/{{playlist.id}}">{{playlist.name}}</a>
+  </h4>
+  <div class="media no-mar">
+   <a class="pull-left space-sm" title="{{playlist.name}}" href="#!/playlists/{{playlist.id}}" ng-show="playlist.video_id==0">
+    <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + '{{playlist.small_thumb_thumbnail}}) no-repeat center center', 'background-size':'cover'}" class="user-avatar-sm avatar-rounded js-playlist-simg-{{playlist.id}}" ng-if="playlist.small_thumb_thumbnail"></div>
+    <div ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/PlaylistThumbnail/0/default.png) no-repeat center center', 'background-size':'cover'}" class="user-avatar-sm avatar-rounded" ng-if="!playlist.small_thumb_thumbnail"></div>
+   </a>
+   <a class="pull-left space-sm" title="{{playlist.name}}" href="#!/playlists/{{playlist.id}}" ng-show="playlist.video_id!=0">
+    <div ng-style="{'background':'url({{playlist.thumbnail}}) no-repeat center center', 'background-size':'cover'}" class="user-avatar-sm avatar-rounded"></div>
+   </a>
+   <div class="media-body top-mar-sm">
+    <div class="col-xs-12 no-pad montserrat">
+     <span class="pull-left right-mar-sm">By </span>
+     <a title="{{playlist.users_username}}" class="gray-darkc no-under htruncate col-xs-9 no-pad js-auth-username-{{playlist.user_id}}" href="#!/users/{{playlist.users_username}}">
+          {{playlist.users_username}}
+          </a>
+    </div>
+   </div>
+   <ul class="list-inline no-mar like-stats-block" ng-if="playlist.user_id != $root.auth.id">
+    <li class="col-center-block-sm no-pad" ng-class="{'active' : playlist.p_is_already_rated == true, 'like-animation' : playlist.p_playlist_like_animation == true}">
+     <a class="text-16 blackc" title="Like" href="" ng-show="playlist.p_is_already_rated != true" ng-click="rateplaylistnow({rate: 'yes', playlist: playlist})">
+      <span class="text-center webdings wingdings-xs like-stats pull-left animation">Y</span>
+      <span class="like-block htruncate pull-left cur">
+       <strong> {{playlist.playlist_rating_positive_count}}</strong>
+      </span>
+     </a>
+     <span ng-click="removeplaylistrate({rate_val: 'yes', playlist: playlist})" ng-show="playlist.p_is_already_rated == true" title="Like" class="text-16 blackc">
+      <span class="cur text-center webdings wingdings-xs like-stats pull-left animation">Y</span>
+      <span class="like-block htruncate pull-left cur">
+       <strong>{{playlist.playlist_rating_positive_count}}</strong>
+      </span>
+     </span>
+    </li>
+    <li class="col-center-block-sm no-pad " ng-class="{'active' : playlist.n_is_already_rated == true, 'like-animation' : playlist.n_playlist_like_animation == true}">
+     <a class="text-16 blackc cur" ng-show="playlist.n_is_already_rated != true" title="Dislike" ng-click="rateplaylistnow({rate: 'no', playlist: playlist})">
+      <span class="text-center wingdings wingdings-xs pull-left like-stats animation">M</span>
+      <span class="like-block htruncate pull-left cur">
+       <strong> {{playlist.playlist_rating_negative_count}}</strong>
+      </span>
+     </a>
+     <span ng-click="removeplaylistrate({rate_val: 'no', playlist: playlist})" ng-show="playlist.n_is_already_rated == true" title="Dislike" class="text-16 blackc">
+      <span class="cur text-center wingdings wingdings-xs pull-left like-stats animation">M</span>
+      <span class="like-block htruncate pull-left cur">
+       <strong>{{playlist.playlist_rating_negative_count}}</strong>
+      </span>
+     </span>
+    </li>
+   </ul>
+   <ul class="list-inline no-mar" ng-if="playlist.user_id == $root.auth.id">
+    <li class="col-center-block-sm no-pad">
+     <a href="" class="show text-16 edit-playlist" title="Edit" ng-click="editplaylist({id: playlist.id})">
+      <span class="pull-left initialism montserrat">Edit</span>
+     </a>
+    </li>
+   </ul>
+  </div>
+  <div class="h6 ver-mar-sm htruncate-sl2 show montserrat">{{playlist.description}}<a ng-show="playlist.description" href="" title="More" class="initialism clearfix">&nbsp;More</a>
+  </div>
+  <div class="playlist-img col-xs-12 no-pad top-mar" ng-class="{'top-mar': playlist.user_id == $root.auth.id}">
+   <a title="{{playlist.videos_listing[0].videos_name}}" href="#!/playlists/{{playlist.id}}/video/{{playlist.videos_listing[0].video_id}}">
+    <div ng-if="playlist.videos_listing[0].videos_is_manual_upload == 't' ||  playlist.videos_listing[0].videos_is_manual_upload == true" ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + playlist.videos_listing[0].videos_medium_thumb_thumbnail + ') no-repeat center center', 'background-size':'cover'}" class="back-image"></div>
+    <div ng-if="playlist.videos_listing[0].videos_is_manual_upload == 'f' || playlist.videos_listing[0].videos_is_manual_upload == false" ng-style="{'background':'url({{playlist.videos_listing[0].videos_thumbnail_url}}) no-repeat center center', 'background-size':'cover'}" class="back-image"></div>
+   </a>
+  </div>
+  <p class="col-xs-12 no-pad ver-mar-sm htruncate" ng-if="playlist.playlist_video_count != 0">
+   <strong>{{playlist.playlist_video_count}}
+    <span ng-if="playlist.playlist_video_count == 1" class="right-"> Video</span>
+    <span ng-if="playlist.playlist_video_count != 1" class="right-"> Videos</span>
+   </strong>
+  </p>
+ </div>
+</div>

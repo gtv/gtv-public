@@ -1,0 +1,17 @@
+<div class="container">
+ <div class="clearfix bottom-mar no-pad device-wrap col-center-block" ng-controller="SearchCtrl">
+  <div class="col-center-block col-xs-12 hor-space bottom-mar" id="autocomplete_search_block">
+   <form class="form-search divider-md sep img-rounded pr bg-darker">
+    <div class="input-group search-autocomplete" id="search_autocomplete">
+     <span class="input-group-addon no-bg no-bor">
+      <i class="fa fa-search fa-2x text-muted left-mar cur" title="Search"></i>
+     </span>
+     <autocomplete ng-model="keyword" class="form-control input-lg no-bg text-30 space-xs no-shad js-autocomplete-input" modelsearch="keyword" modelaction="search_manual()" />
+    </div>
+    <div class="clearfix ver-mar space pr pull-left col-xs-12" ng-show="searchLoading">
+     <div class="cssloader top-mar"></div>
+    </div>
+   </form>
+  </div>
+ </div>
+</div>

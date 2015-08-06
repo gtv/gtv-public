@@ -1,0 +1,21 @@
+<div ng-controller="MenusGenreChannelsCtrl" ng-init="menu_genre_channel_loading = true;" ng-if="!channelNoRecord">
+ <div class="ver-mar clearfix montserrat text-22">
+  <form class="playlists-category col-lg-9 col-md-8 col-sm-7 col-xs-12 no-pad top-mar" role="form">
+   <div class="col-lg-4 col-md-7 col-sm-10 col-xs-12 no-pad right-mar-sm top-mar-sm">
+    <div class="form-group pr text-16">
+     <strong ng-if="parentGenres" class="initialism">
+      <div dropdown-select="parentGenres" dropdown-model="selectedObject" dropdown-item-label="name" dropdown-onchange="onChangeGenres(selected)" dropdown-placeholder="Subcategories"></div>
+     </strong>
+    </div>
+   </div>
+  </form>
+ </div>
+ <div ng-if="is_create_scope">
+  <div class="clearfix block-space row-lg1 col-xs-11 text-center" ng-show="menu_genre_channel_loading">
+   <span class="cssloader"></span>
+  </div>
+  <div class="clearfix" ng-show="!menu_genre_channel_loading" id="menuGenerChannel">
+   <module-channel genre_id="{{genreId}}" template-url="templates/module_channel.html" dom_parent_id="menuGenerChannel"></module-channel>
+  </div>
+ </div>
+</div>

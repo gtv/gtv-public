@@ -1,0 +1,21 @@
+<div class="hor-mar top-mar clearfix mob-no-mar" ng-if="interactive_module">
+ <div class="thumbnail no-pad clearfix">
+  <div class="bg-pattern-top clearfix">
+   <div class="bg-pattern-bottom clearfix">
+    <div class="clearfix h2 no-mar space-sm">
+     <div class="clearfix initialism text-lh-sm-38 montserrat  left-mar-sm mob-no-mar">{{interactive_module.name}}</div>
+     <div class="clearfix ver-mar text-center tab-space ">
+      <ul class="clearfix list-inline initialism top-mar bottom-mar-sm tab-space">
+       <li class="top-mar bottom-mar"><a href="" ng-click="voteInteractiveModule(interactive_module.id, 1, page, level, block)" class="btn btn-primary btn-lg col-xs-12" role="button" title="{{interactive_module.option1}}">{{interactive_module.option1}}</a>
+       </li>
+       <li class="top-mar bottom-mar"><a href="" ng-click="voteInteractiveModule(interactive_module.id, 2, page, level, block)" class="btn btn-primary btn-lg col-xs-12" role="button" title="{{interactive_module.option2}}">{{interactive_module.option2}}</a>
+       </li>
+       <li class="top-mar bottom-mar"><a href="" ng-click="voteInteractiveModule(interactive_module.id, 3, page, level, block)" class="btn btn-primary btn-lg col-xs-12" role="button" title="None of these">None of these</a>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

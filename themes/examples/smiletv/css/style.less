@@ -1,0 +1,1116 @@
+/* =WordPress Core
+-------------------------------------------------------------- */
+
+html, body, #wrapper{
+	min-height: 100%;
+}
+
+.singular-container{
+	padding: 0;
+}
+.builder-element-icon-toggle{
+	display: none;
+}
+.ts-breadcrumbs.breadcrumbs-single-video{
+	color: inherit;
+	margin-bottom: 20px;
+	font-size: 11px;
+}
+.ts-breadcrumbs.breadcrumbs-single-post{
+	margin-bottom: 30px;
+	color: inherit;
+	font-size: 11px;
+}
+body.archive .ts-breadcrumbs-content{
+	margin-bottom: 30px;
+	font-size: 12px;
+}
+.ts-advertising-container{
+	margin: 40px auto;
+}
+.no-pad{
+	padding: 0;
+}
+.content-block{
+	clear: both;
+}
+.col-lg-12{
+	clear: both;
+}
+.carousel-container .col-lg-12{
+	clear: none;
+}
+#wrapper:not(.container){
+	overflow: hidden;
+}
+#wrapper.container .container #primary[class*="col-"] .site-section > .container {
+	padding: 0 15px;
+}
+#wrapper.container .red-slider{
+	padding: 0 15px;
+}
+.ts-page-with-layout-builder{
+	padding: 0;
+}
+.ts-section-with-box-shadow{
+	box-shadow: inset 0 0 10px rgba(60,60,60,0.1);
+}
+.site-section{
+	position: relative;
+}
+.ts-expanded-row > .row {
+	margin: 0 -15px;
+}
+body.archive section#main > .container, body.blog section#main > .container{
+	/*padding: 0;*/
+}
+body.archive #wrapper.container section#main > .container, body.blog #wrapper.container section#main > .container{
+	padding: 0 15px;
+}
+#main{
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.content-block article{
+	margin-bottom: 40px;
+}
+.site-section.has-video-bg{
+	position: relative;
+	overflow: hidden;
+}
+.site-section.has-video-bg .container,
+.site-section.has-row-mask .container{
+	z-index: 1;
+}
+.container{
+	position: relative;
+}
+.row-mask{
+	width: 100%;
+	position: absolute;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+.video-background{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+}
+
+@media only screen and (max-width: 768px){
+	div[data-element="spacer"][data-show-mobile="n"]{
+		display: none;
+	}
+}
+
+.no-gutter div[class*="col-"]{
+	padding: 0;
+}
+.no-gutter div[class*="col-"] article{
+	margin-bottom: 0;
+}
+.ts-thumbnail-view.no-gutter{
+	margin: 0 20px 40px 20px;
+}
+.ad-container{
+	line-height: 1.8;
+}
+
+.embedded_videos{
+	width: 100%;
+	display: block;
+}
+
+#post-video div,
+#post-video video.wp-video-shortcode {
+	/*width: 100% !important;
+	height: auto !important;*/
+}
+
+.masonry-element.col-lg-4{
+	width: 33.3%;
+}
+.masonry-element.col-lg-3{
+	width: 24.9%;
+}
+
+/* Grid clears */
+.cols-by-3 > div:nth-child(3n+1){
+	clear: left;
+}
+.cols-by-2 > div:nth-child(2n+1){
+	clear: left;
+}
+.cols-by-6 > div:nth-child(6n+1){
+	clear: left;
+}
+.cols-by-4 > div:nth-child(4n+1){
+	clear: left;
+}
+
+
+
+
+
+/* Article elements */
+.ts-grid-view ul,
+.ts-grid-view ol,
+.ts-thumbnail-view ul,
+.ts-thumbnail-view ol,
+.ts-list-view ul,
+.ts-list-view ol,
+.ts-big-posts ul,
+.ts-big-posts ol,
+.ts-super-posts ul,
+.ts-super-posts ol{
+	list-style-type: none;
+}
+
+
+.image-holder{
+	position:relative;
+	overflow: hidden;
+	line-height: 0;
+}
+.image-holder img{
+	width: 100%;
+	height: auto;
+}
+.excerpt{
+	line-height: 1.8;
+	font-size: 13px;
+}
+.views-read-more{
+	font-size: 12px;
+	height: 30px;
+	line-height: 30px;
+	white-space: nowrap;
+	color: #525252;
+	text-transform: uppercase;
+	display: inline-block;
+	padding: 0 25px 0 15px;
+	position: relative;
+	margin-bottom: 20px;
+	-webkit-transition: padding-right 0.2s ease-out;
+	-moz-transition: padding-right 0.2s ease-out;
+	transition: padding-right 0.2s ease-out;
+}
+.views-read-more:hover{
+	padding-right: 30px;
+}
+.views-read-more i{
+	font-size: 9px;
+	line-height: 1;
+	position: absolute;
+	top: 10px;
+	right: 7px;
+}
+
+.views-delimiter{
+	font-weight: 700;
+	color: #999;
+	letter-spacing: 0.2em;
+	margin-bottom: 20px;
+	font-family: 'Montserrat';
+	font-size: 12px;
+}
+.ts-thumbnail-view .thumb-post-categories a, .grid-view .grid-post-categories a, .big-posts .big-post-categories a, .post-title-meta .post-categories a, .super-posts .super-posts-categories a{
+	-webkit-transition: border-color 0.2s ease-out, color 0.2s ease-out .1s;
+	-moz-transition: border-color 0.2s ease-out, color 0.2s ease-out .1s;
+	transition: border-color 0.2s ease-out, color 0.2s ease-out .1s;
+}
+
+
+@media only screen and (max-width: 768px){
+	.ts-user-content-header .user-avatar{
+		float: none;
+		margin: 0 auto;
+	}
+	.ts-user-content-header .user-info{
+		padding: 0;
+		width: 100%;
+		text-align: center;
+	}
+	.ts-user-content-header .user-activity,
+	.ts-user-content-header .user-meta{
+		float: none;
+		margin: 0;
+		margin-bottom: 20px;
+	}
+	.ts-user-content-header .user-activity ul li:last-child{
+		margin: 0;
+		padding-right: 0;
+		border-right: 0;
+	}
+}
+
+/* Overlay Effects */
+article .image-holder .overlay-effect{
+	position: absolute;
+	background: rgba(0,0,0,0.8);
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	color: #fff;
+
+	opacity: 0;
+	filter: alpha(opacity=0);
+	z-index: 0;
+	
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+article .image-holder:hover .overlay-effect{
+	opacity: 1;
+	filter: alpha(opacity=100);
+	z-index: 1;	
+}
+article .overlay-effect .entry-overlay{
+	position: absolute;
+	width: 100%;
+	color: inherit;
+	text-shadow: 0 0 2px rgba(30,30,30,0.5);
+	padding: 1.5em 30px;
+}
+article .default-effect .entry-overlay{
+	position: static;
+}
+article .default-effect .overlay-effect .view-more{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	color: inherit;
+	font-size: 24px;
+	margin-left: -30px;
+	margin-top: -30px;
+}
+article .default-effect .overlay-effect .view-more i{
+	display: block;
+	font-style: normal;
+	margin-bottom: 10px;
+	font-size: 42px;
+	-webkit-transition: all .2s ease-out;  
+	-moz-transition: all .2s ease-out;  
+	-o-transition: all .2s ease-out;  
+	-ms-transition: all .2s ease-out;  
+	transition: all .2s ease-out;
+	-webkit-transform: scale(0.2) rotate(-30deg);
+	-moz-transform: scale(0.2) rotate(-30deg);
+	-o-transform: scale(0.2) rotate(-30deg);
+	-ms-transform: scale(0.2) rotate(-30deg);
+	transform: scale(0.2) rotate(-30deg);
+}
+article .default-effect:hover .overlay-effect .view-more i{
+	-webkit-transform: scale(1) rotate(0deg);
+	-moz-transform: scale(1) rotate(0deg);
+	-o-transform: scale(1) rotate(0deg);
+	-ms-transform: scale(1) rotate(0deg);
+	transform: scale(1) rotate(0deg);
+}
+article .default-effect .overlay-effect .view-more:hover > i,
+article .default-effect .overlay-effect .view-more > i:hover{
+	opacity: 0;
+}
+article .default-effect .overlay-effect .view-more > span{
+	position: absolute;
+	display: block;
+	left: 50%;
+	top: 50%;
+	margin-left: -35px;
+	margin-top: -10px;
+	padding: 0 15px;
+	font-size: 16px;
+	color: #fff;
+	line-height: 1.4;
+	text-align: center;
+	text-transform: uppercase;
+	z-index: 99;
+	opacity: 0;
+
+	-webkit-transition: all .2s ease-out;  
+	-moz-transition: all .2s ease-out;  
+	-o-transition: all .2s ease-out;  
+	-ms-transition: all .2s ease-out;  
+	transition: all .2s ease-out;
+}
+article .default-effect .overlay-effect .view-more > span:before,
+article .default-effect .overlay-effect .view-more > span:after{
+	content: "";
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 3px;
+	background: #e10d0d;
+	border-radius: 3px;
+}
+article .default-effect .overlay-effect .view-more > span:before{
+	top: -10px;
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+	-webkit-transform: translate3d(-100%,0,0);
+	transform: translate3d(-100%,0,0);
+}
+article .default-effect .overlay-effect .view-more > span:after{
+	bottom: -10px;
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+	-webkit-transform: translate3d(100%,0,0);
+	transform: translate3d(100%,0,0);
+}
+article .default-effect .overlay-effect .view-more:hover > span:before,
+article .default-effect .overlay-effect .view-more:hover > span:after{
+	-webkit-transform: translate3d(-20%,0,0);
+	transform: translate3d(-20%,0,0);
+}
+article .default-effect .overlay-effect .view-more:hover > span{
+	opacity: 1;
+}
+
+/*-----------------------*/
+/***** Share Effect *****/
+/*---------------------*/
+article .share-effect .entry-overlay{
+	top: 50%;
+	margin-top: -46px;
+	text-align: center;
+	text-shadow: 0 0 2px rgba(0,0,0,0.7);
+}
+article .share-effect .entry-overlay-span {
+	display: block;
+	line-height: 50px;
+	text-transform: uppercase;
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+	-webkit-transform: translate3d(-50%,0,0);
+	transform: translate3d(-50%,0,0);
+}
+article .share-effect .entry-overlay-span > a{
+	color: inherit;
+}
+article .share-effect .entry-overlay-span > a:hover{
+	color: inherit !important;
+	opacity: 0.8;
+}
+article .share-effect .entry-overlay .share-options{
+	position: absolute;
+	top: 1em;
+	right: 30px;
+}
+article .share-effect .entry-overlay .share-options:before{
+	content: "";
+	position: absolute;
+	left: -15px;
+	top: 0;
+	width: 1px;
+	height: 100%;
+	display: block;
+	background: #fff;
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+	-webkit-transform: translate3d(0,300%,0);
+	transform: translate3d(0,300%,0);
+}
+article .share-effect .entry-overlay .share-options li{
+	display: block;
+	line-height: 1.8;
+}
+article .share-effect .entry-overlay .share-options li i {
+	font-size: 14px;
+	margin: 0 5px;
+	color: #fff;
+}
+article .share-effect .entry-overlay .share-options li i:last-child {
+	margin-right: 0;
+}
+article .share-effect .entry-overlay .share-options li i:hover{
+	opacity: 0.8;
+}
+article .share-effect .entry-overlay .share-options li {
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+	-webkit-transform: translate3d(300%,0,0);
+	transform: translate3d(300%,0,0);
+}
+article .share-effect:hover .entry-overlay-span,
+article .share-effect:hover .entry-overlay .share-options:before,
+article .share-effect:hover .entry-overlay .share-options li {
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+article .share-effect:hover .entry-overlay .share-options:before{
+	-webkit-transition-delay: .2s;
+	transition-delay: .2s;
+}
+article .share-effect:hover .entry-overlay .share-options li:nth-child(1) {
+	-webkit-transition-delay: .35s;
+	transition-delay: .35s;
+}
+article .share-effect:hover .entry-overlay .share-options li:nth-child(2) {
+	-webkit-transition-delay: .4s;
+	transition-delay: .4s;
+}
+article .share-effect:hover .entry-overlay .share-options li:nth-child(3) {
+	-webkit-transition-delay: .45s;
+	transition-delay: .45s;
+}
+article .share-effect:hover .entry-overlay .share-options li:nth-child(4) {
+	-webkit-transition-delay: .5s;
+	transition-delay: .5s;
+}
+article .share-effect:hover .entry-overlay .share-options li:nth-child(5) {
+	-webkit-transition-delay: .55s;
+	transition-delay: .55s;
+}
+
+
+/* Element views */
+
+.ts-grid-view .mCSB_horizontal.mCSB_inside > .mCSB_container, .ts-thumbnail-view .mCSB_horizontal.mCSB_inside > .mCSB_container{
+	margin-bottom: -15px;
+}
+
+/*
+ *	--------------------  Mosaic View  ----------------------
+ */
+
+ /* rectangle with scroll & with gutter */
+ .mosaic-rectangles.mosaic-with-gutter[data-scroll="true"] .scroll-container > div{
+ 	padding:0 5px;
+ }
+
+ /* rectangle with scroll & without gutter */
+ .mosaic-rectangles.mosaic-no-gutter[data-scroll="true"] .scroll-container > div{
+ 	padding: 0;
+ }
+
+ /* rectangle without scroll & with gutter */
+ .mosaic-rectangles.mosaic-with-gutter[data-scroll="false"] > div{
+ 	padding: 0 5px;
+ }
+
+ /* rectangle without scroll & without gutter */
+ .mosaic-rectangles.mosaic-no-gutter[data-scroll="false"] > div{
+ 	padding: 0;
+ }
+
+ /* square with scroll & with gutter */
+ .mosaic-square.mosaic-with-gutter[data-scroll="true"] .scroll-container > div{
+ 	padding: 0 5px;
+ }
+
+ /* square with scroll & without gutter */
+ .mosaic-square.mosaic-no-gutter[data-scroll="true"] .scroll-container > div{
+ 	padding: 0;
+ }
+
+ /* square without scroll & with gutter */
+ .mosaic-square.mosaic-with-gutter[data-scroll="false"] > div{
+ 	padding: 0 5px;
+ }
+
+ /* square without scroll & without gutter */
+ .mosaic-square.mosaic-no-gutter[data-scroll="false"] > div{
+ 	padding: 0;
+ }
+
+ /* ------------------------------------------------------------------------------------- */
+ .mosaic-view.mosaic-no-gutter .scroll-container > div article,
+ .mosaic-view.mosaic-no-gutter > div article{
+ 	margin: 0;
+ }
+ .mosaic-view.mosaic-with-gutter .scroll-container > div article,
+ .mosaic-view.mosaic-with-gutter > div article{
+ 	margin-bottom: 10px;
+ }
+ .mosaic-view.mosaic-rectangles .scroll-container > div:nth-child(3n+1){
+ 	clear: left;
+ }
+ .mosaic-view.mosaic-rectangles.mosaic-with-gutter .scroll-container > div:nth-child(3n+1){
+ 	clear: left;
+ }
+ .mosaic-rectangles.mosaic-with-gutter[data-scroll="false"] > div:nth-child(3n+1){
+ 	clear: left;
+ }
+ .mosaic-view.mosaic-no-gutter[data-scroll="false"]{
+ 	padding: 0 20px;
+ }
+ .mosaic-view.mosaic-no-gutter[data-scroll="true"],
+ .mosaic-view.mosaic-with-gutter[data-scroll="true"]{
+ 	padding-left: 20px;
+ 	padding-right: 20px;
+ }
+ .mosaic-view.mosaic-with-gutter[data-scroll="false"]{
+ 	padding-left: 15px;
+ 	padding-right: 15px;
+ }
+ .mosaic-view.mosaic-with-gutter .scroll-container:first-child{
+ 	margin-left: -5px;
+ }
+ .mosaic-view.mosaic-with-gutter .scroll-container:last-child{
+ 	margin-right: -5px;
+ }
+ .mosaic-view{
+ 	position: relative;
+ 	width: 100%;
+ 	max-height: 100%;
+ 	overflow: hidden; 
+ }
+ .mosaic-view.fade-effect .scroll-container > div{
+ 	-webkit-transition: all .3s ease-in-out;
+ 	-o-transition: all .3s ease-in-out;
+ 	transition: all .3s ease-in-out;
+ 	opacity: 0;
+ }
+ .mosaic-view.fade-effect .scroll-container > div.shown{
+ 	opacity: 1;
+ }
+ .scroll-container{
+ 	float: left;
+ }
+ .mosaic-view .mosaic-container{
+ 	margin-right: 0px;
+ 	float: left;
+ }
+ @media only screen and (max-width: 768px){
+ 	.scroll-container > div{
+ 		float: left;
+ 	}
+ 	.mosaic-view[data-scroll="false"] > div{
+ 		width: 100%;
+ 	}
+ }
+ .scroll-container.posts-inside-4 > .col-sm-12{
+ 	width: 25%;
+ 	float: left;
+ }
+ .scroll-container.posts-inside-3 > .col-sm-12{
+ 	width: 33.3%;
+ 	float: left;
+ }
+ .scroll-container.posts-inside-2 > .col-sm-12{
+ 	width: 50%;
+ 	float: left;
+ }
+ .mosaic-view .mosaic-container.no-gutter:first-child{
+ 	margin-left: 15px;
+ }
+ .mosaic-view .mosaic-container.no-gutter > div{
+ 	padding: 0;
+ }
+ .mosaic-view article{
+ 	overflow: hidden;
+ 	position: relative;
+ }
+ .ts-expanded-row .mosaic-view {
+ 	padding: 0 15px;
+ }
+ .mosaic-view .mosaic-container.no-gutter article header .image-holder > a{
+ 	display: block;
+ 	height: 220px;
+ 	overflow: hidden;
+ }
+ .mosaic-view article section{
+ 	position: absolute;
+ 	bottom: 0;
+ 	width: 100%;
+ 	padding: 20px;
+ 	white-space: normal;
+ 
+ }
+ .mosaic-view article section .entry-title .title:after{
+ 	content: '';
+ 	display: block;
+ 	width: 1px;
+ 	opacity: 0;
+ 	background: #bb5fa5;
+ 	height: 1px;
+ 	position: absolute;
+ 	bottom: -2px;
+ 	-webkit-transition: all 0.2s ease-out;
+ 	-moz-transition: all 0.2s ease-out;
+ 	transition: all 0.2s ease-out;
+ }
+ .mosaic-view article:hover section .entry-title .title:after{
+ 	width: 100%;
+ 	opacity: 1;
+ }
+ .mosaic-view article section .entry-title .title{
+ 	color: #fff;
+ 	font-size: 18px;
+ 	line-height: 1.4;
+ 	text-shadow: 0 0 2px rgba(0,0,0,0.6);
+ 	margin-top: 0;
+ 	display: inline-block;
+ 	position: relative;
+ }
+ .mosaic-view .mosaic-row,
+ {
+ 	width: 1170px;
+ }
+ .mosaic-view.fade-effect .mosaic-row > div{
+ 	opacity: 0;
+ }
+ .mosaic-view article section .entry-date{
+ 	font-style: italic;
+ 	color: #FFF;
+ 	font-size: 11px;
+ 	margin-top: -5px;
+ 	opacity: 0.6;
+ }
+ .mosaic-view article section .entry-title .title i{
+ 	font-size: 13px;
+ 	margin-left: 10px;
+	padding-left:5px;
+ 	opacity: 0;
+ 	-webkit-transition: all 0.2s ease-out 0.5s;
+ 	-moz-transition: all 0.2s ease-out 0.5s;
+ 	transition: all 0.2s ease-out 0.5s;
+ }
+ @media only screen and (max-width: 768px){
+ 	.mosaic-view article section .entry-title .title i{
+ 		display: none;
+ 	}
+ }
+ .mosaic-view article:hover section .entry-title .title i{
+ 	opacity: 1;
+ 	margin-left: 15px;
+ 	position: relative;
+ }
+ .mosaic-view article:hover section .entry-title .title i:after{
+ 	background: none repeat scroll 0 0 rgba(240, 240, 240, 0.5);
+ 	content: "";
+ 	display: block;
+ 	height: 100%;
+ 	left: -5px;
+ 	position: absolute;
+ 	top: -1px;
+ 	width: 1px;
+ }
+ .mosaic-view article .entry-like{
+ 	margin-bottom: 5px;
+ 	opacity: 0;
+ 	-webkit-transition: all 0.2s ease-out 0.3s;
+ 	-moz-transition: all 0.2s ease-out 0.3s;
+ 	transition: all 0.2s ease-out 0.3s;
+ }
+ .mosaic-view article:hover .entry-like{
+ 	opacity: 1;
+ 	transform: translateY(5px);
+ 	-moz-transform: translateY(5px);
+ 	-webkit-transform: translateY(5px);
+ }
+ .mosaic-view .entry-like a{
+ 	color: #FFF;
+ }
+ .mosaic-view.mosaic-no-gutter .mCSB_horizontal.mCSB_inside > .mCSB_container{
+ 	margin-bottom: 20px;
+ }
+ .scroll-view {
+ 	padding: 0 20px;
+ }
+ @media only screen and (min-width: 768px){
+ 	div.site-section:not(.ts-expanded-row) .mosaic-view,
+ 	div.site-section:not(.ts-expanded-row) .scroll-container{
+ 		max-width: 748px;
+ 		width: 748px;
+ 	}
+ }
+ @media only screen and (min-width: 992px){
+ 	div.site-section:not(.ts-expanded-row) .mosaic-view,
+ 	div.site-section:not(.ts-expanded-row) .scroll-container{
+ 		max-width: 940px;
+ 		width: 940px;
+ 	}
+ }
+ @media only screen and (min-width: 1170px){
+ 	div.site-section:not(.ts-expanded-row) .mosaic-view,
+ 	div.site-section:not(.ts-expanded-row) .scroll-container{
+ 		max-width: 1170px;
+ 		width: 1170px;
+ 	}
+ }
+ @media only screen and (min-width: 1441px){
+ 	div.site-section:not(.ts-expanded-row) .mosaic-view,
+ 	div.site-section:not(.ts-expanded-row) .scroll-container{
+ 		max-width: 1380px;
+ 		width: 1380px;
+ 	}
+ }
+ @media only screen and (max-width: 767px){
+ 	.mosaic-view .mosaic-row{
+ 		max-width: 320px !important;
+ 	}
+ }
+
+/*
+== malihu jquery custom scrollbar plugin ==
+Version: 3.0.2 
+Plugin URI: http://manos.malihu.gr/jquery-custom-content-scroller
+*/
+
+
+
+/*
+CONTENTS: 
+	1. BASIC STYLE - Plugin's basic/essential CSS properties (normally, should not be edited). 
+	2. VERTICAL SCROLLBAR - Positioning and dimensions of vertical scrollbar. 
+	3. HORIZONTAL SCROLLBAR - Positioning and dimensions of horizontal scrollbar.
+	4. VERTICAL AND HORIZONTAL SCROLLBARS - Positioning and dimensions of 2-axis scrollbars. 
+	5. TRANSITIONS - CSS3 transitions for hover events, auto-expanded and auto-hidden scrollbars. 
+	6. SCROLLBAR COLORS, OPACITY AND BACKGROUNDS 
+		6.1 THEMES - Scrollbar colors, opacity, dimensions, backgrounds etc. via ready-to-use themes.
+		*/
+
+
+
+/* 
+------------------------------------------------------------------------------------------------------------------------
+1. BASIC STYLE  
+------------------------------------------------------------------------------------------------------------------------
+*/
+
+.mCustomScrollbar{ -ms-touch-action: none; touch-action: none; /* MSPointer events - direct all pointer events to js */ }
+.mCustomScrollbar.mCS_no_scrollbar{ -ms-touch-action: auto; touch-action: auto; }
+
+.mCustomScrollBox{ /* contains plugin's markup */
+position: relative;
+overflow: hidden;
+height: 100%;
+max-width: 100%;
+outline: none;
+direction: ltr;
+}
+
+.mCSB_container{ /* contains the original content */
+	overflow: hidden;
+	width: auto;
+	height: auto;
+}
+
+
+
+/* 
+------------------------------------------------------------------------------------------------------------------------
+2. VERTICAL SCROLLBAR 
+y-axis
+------------------------------------------------------------------------------------------------------------------------
+*/
+
+.mCSB_inside > .mCSB_container{ margin-right: 30px; }
+
+.mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden{ margin-right: 0; } /* non-visible scrollbar */
+
+.mCS-dir-rtl > .mCSB_inside > .mCSB_container{ /* RTL direction/left-side scrollbar */
+	margin-right: 0;
+	margin-left: 30px;
+}
+
+.mCS-dir-rtl > .mCSB_inside > .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden{ margin-left: 0; } /* RTL direction/left-side scrollbar */
+
+.mCSB_scrollTools{ /* contains scrollbar markup (draggable element, dragger rail, buttons etc.) */
+	position: absolute;
+	width: 16px;
+	height: auto;
+	left: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.mCSB_outside + .mCSB_scrollTools{ right: -26px; } /* scrollbar position: outside */
+
+.mCS-dir-rtl > .mCSB_inside > .mCSB_scrollTools, 
+.mCS-dir-rtl > .mCSB_outside + .mCSB_scrollTools{ /* RTL direction/left-side scrollbar */
+	right: auto;
+	left: 0;
+}
+
+.mCS-dir-rtl > .mCSB_outside + .mCSB_scrollTools{ left: -26px; } /* RTL direction/left-side scrollbar (scrollbar position: outside) */
+
+.mCSB_scrollTools .mCSB_draggerContainer{ /* contains the draggable element and dragger rail markup */
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0; 
+	height: auto;
+}
+
+.mCSB_scrollTools a + .mCSB_draggerContainer{ margin: 20px 0; }
+
+.mCSB_scrollTools .mCSB_draggerRail{
+	width: 2px;
+	height: 100%;
+	margin: 0 auto;
+	-webkit-border-radius: 16px; -moz-border-radius: 16px; border-radius: 16px;
+}
+
+.mCSB_scrollTools .mCSB_dragger{ /* the draggable element */
+	cursor: pointer;
+	width: 100%;
+	height: 30px; /* minimum dragger height */
+	z-index: 1;
+}
+
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{ /* the dragger element */
+	position: relative;
+	width: 4px;
+	height: 100%;
+	margin: 0 auto;
+	-webkit-border-radius: 16px; -moz-border-radius: 16px; border-radius: 16px;
+	text-align: center;
+}
+
+.mCSB_scrollTools_vertical.mCSB_scrollTools_onDrag_expand .mCSB_dragger.mCSB_dragger_onDrag_expanded .mCSB_dragger_bar, 
+.mCSB_scrollTools_vertical.mCSB_scrollTools_onDrag_expand .mCSB_draggerContainer:hover .mCSB_dragger .mCSB_dragger_bar{ width: 12px; /* auto-expanded scrollbar */ }
+
+.mCSB_scrollTools_vertical.mCSB_scrollTools_onDrag_expand .mCSB_dragger.mCSB_dragger_onDrag_expanded + .mCSB_draggerRail, 
+.mCSB_scrollTools_vertical.mCSB_scrollTools_onDrag_expand .mCSB_draggerContainer:hover .mCSB_draggerRail{ width: 8px; /* auto-expanded scrollbar */ }
+
+.mCSB_scrollTools .mCSB_buttonUp,
+.mCSB_scrollTools .mCSB_buttonDown{
+	display: block;
+	position: absolute;
+	height: 20px;
+	width: 100%;
+	overflow: hidden;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+.mCSB_scrollTools .mCSB_buttonDown{ bottom: 0; }
+
+
+
+/* 
+------------------------------------------------------------------------------------------------------------------------
+3. HORIZONTAL SCROLLBAR 
+x-axis
+------------------------------------------------------------------------------------------------------------------------
+*/
+
+.mCSB_horizontal.mCSB_inside > .mCSB_container{
+	margin-right: 0;
+	margin-bottom: 10px;
+}
+
+.mCSB_horizontal.mCSB_outside > .mCSB_container{ min-height: 100%; }
+
+.mCSB_horizontal > .mCSB_container.mCS_no_scrollbar_x.mCS_x_hidden{ margin-bottom: 0; } /* non-visible scrollbar */
+
+.mCSB_scrollTools.mCSB_scrollTools_horizontal{
+	width: auto;
+	height: 16px;
+	top: auto;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.mCustomScrollBox + .mCSB_scrollTools.mCSB_scrollTools_horizontal,
+.mCustomScrollBox + .mCSB_scrollTools + .mCSB_scrollTools.mCSB_scrollTools_horizontal{ bottom: -26px; } /* scrollbar position: outside */
+
+.mCSB_scrollTools.mCSB_scrollTools_horizontal a + .mCSB_draggerContainer{ margin: 0 20px; }
+
+.mCSB_scrollTools.mCSB_scrollTools_horizontal .mCSB_draggerRail{
+	width: 100%;
+	height: 2px;
+	margin: 7px 0;
+}
+
+.mCSB_scrollTools.mCSB_scrollTools_horizontal .mCSB_dragger{
+	width: 30px; /* minimum dragger width */
+	height: 100%;
+	left: 0;
+}
+
+.mCSB_scrollTools.mCSB_scrollTools_horizontal .mCSB_dragger .mCSB_dragger_bar{
+	width: 100%;
+	height: 4px;
+	margin: 6px auto;
+}
+
+.mCSB_scrollTools_horizontal.mCSB_scrollTools_onDrag_expand .mCSB_dragger.mCSB_dragger_onDrag_expanded .mCSB_dragger_bar, 
+.mCSB_scrollTools_horizontal.mCSB_scrollTools_onDrag_expand .mCSB_draggerContainer:hover .mCSB_dragger .mCSB_dragger_bar{
+	height: 12px; /* auto-expanded scrollbar */
+	margin: 2px auto;
+}
+
+.mCSB_scrollTools_horizontal.mCSB_scrollTools_onDrag_expand .mCSB_dragger.mCSB_dragger_onDrag_expanded + .mCSB_draggerRail, 
+.mCSB_scrollTools_horizontal.mCSB_scrollTools_onDrag_expand .mCSB_draggerContainer:hover .mCSB_draggerRail{
+	height: 8px; /* auto-expanded scrollbar */
+	margin: 4px 0;
+}
+
+.mCSB_scrollTools.mCSB_scrollTools_horizontal .mCSB_buttonLeft,
+.mCSB_scrollTools.mCSB_scrollTools_horizontal .mCSB_buttonRight{
+	display: block;
+	position: absolute;
+	width: 20px;
+	height: 100%;
+	overflow: hidden;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+.mCSB_scrollTools.mCSB_scrollTools_horizontal .mCSB_buttonLeft{ left: 0; }
+
+.mCSB_scrollTools.mCSB_scrollTools_horizontal .mCSB_buttonRight{ right: 0; }
+
+
+
+/* 
+------------------------------------------------------------------------------------------------------------------------
+4. VERTICAL AND HORIZONTAL SCROLLBARS 
+yx-axis 
+------------------------------------------------------------------------------------------------------------------------
+*/
+
+.mCSB_container_wrapper{
+	position: absolute;
+	height: auto;
+	width: auto;
+	overflow: hidden;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin-right: 30px;
+	margin-bottom: 30px;
+}
+
+.mCSB_container_wrapper > .mCSB_container{
+	padding-right: 30px;
+	padding-bottom: 30px;
+}
+
+.mCSB_vertical_horizontal > .mCSB_scrollTools.mCSB_scrollTools_vertical{ bottom: 20px; }
+
+.mCSB_vertical_horizontal > .mCSB_scrollTools.mCSB_scrollTools_horizontal{ right: 20px; }
+
+/* non-visible horizontal scrollbar */
+.mCSB_container_wrapper.mCS_no_scrollbar_x.mCS_x_hidden + .mCSB_scrollTools.mCSB_scrollTools_vertical{ bottom: 0; }
+
+/* non-visible vertical scrollbar/RTL direction/left-side scrollbar */
+.mCSB_container_wrapper.mCS_no_scrollbar_y.mCS_y_hidden + .mCSB_scrollTools ~ .mCSB_scrollTools.mCSB_scrollTools_horizontal, 
+.mCS-dir-rtl > .mCustomScrollBox.mCSB_vertical_horizontal.mCSB_inside > .mCSB_scrollTools.mCSB_scrollTools_horizontal{ right: 0; }
+
+/* RTL direction/left-side scrollbar */
+.mCS-dir-rtl > .mCustomScrollBox.mCSB_vertical_horizontal.mCSB_inside > .mCSB_scrollTools.mCSB_scrollTools_horizontal{ left: 20px; }
+
+/* non-visible scrollbar/RTL direction/left-side scrollbar */
+.mCS-dir-rtl > .mCustomScrollBox.mCSB_vertical_horizontal.mCSB_inside > .mCSB_container_wrapper.mCS_no_scrollbar_y.mCS_y_hidden + .mCSB_scrollTools ~ .mCSB_scrollTools.mCSB_scrollTools_horizontal{ left: 0; }
+
+.mCS-dir-rtl > .mCSB_inside > .mCSB_container_wrapper{ /* RTL direction/left-side scrollbar */
+	margin-right: 0;
+	margin-left: 30px;
+}
+
+.mCSB_container_wrapper.mCS_no_scrollbar_y.mCS_y_hidden > .mCSB_container{ 
+	padding-right: 0; 
+	-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;
+}
+
+.mCSB_container_wrapper.mCS_no_scrollbar_x.mCS_x_hidden > .mCSB_container{ 
+	padding-bottom: 0; 
+	-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;
+}
+
+.mCustomScrollBox.mCSB_vertical_horizontal.mCSB_inside > .mCSB_container_wrapper.mCS_no_scrollbar_y.mCS_y_hidden{
+	margin-right: 0; /* non-visible scrollbar */
+	margin-left: 0;
+}
+
+/* non-visible horizontal scrollbar */
+.mCustomScrollBox.mCSB_vertical_horizontal.mCSB_inside > .mCSB_container_wrapper.mCS_no_scrollbar_x.mCS_x_hidden{ margin-bottom: 0; }
+
+
+
+/* 
+------------------------------------------------------------------------------------------------------------------------
+5. TRANSITIONS  
+------------------------------------------------------------------------------------------------------------------------
+*/
+
+.mCSB_scrollTools, 
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar, 
+.mCSB_scrollTools .mCSB_buttonUp,
+.mCSB_scrollTools .mCSB_buttonDown,
+.mCSB_scrollTools .mCSB_buttonLeft,
+.mCSB_scrollTools .mCSB_buttonRight{
+	-webkit-transition: opacity .2s ease-in-out, background-color .2s ease-in-out;
+	-moz-transition: opacity .2s ease-in-out, background-color .2s ease-in-out;
+	-o-transition: opacity .2s ease-in-out, background-color .2s ease-in-out;
+	transition: opacity .2s ease-in-out, background-color .2s ease-in-out;
+}
+
+.mCSB_scrollTools_vertical.mCSB_scrollTools_onDrag_expand .mCSB_dragger_bar, /* auto-expanded scrollbar */
+.mCSB_scrollTools_vertical.mCSB_scrollTools_onDrag_expand .mCSB_draggerRail, 
+.mCSB_scrollTools_horizontal.mCSB_scrollTools_onDrag_expand .mCSB_dragger_bar, 
+.mCSB_scrollTools_horizontal.mCSB_scrollTools_onDrag_expand .mCSB_draggerRail{
+	-webkit-transition: width .2s ease-out .2s, height .2s ease-out .2s, 
+	margin-left .2s ease-out .2s, margin-right .2s ease-out .2s, 
+	margin-top .2s ease-out .2s, margin-bottom .2s ease-out .2s,
+	opacity .2s ease-in-out, background-color .2s ease-in-out; 
+	-moz-transition: width .2s ease-out .2s, height .2s ease-out .2s, 
+	margin-left .2s ease-out .2s, margin-right .2s ease-out .2s, 
+	margin-top .2s ease-out .2s, margin-bottom .2s ease-out .2s,
+	opacity .2s ease-in-out, background-color .2s ease-in-out; 
+	-o-transition: width .2s ease-out .2s, height .2s ease-out .2s, 
+	margin-left .2s ease-out .2s, margin-right .2s ease-out .2s, 
+	margin-top .2s ease-out .2s, margin-bottom .2s ease-out .2s,
+	opacity .2s ease-in-out, background-color .2s ease-in-out; 
+	transition: width .2s ease-out .2s, height .2s ease-out .2s, 
+	margin-left .2s ease-out .2s, margin-right .2s ease-out .2s, 
+	margin-top .2s ease-out .2s, margin-bottom .2s ease-out .2s,
+	opacity .2s ease-in-out, background-color .2s ease-in-out; 
+}
+
+
+
+/* 
+------------------------------------------------------------------------------------------------------------------------
+6. SCROLLBAR COLORS, OPACITY AND BACKGROUNDS  
+------------------------------------------------------------------------------------------------------------------------
+*/
+
+	/* 
+	----------------------------------------
+	6.1 THEMES 
+	----------------------------------------
+	*/
+
+	/* theme: "dark" */
+
+	.mCS-dark.mCSB_scrollTools .mCSB_draggerRail{ background-color: #000; background-color: rgba(0,0,0,0.15); }
+
+	.mCS-dark.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{ background-color:rgb(194, 111, 174, 0.75);}
+
+	.mCS-dark.mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{ background-color: rgba(194, 111, 174,0.85); }
+
+	.mCS-dark.mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
+	.mCS-dark.mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar{ background-color: rgba(194, 111, 174,0.85); }
+
+	.mCS-dark.mCSB_scrollTools .mCSB_buttonUp{ background-position: -80px 0; }
+
+	.mCS-dark.mCSB_scrollTools .mCSB_buttonDown{ background-position: -80px -20px; }
+
+	.mCS-dark.mCSB_scrollTools .mCSB_buttonLeft{ background-position: -80px -40px; }
+
+	.mCS-dark.mCSB_scrollTools .mCSB_buttonRight{ background-position: -80px -56px; }
+	
+	/* ---------------------------------------- */

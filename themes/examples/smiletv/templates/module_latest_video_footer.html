@@ -1,0 +1,182 @@
+<div class="clearfix ">
+ <div class="clearfix col-md-11 h6 playlist-carousel">
+  <div class="bottom-mar col-lg-4 col-md-5 col-sm-6 col-xs-12 mob-top-mar pull-right no-pad text-center hidden-xs" ng-show="video_showSort">
+   <div class="form-group small no-mar">
+    <label class="control-label col-xs-4 h4 text-muted mob-clr">Sort</label>
+    <div class="col-xs-8 no-pad pr mob-clr playlists-category h5 no-mar">
+     <strong class="initialism">
+      <div dropdown-select="video_selectOptions" dropdown-model="video_sortby_obj" dropdown-item-label="name" dropdown-onchange="video_sorting(selected)" dropdown-placeholder="Sort"></div>
+     </strong>
+    </div>
+   </div>
+  </div>
+  <h2 class="pull-left no-mar mob-clr footer-widget-title initialism">
+   {{video_title}}
+   <span class="text-18" ng-show="total_video_count != 0 && video_showCount === 'true'"> ({{total_video_count}})</span>
+   <a title="{{video_title}}" class="h3 text-primary" href="" ng-click="video_infinite_view = !video_infinite_view" ng-if="video_isInfiniteScroll" ng-show="video_displayType == undefined">
+    <i class="fa fa-caret-right left-mar tab-no-mar" ng-show="video_infinite_view == false"></i>
+    <i class="fa fa-caret-down left-mar tab-no-mar" ng-show="video_infinite_view == true"></i>
+   </a>
+  </h2>
+ </div>
+ <div ng-if="video_isInfiniteScroll" class="col-xs-12 no-pad">
+  <div class="device-wrap-ld device-wrap clearfix col-center-block" ng-show="video_infinite_view == false">
+   <div id="myCarousel" class="playlist-carousel carousel slide mob-no-pad ver-mar" data-ride="carousel">
+    <div class="clearfix top-mar-sm">
+     <div ng-show="videoNoRecord" class="alert alert-warning"> No Record Found</div>
+     <div ng-show="videoLaoding" class="clearfix col-lg-12  block-space pr">
+      <span class="cssloader"></span>
+     </div>
+     <div class="carousel-inner container no-pad " data-carousel data-carousel-class="col-xs-12 video-list2 no-pad top-mar" data-on-page-upcoming="loadPage(page, tmplCb)" data-give-carousel-to="onCarouselAvailable(carousel)" ng-show="!videoNoRecord">
+      <ul class="clearfix list-inline thumb-list no-mar js-list-inline pr">
+       <li class="col-lg-12 no-pad js-video-list" data-ng-repeat="video in videos" ng-swipe-left="swipeNext()" ng-swipe-right="swipePrevious()" on-carousel-scope-render="videoFinishRender()">
+        <div class="clearfix no-mar">
+         <div class="col-md-4 col-sm-4 nav">
+          <div class="row pr no-mar user-video-block">
+           <a href="#!/videos/{{video.id}}" class="row pr no-mar popover-html show" data-container="body" data-toggle="popover" data-placement="right" data-content="<div class=&quot;video-detail&quot;><div class=&quot;arrow arrow-right&quot;></div><h4>{{video.name}}</h4><p>By&nbsp;{{video.channel_name}}</p><div class=&quot;clearfix&quot;><a href=&quot;&quot; title=&quot;Watch Now&quot; class=&quot;btn btn-default pull-left&quot;>Watch Now</a><a href=&quot;#!/videos/{{video.id}}&quot; title=&quot;Quick View&quot; class=&quot;btn btn-link pull-right&quot;>Quick View</a></div></div>" data-original-title="" title="{{video.name}}">
+            <div class="popular-img col-xs-12 no-pad">
+             <div class="back-image" ng-if="!video.is_manual_upload" ng-style="{'background':'url(' + video.thumbnail_url + ') no-repeat center top', 'background-size':'cover'}"></div>
+             <div class="back-image" ng-if="video.is_manual_upload" ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + video.medium_thumb_thumbnail + ') no-repeat center top', 'background-size':'cover'}"></div>
+            </div>
+           </a>
+          </div>
+         </div>
+         <div class="col-md-8 col-sm-8 nav">
+          <div class="item-head">
+           <h5><a href="#!/videos/{{video.id}}" class="htruncate-mml2">{{video.name}}</a></h5>
+          </div>
+          <div class="item-info views-block">
+           <ul class="list-inline">
+            <li>
+             <a href="#" title="Likes">
+              <i class="fa fa-smile-o text-primary"></i>
+              <span class="text-muted hor-space">{{video.video_rating_positive_count}}</span>
+             </a>
+            </li>
+            <li>
+             <a href="#" title="Views">
+              <i class="fa fa-eye text-muted"></i>
+              <span class="text-muted hor-space">{{video.video_view_count}}</span>
+             </a>
+            </li>
+           </ul>
+           <span class="item-author hide"><a href="#!/channels/{{video.channels_slug}}" title="{{video.channel_name}}">By&nbsp;{{video.channel_name}}</a></span>
+          </div>
+         </div>
+        </div>
+       </li>
+      </ul>
+     </div>
+     <div class="controls-btn pa">
+      <a class="left carousel-control no-bg" data-ng-show="hasPrevious()" data-ng-click="previous()" href="" data-target="#myCarousel">
+       <span class="fa fa-angle-left fa-3x cur"></span>
+      </a>
+      <a class="right carousel-control no-bg" data-ng-show="hasNext()" data-ng-click="next()" href="" data-target="#myCarousel">
+       <span class="fa fa-angle-right fa-3x  cur"></span>
+      </a>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div ng-if='video_infiniteScrollElement' class="col-xs-12 no-pad">
+   <div class="collapse in clearfix" ng-show="video_infinite_view == true" infinite-scroll="loadMoreVideo()" infinite-scroll-disabled='video_busy' infinite-scroll-element='{{video_infiniteScrollElement}}' infinite-scroll-distance="0" id="search-videolist">
+    <div ng-show="videoNoRecord" class="alert alert-warning"> No Record Found</div>
+    <div id="searchCarouse2_1" class="video-carousel mob-no-mar playlist-carousel ">
+     <div class="clearfix block-space pr" ng-show="videoLaoding">
+      <div class="cssloader top-mar"></div>
+     </div>
+     <div class="carousel-inner container no-pad " ng-show="!videoNoRecord">
+      <ul class="clearfix list-inline thumb-list no-mar js-list-inline pr" ng-show="!video_loading">
+       <li class="col-lg-12 no-pad js-video-list" ng-repeat="video in videos_listing" ng-class="{'col-lg-3 col-md-4 col-sm-6 col-xs-10 no-pad col-center-block text-left': q, 'col-lg-12 no-pad js-video-list': !q}">
+        <div class="clearfix no-mar">
+         <div class="col-md-4 col-sm-4 nav">
+          <div class="row pr no-mar user-video-block">
+           <a href="#!/videos/{{video.id}}" class="row pr no-mar popover-html show" data-container="body" data-toggle="popover" data-placement="right" data-content="<div class=&quot;video-detail&quot;><div class=&quot;arrow arrow-right&quot;></div><h4>{{video.name}}</h4><p>By&nbsp;{{video.channel_name}}</p><div class=&quot;clearfix&quot;><a href=&quot;&quot; title=&quot;Watch Now&quot; class=&quot;btn btn-default pull-left&quot;>Watch Now</a><a href=&quot;#!/videos/{{video.id}}&quot; title=&quot;Quick View&quot; class=&quot;btn btn-link pull-right&quot;>Quick View</a></div></div>" data-original-title="" title="{{video.name}}">
+            <div class="popular-img col-xs-12 no-pad">
+             <div class="back-image" ng-if="!video.is_manual_upload" ng-style="{'background':'url(' + video.thumbnail_url + ') no-repeat center top', 'background-size':'cover'}"></div>
+             <div class="back-image" ng-if="video.is_manual_upload" ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + video.medium_thumb_thumbnail + ') no-repeat center top', 'background-size':'cover'}"></div>
+            </div>
+           </a>
+          </div>
+         </div>
+         <div class="col-md-8 col-sm-8 nav">
+          <div class="item-head">
+           <h5><a href="#!/videos/{{video.id}}" class="htruncate-mml2">{{video.name}}</a></h5>
+          </div>
+          <div class="item-info views-block">
+           <ul class="list-inline">
+            <li>
+             <a href="#" title="Likes">
+              <i class="fa fa-smile-o text-primary"></i>
+              <span class="text-muted hor-space">{{video.video_rating_positive_count}}</span>
+             </a>
+            </li>
+            <li>
+             <a href="#" title="Views">
+              <i class="fa fa-eye text-muted"></i>
+              <span class="text-muted hor-space">{{video.video_view_count}}</span>
+             </a>
+            </li>
+           </ul>
+           <span class="item-author hide"><a href="#!/channels/{{video.channels_slug}}" title="{{video.channel_name}}">By&nbsp;{{video.channel_name}}</a></span>
+          </div>
+         </div>
+        </div>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div ng-if="video_isInfiniteScroll !== true" class="col-xs-12 no-pad">
+  <div class="collapse in clearfix" id="search-videolist">
+   <div ng-show="videoNoRecord" class="alert alert-warning"> No Record Found</div>
+   <div id="searchCarouse2_1" class="video-carousel mob-no-mar playlist-carousel ">
+    <div class="clearfix block-space pr" ng-show="videoLoading">
+     <div class="cssloader top-mar"></div>
+    </div>
+    <div class="carousel-inner container no-pad" ng-show="!videoNoRecord">
+     <ul class="clearfix list-inline thumb-list js-list-inline pr widget-items" ng-show="!video_loading">
+      <li class="col-xs-12 js-video-list media" ng-repeat="video in videos_listing" ng-class="{'col-lg-3 col-md-4 col-sm-6 col-xs-10 no-pad col-center-block text-left': q, 'col-lg-12 no-pad js-video-list': !q}">
+       <div class="clearfix no-mar">
+        <div class="col-md-4 col-sm-4 col-xs-4 nav">
+         <div class="row pr no-mar user-video-block">
+          <a href="#!/videos/{{video.id}}" class="row pr no-mar popover-html show" data-container="body" data-toggle="popover" data-placement="right" data-content="<div class=&quot;video-detail&quot;><div class=&quot;arrow arrow-right&quot;></div><h4>{{video.name}}</h4><p>By&nbsp;{{video.channel_name}}</p><div class=&quot;clearfix&quot;><a href=&quot;&quot; title=&quot;Watch Now&quot; class=&quot;btn btn-default pull-left&quot;>Watch Now</a><a href=&quot;#!/videos/{{video.id}}&quot; title=&quot;Quick View&quot; class=&quot;btn btn-link pull-right&quot;>Quick View</a></div></div>" data-original-title="" title="{{video.name}}">
+           <div class="popular-img col-xs-12 no-pad">
+            <div class="back-image" ng-if="!video.is_manual_upload" ng-style="{'background':'url(' + video.thumbnail_url + ') no-repeat center top', 'background-size':'cover'}"></div>
+            <div class="back-image" ng-if="video.is_manual_upload" ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + video.medium_thumb_thumbnail + ') no-repeat center top', 'background-size':'cover'}"></div>
+           </div>
+          </a>
+         </div>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-8 nav">
+         <div class="item-head">
+          <h5><a href="#!/videos/{{video.id}}" class="htruncate-mml2">{{video.name}}</a></h5>
+         </div>
+         <div class="item-info views-block">
+          <ul class="list-inline">
+           <li>
+            <a href="#" title="Likes">
+             <i class="fa fa-smile-o text-primary"></i>
+             <span class="text-muted hor-space">{{video.video_rating_positive_count}}</span>
+            </a>
+           </li>
+           <li>
+            <a href="#" title="Views">
+             <i class="fa fa-eye text-muted"></i>
+             <span class="text-muted hor-space">{{video.video_view_count}}</span>
+            </a>
+           </li>
+          </ul>
+          <span class="item-author hide"><a href="#!/channels/{{video.channels_slug}}" title="{{video.channel_name}}">By&nbsp;{{video.channel_name}}</a></span>
+         </div>
+        </div>
+       </div>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

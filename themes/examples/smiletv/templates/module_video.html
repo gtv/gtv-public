@@ -1,0 +1,89 @@
+<div class="clsRelatedVideos">
+ <div class="ver-mspace">
+  <div class="row">
+   <div class="col-lg-8 col-md-7 col-sm-6 col-xs-5">
+    <h2 class="initialism relatedVideoHd top-sspace no-mar">
+     {{video_title}}
+     <!--<span class="whitec text-18" ng-show="total_video_count != 0 && video_showCount === 'true'"> ({{total_video_count}})</span>
+   <a title="{{video_title}}" class="h3 text-primary" href="" ng-click="video_infinite_view = !video_infinite_view" ng-show="video_displayType == undefined">
+    <i class="fa fa-caret-right left-mar tab-no-mar" ng-show="video_infinite_view == false"></i>
+    <i class="fa fa-caret-down left-mar tab-no-mar" ng-show="video_infinite_view == true"></i>
+   </a>-->
+    </h2>
+   </div>
+   <div class="col-lg-4 col-md-5 col-sm-6 col-xs-7" ng-show="video_showSort">
+    <div class="clearfix">
+     <div class="sortLab dr">
+      <label class="">Sort</label>
+     </div>
+     <div class=" playlists-category sortDrop">
+      <div class="initialism">
+       <div dropdown-select="video_selectOptions" dropdown-model="video_sortby_obj" dropdown-item-label="name" dropdown-onchange="video_sorting(selected)" dropdown-placeholder="Sort"></div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div ng-if="video_isInfiniteScroll">
+  <div class="device-wrap-ld device-wrap clearfix col-center-block" ng-show="video_infinite_view == false">
+   <div id="myCarousel" class="playlist-carousel carousel slide mob-no-pad ver-mar col-xs-offset-1" data-ride="carousel">
+    <div class="clearfix top-mar-sm">
+     <div ng-show="videoNoRecord" class="alert alert-warning"> No Record Found</div>
+     <div ng-show="videoLoading" class="clearfix col-lg-12  block-space pr">
+      <span class="cssloader"></span>
+     </div>
+     <div class="carousel-inner" data-carousel data-carousel-class="video-list no-pad " data-on-page-upcoming="loadPage(page, tmplCb)" data-give-carousel-to="onCarouselAvailable(carousel)" ng-show="!videoNoRecord">
+      <ul class="row list-inline thumb-list latest-video js-list-inline pr">
+       <li class="col-sm-3 col-xs-12 js-video-list" data-ng-repeat="video in videos" ng-swipe-left="swipeNext()" ng-swipe-right="swipePrevious()" on-carousel-scope-render="videoFinishRender()">
+        <div class="clearfix " ng-include src="'templates/module_sub_video.html'"></div>
+       </li>
+      </ul>
+     </div>
+     <div class="control-btn video-control pa">
+      <a class="left carousel-control no-bg" data-ng-show="hasPrevious()" data-ng-click="previous()" href="" data-target="#myCarousel">
+       <span class="fa fa-angle-left fa-3x cur"></span>
+      </a>
+      <a class="right carousel-control no-bg" data-ng-show="hasNext()" data-ng-click="next()" href="" data-target="#myCarousel">
+       <span class="fa fa-angle-right fa-3x  cur"></span>
+      </a>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div ng-if='video_infiniteScrollElement'>
+   <div class="collapse in clearfix" ng-show="video_infinite_view == true" infinite-scroll="loadMoreVideo()" infinite-scroll-disabled='video_busy' infinite-scroll-element='{{video_infiniteScrollElement}}' infinite-scroll-distance="0" id="search-videolist">
+    <div ng-show="videoNoRecord" class="alert alert-warning"> No Record Found</div>
+    <div id="searchCarouse2_1" class="video-carousel mob-no-mar">
+     <div class="clearfix block-space pr" ng-show="videoLoading">
+      <div class="cssloader top-mar"></div>
+     </div>
+     <div class="carousel-inner container no-pad" ng-show="!videoNoRecord">
+      <ul class="row list-inline thumb-list latest-video js-list-inline pr" ng-show="!video_loading">
+       <li class="" ng-repeat="video in videos_listing" ng-class="{'col-lg-3 col-md-4 col-sm-6 col-xs-12 no-pad col-center-block text-left': q, 'col-lg-3 col-md-4 col-sm-6 col-xs-12 col-center-block text-left js-video-list': !q}">
+        <div class="clearfix " ng-include src="'templates/module_sub_video.html'"></div>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div ng-if="video_isInfiniteScroll !== true">
+  <div class="collapse in clearfix" id="search-videolist">
+   <div ng-show="videoNoRecord" class="alert alert-warning"> No Record Found</div>
+   <div id="searchCarouse2_1" class="video-carousel mob-no-mar">
+    <div class="clearfix block-space pr" ng-show="videoLoading">
+     <div class="cssloader top-mar"></div>
+    </div>
+    <div class="carousel-inner container no-pad" ng-show="!videoNoRecord">
+     <ul class="clearfix list-inline thumb-list no-mar js-list-inline pr" ng-show="!video_loading">
+      <li class="" ng-repeat="video in videos_listing" ng-class="{'col-lg-3 col-md-4 col-sm-6 col-xs-10 no-pad col-center-block text-left': q, 'col-lg-4 no-pad js-video-list': !q}">
+       <div class="clearfix " ng-include src="'templates/module_sub_video.html'"></div>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

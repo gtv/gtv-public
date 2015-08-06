@@ -1,0 +1,59 @@
+<div class="clearfix col-xs-12 h2 no-pad">
+ <div class="bottom-mar col-lg-4 col-md-5 col-sm-6 col-xs-12 mob-top-mar pull-right no-pad text-center hidden-xs select-dropdown">
+  <div class="form-group small no-mar">
+   <label class="control-label col-xs-4 h4 text-muted mob-clr text-right">Sort</label>
+   <div class="col-xs-8 no-pad pr mob-clr playlists-category h5 no-mar">
+    <strong class="initialism">
+     <div dropdown-select="channel_selectOptions" dropdown-model="channel_sortby_obj" dropdown-item-label="name" dropdown-onchange="sort_channels(selected)" dropdown-placeholder="Sort"></div>
+    </strong>
+   </div>
+  </div>
+ </div>
+ <h2 class="initialism pull-left no-mar mob-clr text-muted whitec text-22">
+  <strong>Channels</strong>
+  <span class="whitec text-18" ng-show="channel_count != 0"> ({{channel_count}})</span>
+  <a title="Channels" class="h3 text-primary" href="javascript:void(0);" ng-click="channel_infinite_view = !channel_infinite_view">
+   <i class="fa fa-caret-right left-mar tab-no-mar" ng-show="channel_infinite_view == false"></i>
+   <i class="fa fa-caret-down left-mar tab-no-mar" ng-show="channel_infinite_view == true"></i>
+  </a>
+ </h2>
+</div>
+<div ng-show="!no_channel_found">
+ <div class="clearfix ver-mar col-xs-12 no-pad hidden-xs" ng-show="channel_infinite_view == false">
+  <div id="searchCarousel1" class="playlist-carousel carousel slide col-xs-offset-1 mob-no-mar" data-ride="carousel">
+   <div class="clearfix block-space pr" ng-show="channelLoading">
+    <div class="cssloader top-mar"></div>
+   </div>
+   <div class="carousel-inner" data-carousel data-carousel-class="col-xs-12 menu-playlist-carousel no-pad" data-on-page-upcoming="loadPageChannel(page, tmplCb)" data-give-carousel-to="onCarouselAvailableChannel(carousel)" ng-show="!no_channel_found">
+    <ul class="list-inline clearfix ver-mar channel-list col-xs-12 no-pad center-block-xs hor-space mob-dc js-list-inline">
+     <li class="col-xs-6 bottom-mar pr drag-object js-video-list" ng-repeat="channel in channels" ng-swipe-left="swipeNextChannel()" ng-swipe-right="swipePreviousChannel()" on-carousel-scope-render="finishRenderChannel()">
+      <div class="clearfix" ng-include src="'templates/module_sub_channel.html'"></div>
+     </li>
+    </ul>
+   </div>
+   <a class="left carousel-control no-bg" data-ng-show="hasPreviousChannel()" data-ng-click="previousChannel()" href="" data-target="#searchCarousel1">
+    <span class="fa fa-angle-left fa-3x cur"></span>
+   </a>
+   <a class="right carousel-control no-bg" data-ng-show="hasNextChannel()" data-ng-click="nextChannel()" href="" data-target="#searchCarousel1">
+    <span class="fa fa-angle-right fa-3x  cur"></span>
+   </a>
+  </div>
+ </div>
+ <div class="clearfix ver-mar col-xs-12 no-pad" ng-show="channel_infinite_view == true" infinite-scroll="loadMoreChannels()" infinite-scroll-disabled='channel_busy' infinite-scroll-element='main-menus' infinite-scroll-distance="0">
+  <div id="searchCarousel1_1" class="playlist-carousel carousel slide col-xs-offset-1 mob-no-mar">
+   <div class="clearfix block-space pr" ng-show="channelLoading">
+    <div class="cssloader top-mar"></div>
+   </div>
+   <div class="carousel-inner" ng-show="!no_channel_found && !channelLoading">
+    <ul class="list-inline clearfix ver-mar channel-list col-xs-12 no-pad center-block-xs hor-space mob-dc js-list-inline">
+     <li class="col-xs-6 bottom-mar pr drag-object js-video-list" ng-repeat="channel in channels_listing">
+      <div class="clearfix" ng-include src="'templates/module_sub_channel.html'"></div>
+     </li>
+    </ul>
+   </div>
+   <div class="clearfix block-space pr" ng-show="channel_loading==true">
+    <div class="cssloader top-mar"></div>
+   </div>
+  </div>
+ </div>
+</div>

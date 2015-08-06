@@ -1,0 +1,39 @@
+<div class="video-title-bg pr">
+ <div class=" user-video-block">
+  <div class="">
+   <div class=" no-pad">
+    <a href="#!/videos/{{video.id}}" ng-click="$root.set_modal_view(false)">
+     <div class="search-image dc" ng-if="!video.is_manual_upload">
+      <img ng-src="{{video.thumbnail_url}}" alt="[Image: {{video.title}} Image]" title="{{video.title}} Image" />
+     </div>
+     <div class="search-image dc" ng-if="video.is_manual_upload">
+      <img ng-src="{{$root.AWS_BASE_URL}}/{{video.medium_thumb_thumbnail}}" alt="[Image: {{video.title}} Image]" title="{{video.title}} Image" />
+     </div>
+     <!-- <div class="back-image" ng-if="!video.is_manual_upload" ng-style="{'background':'url(' + video.thumbnail_url + ') no-repeat center top', 'background-size':'cover'}"></div>
+     <div class="back-image" ng-if="video.is_manual_upload" ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + video.medium_thumb_thumbnail + ') no-repeat center top', 'background-size':'cover'}"></div>-->
+    </a>
+    <div class="pa views-block">
+     <ul class="list-inline">
+      <li>
+       <a href="#" title="Likes">
+        <i class="fa fa-smile-o text-primary"></i>
+        <span class="whitec hor-space">{{video.video_rating_positive_count}}</span>
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div class="caption clearfix no-pad top-mar-sm">
+     <h5 class="pull-left col-xs-10">
+      <a href="#!/videos/{{video.id}}" title="{{video.name}}" class="no-under htruncate-mml2  col-xs-12 no-pad whitec">
+			      {{video.name}}
+			     </a>
+      <i class="fa fa-angle-right"></i>
+     </h5>
+     <span class="date-block col-xs-12 no-pad" ng-if="video.published_at">
+      added {{video.published_at | date:'yyyy-MM-dd HH:mm:ss'}}
+     </span>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="ng-scope" ng-controller="PageViewCtrl">
+ <div class="container">
+  <h2 class="staticPageTit">{{page.name}}</h2>
+  <div>
+   <p ng-bind-html="trustAsHtml(page.content)"></p>
+  </div>
+ </div>
+</div>
