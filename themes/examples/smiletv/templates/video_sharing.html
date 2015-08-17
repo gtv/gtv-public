@@ -4,15 +4,15 @@
    <div class="bottom-mar col-lg-10 col-center-block no-pad col-md-10 col-sm-10">
     <div class="clearfix bottom-mar">
      <div class="form-group clearfix ver-space checkbox">
-      <label for="autoplay" class="col-md-2 no-pad">
+      <label for="autoplay" class="col-md-2">
        <strong>Auto-play</strong>
       </label>
       <input type='checkbox' ng-true-value="1" ng-false-value="0" ng-model="video_share.is_autoplay" name='is_autoplay' id="autoplay" />
-      <label for="autoplay"></label>
+      <label for="autoplay" class="left-space"></label>
      </div>
-     <div class="form-group clearfix ver-space">
-      <label for="size" class="clearfix col-md-2 no-pad">Video size:</label>
-      <div class="col-xs-3 no-pad">
+     <div class="form-group">
+      <label for="size" class=" col-xs-4">Video size:</label>
+      <div class="col-xs-6 no-pad">
        <select id="size" class="form-control" ng-model="video_share.size" ng-change="changeSize()">
         <option value="560x545">560 x 545</option>
         <option value="640x588">640 x 588</option>
@@ -41,7 +41,7 @@
      <h4>Embed Code</h4>
      <hr class="divider-md">
      <div class="form-group clearfix top-mar">
-      <textarea rows="4" class="whitec space bg-darker col-xs-12 no-bor top-mar js-select-all-text">
+      <textarea rows="4" class="space bg-darker col-xs-12 no-bor top-mar js-select-all-text">
        <iframe width="{{video_share.width}}" height="{{video_share.height}}" src="{{embedded_code_url}}/{{video_share.is_autoplay}}{{playlist_parameters}}" frameborder="0" allowfullscreen></iframe>
       </textarea>
      </div>

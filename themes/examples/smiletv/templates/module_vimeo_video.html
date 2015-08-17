@@ -5,8 +5,8 @@
     <h2 class="text-22 no-mar">
      {{video_title}}
      <span class="text-18" ng-show="total_video_count != 0 && video_showCount === 'true'"> ({{total_video_count}})</span>
-     <a title="{{video_title}}" class="h3 text-primary" href="" ng-click="video_infinite_view = !video_infinite_view" ng-if="video_isInfiniteScroll" ng-show="video_displayType == undefined">
-      <i class="fa fa-caret-right left-mar tab-no-mar" ng-show="video_infinite_view == false"></i>
+     <a title="{{video_title}}" class="text-primary" href="" ng-click="video_infinite_view = !video_infinite_view" ng-if="video_isInfiniteScroll" ng-show="video_displayType == undefined">
+      <i class="fa fa-caret-right" ng-show="video_infinite_view == false"></i>
       <i class="fa fa-caret-down left-mar tab-no-mar" ng-show="video_infinite_view == true"></i>
      </a>
     </h2>
@@ -61,7 +61,7 @@
          <div class="item-head video-head">
           <h5 class="clearfix"><a href="#!/videos/{{video.id}}" class="hdTruncate ">{{video.name}}</a></h5>
           <!--<ul class="list-inline clearfix text-muted bottom-mar initialism " ng-if="video.published_at">
-           <li class="small text-light">{{video.published_at | date:'yyyy-MM-dd HH:mm:ss'}}</li>
+           <li class="small text-light">{{video.published_at | timeAgo}}</li>
           </ul>-->
           <p class="text-12 htruncate-mml3">{{video.description}}</p>
           <div class="panel panel-default no-shad no-round space ver-mar clearfix">
@@ -144,7 +144,7 @@
          <div class="item-head video-head">
           <h5 class="clearfix"><a href="#!/videos/{{video.id}}" class="hdTruncate ">{{video.name}}</a></h5>
           <!--<ul class="list-inline clearfix text-muted bottom-mar initialism " ng-if="video.published_at">
-           <li class="small text-light">{{video.published_at | date:'yyyy-MM-dd HH:mm:ss'}}</li>
+           <li class="small text-light">{{video.published_at | timeAgo}}</li>
           </ul>-->
           <p class="text-12 htruncate-mml3">{{video.description}}</p>
           <div class="panel panel-default no-shad no-round space ver-mar clearfix">
@@ -220,7 +220,7 @@
         <div class="item-head video-head">
          <h5 class="clearfix"><a href="#!/videos/{{video.id}}" class="hdTruncate ">{{video.name}}</a></h5>
          <!--<ul class="list-inline clearfix text-muted bottom-mar initialism " ng-if="video.published_at">
-          <li class="small text-light">{{video.published_at | date:'yyyy-MM-dd HH:mm:ss'}}</li>
+          <li class="small text-light">{{video.published_at | timeAgo}}</li>
          </ul>-->
          <p class="text-12 htruncate-mml3">{{video.description}}</p>
          <div class="panel panel-default no-shad no-round space ver-mar clearfix">

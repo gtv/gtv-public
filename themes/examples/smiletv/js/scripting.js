@@ -539,15 +539,6 @@ function alignMegaMenu(){
         };
     },100);
 }
-
-function fb_comments_width(){
-    setTimeout(function(){
-        jQuery('#comments .fb-comments').css('width','100%');
-        jQuery('#comments .fb-comments > span').css('width','100%');
-        jQuery('#comments .fb-comments > span > iframe').css('width','100%');
-    },300);
-}
-
 function startCounters(){
     var $chart = jQuery('.chart');
     var $cnvSize = 160;
@@ -1600,7 +1591,6 @@ jQuery(window).load(function() {
     hidePreloader();
     twitterWidgetAnimated();
     resizeVideo();
-    fb_comments_width();
     alignElementVerticalyCenter();
     showMosaic();
     alignMegaMenu();

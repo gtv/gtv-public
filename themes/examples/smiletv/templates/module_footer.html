@@ -5,14 +5,14 @@
     <div class="col-md-3 col-sm-6">
      <div class="row">
       <div class="col-xs-12 text-left">
-       <a class="logo" href="#">
+       <a class="logo" href="{{root_base_url}}">
         <img title="GTV" alt="[Image: GTV]" src="themes/smiletv/img/smiletv_logo_footer.png">
        </a>
       </div>
      </div>
      <div class="row">
       <div class="col-xs-12 navbar-btn">
-       <p class="navbar-btn">Change placeholder to: "Smile TV is a unique resource dedicated to sharing positive and uplifting stories for the soul purpose of smiling. We strive to bring you fun, happy, and inspiring videos, blogs, and articles guaranteed to make you smile." - Sandy</p>
+       <p class="navbar-btn">"SmileTV is a unique resource dedicated to sharing positive and uplifting stories for the soul purpose of smiling. We strive to bring you fun, happy, and inspiring videos, blogs, and articles guaranteed to make you smile." - Sandy</p>
       </div>
      </div>
     </div>
@@ -44,9 +44,21 @@
      <div class="row">
       <div class="col-xs-12">
        <h6 class="footer-widget-title initialism">Facebook</h6>
-       <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FSmileTVGroup&amp;width=360&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=false" width="100%" height="215"></iframe>
+       <div class="fb-page" data-href="http://www.facebook.com/SmileTVGroup" data-width="100%" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false">
+        <div class="fb-xfbml-parse-ignore">
+         <blockquote cite="http://www.facebook.com/SmileTVGroup"><a href="http://www.facebook.com/SmileTVGroup">Smile TV Group</a></blockquote>
+        </div>
+       </div>
       </div>
      </div>
+    </div>
+   </div>
+   <h6 class="footer-widget-title initialism">TWITTER FEED</h6>
+   <div id="slideshow">
+    <div ng-repeat="tweet in tweets" style="display:none">
+     <div class="slideshowBg">
+      <i class="fa fa-twitter"></i> {{tweet.text}}
+      <br />{{tweet.created}}</div>
     </div>
    </div>
   </div>

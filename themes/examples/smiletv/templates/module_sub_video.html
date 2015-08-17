@@ -24,13 +24,13 @@
     </div>
     <div class="caption clearfix no-pad top-mar-sm">
      <h5 class="pull-left col-xs-10">
-      <a href="#!/videos/{{video.id}}" title="{{video.name}}" class="no-under htruncate-mml2  col-xs-12 no-pad whitec">
+      <a href="#!/videos/{{video.id}}" title="{{video.name}}" class="no-under htruncate-mml2  col-xs-10 no-pad whitec">
 			      {{video.name}}
 			     </a>
       <i class="fa fa-angle-right"></i>
      </h5>
      <span class="date-block col-xs-12 no-pad" ng-if="video.published_at">
-      added {{video.published_at | date:'yyyy-MM-dd HH:mm:ss'}}
+      added {{video.published_at | timeAgo}}
      </span>
     </div>
    </div>

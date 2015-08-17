@@ -195,16 +195,6 @@
    <div class="container center-block-xs no-pad bottom-mar-lg">
     <div class="clearfix" ng-init="video_show=true" ng-show="total_video_count != 0" ng-if="is_create_scope" id="userViewVideo1">
      <div class="clearfix initialism playlist-carousel videoblock-title-filter device-wrap-sm col-center-block" id="accordion">
-      <ul class="list-unstyled text-16 pull-right ver-space ver-mar hidden-sm hidden-xs js-reorder-button" ng-if="is_owner">
-       <li class="top-mar">
-        <a title="Reorder" class="label label-primary navbar-right mob-clr" href="" ng-click="sortableOptions.disabled = sortableReorder(sortableOptions.disabled)">
-         <strong class="initialism navbar-left top-mar-sm  col-xs-9 no-pad">ReOrder </strong>
-         <span class="col-xs-3 no-pad navbar-right">
-          <img src="img/reorder.png" alt="[Image: Reorder]" title="Reorder" class="img-responsive">
-         </span>
-        </a>
-       </li>
-      </ul>
       <h2 class="pull-left whitec mob-clr mob-dc left-mar-sm montserrat">
        My Videos
        <small class="whitec" ng-show="!videoLaoding && total_video_count != 0">({{total_video_count}})</small>

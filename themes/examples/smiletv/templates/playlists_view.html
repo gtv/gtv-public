@@ -215,7 +215,7 @@
      </span>
      <ul class="list-inline clearfix date-info navbar-btn">
       <li class="no-pad">
-       <span ng-if="video.published_at">Published on {{video.published_at | date:'yyyy-MM-dd HH:mm:ss'}} </span>
+       <span ng-if="video.published_at">Published on {{video.published_at | timeAgo}} </span>
       </li>
       <li class="navbar-btn">
        <span class="text-light">by</span> <a ng-if="!video.is_facebook_video" class="small text-muted" title="{{video.channel_name}}" href="#!/channels/{{video.channels_slug}}" ng-show="video.name && !embed_view">{{video.channel_name}}</a> <a ng-if="video.is_facebook_video" class="small" title="{{video.users_username}}" href="#!/users/{{video.users_username}}" ng-show="video.name && !embed_view">{{video.users_username}}</a>

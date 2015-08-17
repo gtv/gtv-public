@@ -7,55 +7,106 @@
  <div class="">
   <div class="clearfix">
    <div class="">
-    <div ng-show="videoNoRecord" class="alert alert-warning"> No Record Found</div>
-    <div ng-show="videoLaoding" class="col-lg-12  block-space">
-     <span class="cssloader"></span>
-    </div>
-    <div class="carousel-inner container no-pad vimeo-video" data-carousel data-carousel-class="video-list2 no-pad" data-on-page-upcoming="loadPage(page, tmplCb)" data-give-carousel-to="onCarouselAvailable(carousel)" ng-show="!videoNoRecord">
-     <ul class="list-inline feature-list no-mar js-list-inline pr">
-      <li class="js-video-list" ng-repeat="video in videos">
-       <div class="row">
-        <div class="col-md-6 col-sm-6">
-         <div class=" pr no-mar user-video-block">
-          <a href="#!/videos/{{video.id}}" class="row pr no-mar user-video-block popover-html show" data-container="body" data-toggle="popover" data-placement="right" data-content="<div class=&quot;video-detail&quot;><div class=&quot;arrow arrow-right&quot;></div><h4>{{video.name}}</h4><p>By&nbsp;{{video.channel_name}}</p><div class=&quot;clearfix&quot;><a href=&quot;&quot; title=&quot;Watch Now&quot; class=&quot;btn btn-default pull-left&quot;>Watch Now</a><a href=&quot;#!/videos/{{video.id}}&quot; title=&quot;Quick View&quot; class=&quot;btn btn-link pull-right&quot;>Quick View</a></div></div>" data-original-title="" title="{{video.name}}">
-           <div class="image-holder default-effect">
-            <div class="video-img ">
-             <div class="back-image" ng-if="!video.is_manual_upload" ng-style="{'background':'url(' + video.thumbnail_url + ') no-repeat center center', 'background-size':'cover'}"></div>
-             <div class="back-image" ng-if="video.is_manual_upload" ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + video.medium_thumb_thumbnail + ') no-repeat center center', 'background-size':'cover'}"></div>
-             <div class="overlay-effect">
-              <div class="entry-overlay">
-               <div class="view-more">
-                <i class="fa fa-search"></i>
-                <span>View</span>
+    <div ng-if="video_isInfiniteScroll">
+     <div ng-show="videoNoRecord" class="alert alert-warning"> No Record Found</div>
+     <div ng-show="videoLaoding" class="col-lg-12  block-space">
+      <span class="cssloader"></span>
+     </div>
+     <div class="carousel-inner container no-pad vimeo-video" data-carousel data-carousel-class="video-list2 no-pad" data-on-page-upcoming="loadPage(page, tmplCb)" data-give-carousel-to="onCarouselAvailable(carousel)" ng-show="!videoNoRecord">
+      <ul class="list-inline feature-list no-mar js-list-inline pr">
+       <li class="js-video-list" ng-repeat="video in videos">
+        <div class="row">
+         <div class="col-md-6 col-sm-6">
+          <div class=" pr no-mar user-video-block">
+           <a href="#!/videos/{{video.id}}" class="row pr no-mar user-video-block popover-html show" data-container="body" data-toggle="popover" data-placement="right" data-content="<div class=&quot;video-detail&quot;><div class=&quot;arrow arrow-right&quot;></div><h4 class=&quot;htruncate&quot;>{{video.name}}</h4><p>By&nbsp;{{video.channel_name}}</p><div class=&quot;clearfix&quot;><a href=&quot;&quot; title=&quot;Watch Now&quot; class=&quot;btn btn-default pull-left&quot;>Watch Now</a><a href=&quot;#!/videos/{{video.id}}&quot; title=&quot;Quick View&quot; class=&quot;btn btn-link pull-right&quot;>Quick View</a></div></div>" data-original-title="" title="{{video.name}}">
+            <div class="image-holder default-effect">
+             <div class="video-img ">
+              <div class="back-image" ng-if="!video.is_manual_upload" ng-style="{'background':'url(' + video.thumbnail_url + ') no-repeat center center', 'background-size':'cover'}"></div>
+              <div class="back-image" ng-if="video.is_manual_upload" ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + video.medium_thumb_thumbnail + ') no-repeat center center', 'background-size':'cover'}"></div>
+              <div class="overlay-effect">
+               <div class="entry-overlay">
+                <div class="view-more">
+                 <i class="fa fa-search"></i>
+                 <span>View</span>
+                </div>
                </div>
               </div>
              </div>
             </div>
-           </div>
-           <div class="pa col-xs-push-0 col-xs-pull-0 hide clsPlayTime" ng-if="video.duration != 0">
-            <div class="pull-left bg-darker text-15 hor-space">
-             <span>{{video.duration | sec_to_min}}</span>
+            <div class="pa col-xs-push-0 col-xs-pull-0 hide clsPlayTime" ng-if="video.duration != 0">
+             <div class="pull-left bg-darker text-15 hor-space">
+              <span>{{video.duration | sec_to_min}}</span>
+             </div>
             </div>
-           </div>
-          </a>
-         </div>
-        </div>
-        <div class="col-md-6 col-sm-6">
-         <div class="item-head">
-          <h5 class="clearfix"><a href="#!/videos/{{video.id}}" class="hdTruncate featureHd ">{{video.name}}</a></h5>
-          <p class="text-13 lead">{{video.description}}</p>
-          <div class="clearfix">
-           <a href="#!/videos/{{video.id}}" class="btn btn-default text-12">
-            <span class="initialism">view
-             <span>
-              <i class="fa fa-angle-right hor-space"></i>
            </a>
           </div>
          </div>
+         <div class="col-md-6 col-sm-6">
+          <div class="item-head">
+           <h5 class="hdTruncate featureHd"><a href="#!/videos/{{video.id}}" class="" title="">{{video.name}}</a></h5>
+           <p class="text-13 lead">{{video.description}}</p>
+           <div class="clearfix">
+            <a href="#!/videos/{{video.id}}" class="btn btn-default text-12" title="">
+             <span class="initialism">view
+             </span>
+             <i class="fa fa-angle-right hor-space"></i>
+            </a>
+           </div>
+          </div>
+         </div>
         </div>
-       </div>
-      </li>
-     </ul>
+       </li>
+      </ul>
+     </div>
+    </div>
+    <div ng-if="video_isInfiniteScroll !== true">
+     <div ng-show="videoNoRecord" class="alert alert-warning"> No Record Found</div>
+     <div class="carousel-inner container no-pad vimeo-video" ng-show="!videoNoRecord">
+      <ul class="list-inline feature-list no-mar js-list-inline pr">
+       <li class="js-video-list" ng-repeat="video in videos_listing">
+        <div class="row">
+         <div class="col-md-6 col-sm-6">
+          <div class=" pr no-mar user-video-block">
+           <a href="#!/videos/{{video.id}}" class="row pr no-mar user-video-block popover-html show" data-container="body" data-toggle="popover" data-placement="right" data-content="<div class=&quot;video-detail&quot;><div class=&quot;arrow arrow-right&quot;></div><h4 class=&quot;htruncate&quot;>{{video.name}}</h4><p>By&nbsp;{{video.channel_name}}</p><div class=&quot;clearfix&quot;><a href=&quot;&quot; title=&quot;Watch Now&quot; class=&quot;btn btn-default pull-left&quot;>Watch Now</a><a href=&quot;#!/videos/{{video.id}}&quot; title=&quot;Quick View&quot; class=&quot;btn btn-link pull-right&quot;>Quick View</a></div></div>" data-original-title="" title="{{video.name}}">
+            <div class="image-holder default-effect">
+             <div class="video-img ">
+              <div class="back-image" ng-if="!video.is_manual_upload" ng-style="{'background':'url(' + video.thumbnail_url + ') no-repeat center center', 'background-size':'cover'}"></div>
+              <div class="back-image" ng-if="video.is_manual_upload" ng-style="{'background':'url(' + $root.AWS_BASE_URL + '/' + video.medium_thumb_thumbnail + ') no-repeat center center', 'background-size':'cover'}"></div>
+              <div class="overlay-effect">
+               <div class="entry-overlay">
+                <div class="view-more">
+                 <i class="fa fa-search"></i>
+                 <span>View</span>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+            <div class="pa col-xs-push-0 col-xs-pull-0 hide clsPlayTime" ng-if="video.duration != 0">
+             <div class="pull-left bg-darker text-15 hor-space">
+              <span>{{video.duration | sec_to_min}}</span>
+             </div>
+            </div>
+           </a>
+          </div>
+         </div>
+         <div class="col-md-6 col-sm-6">
+          <div class="item-head">
+           <h5 class="hdTruncate featureHd"><a href="#!/videos/{{video.id}}" class="" title="">{{video.name}}</a></h5>
+           <p class="text-13 lead">{{video.description}}</p>
+           <div class="clearfix">
+            <a href="#!/videos/{{video.id}}" class="btn btn-default text-12" title="">
+             <span class="initialism">view
+             </span>
+             <i class="fa fa-angle-right hor-space"></i>
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </li>
+      </ul>
+     </div>
     </div>
    </div>
   </div>

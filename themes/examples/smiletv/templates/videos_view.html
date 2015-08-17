@@ -1,6 +1,6 @@
 <div class="clearfix bg-white" ng-controller="VideoViewCtrl">
  <section class="clearfix vireVideobg video-wrapper">
-  <div class="no-pad pr" ng-class="{'container': !embed_view}">
+  <div class="" ng-class="{'container': !embed_view}">
    <div class="col-center-block no-pad" ng-class="{'top-mar video-device-wrap col-xs-12': !embed_view, 'col-xs-12': embed_view}">
     <div class="no-pad no-round no-bor clearfix no-mar">
      <div class="row no-mar">
@@ -18,11 +18,6 @@
       </div>
      </div>
     </div>
-   </div>
-   <div class="box-m">
-    <span class="box-more btn btn-primary" id="click-more">More &nbsp;
-     <i class="fa fa-angle-down"></i>
-    </span>
    </div>
   </div>
   <a data-target="#videoList_Carousel" href="" data-ng-click="videoListNext()" data-ng-show="videoListHasNext()" class="left js-right-carousel carousel-control thumb-control hide">
@@ -81,8 +76,8 @@
       <span class="dislikes hide">
        <i class="fa fa-thumbs-down"></i> {{video.video_rating_negative_count}}</span>
      </div>
-     <div class="video-options col-md-4 col-sm-5 social-link">
-      <div class="col-xs-3">
+     <div class="video-options col-md-4 col-sm-5 col-xs-12 social-link clsHomeSocialIcon">
+      <div class="col-sm-3 clsMobileWidth">
        <a href="javascript:void(0)" class="text-center share-more" title="Share">
         <span class="show circle">
          <i class="fa fa-share-alt"></i>
@@ -169,31 +164,31 @@
       <div class="social-share-block hide col-xs-12">
        <ul class="share-menu share-more">
         <li class="share-menu-item">
-         <a href="" ng-click="share('facebook', 'videos', video.id, video.name, video.thumbnail_url)" title="Facebook" class="facebook">
+         <a href="" ng-click="share('facebook', 'videos', video.id, video.name, video.thumbnail_url,video.fb_app_id)" title="Facebook" class="facebook">
           <img src="themes/mars/img/facebook-icon.png" title="Facebook" class="img-circle hide">
           <i class="fa fa-facebook"></i>
          </a>
         </li>
         <li class="share-menu-item">
-         <a href="" ng-click="share('twitter', 'videos', video.id, video.name, video.thumbnail_url)" title="Twitter" class="twitter">
+         <a href="" ng-click="share('twitter', 'videos', video.id, video.name, video.thumbnail_url,'')" title="Twitter" class="twitter">
           <img src="themes/mars/img/twitter-icon.png" title="Twitter" class="img-circle hide">
           <i class="fa fa-twitter"></i>
          </a>
         </li>
         <li class="share-menu-item">
-         <a href="" ng-click="share('google', 'videos', video.id, video.name, video.thumbnail_url)" title="GooglePlus" class="googleplus">
+         <a href="" ng-click="share('google', 'videos', video.id, video.name, video.thumbnail_url,'')" title="GooglePlus" class="googleplus">
           <img src="themes/mars/img/googleplus.png" title="GooglePlus" class="img-circle hide">
           <i class="fa fa-google-plus"></i>
          </a>
         </li>
         <li class="share-menu-item">
-         <a href="" ng-click="share('pinterest', 'videos', video.id, video.name, video.thumbnail_url)" title="Pinterest" class="pinterest">
+         <a href="" ng-click="share('pinterest', 'videos', video.id, video.name, video.thumbnail_url,'')" title="Pinterest" class="pinterest">
           <img src="themes/mars/img/pinterest.png" title="Pinterest" class="img-circle hide">
           <i class="fa fa-pinterest"></i>
          </a>
         </li>
         <li class="share-menu-item">
-         <a href="" ng-click="share('reddit', 'videos', video.id, video.name, video.thumbnail_url)" title="Reddit" class="reddit">
+         <a href="" ng-click="share('reddit', 'videos', video.id, video.name, video.thumbnail_url,'')" title="Reddit" class="reddit">
           <img src="themes/mars/img/reddit.png" title="Reddit" class="img-circle hide">
           <i class="fa fa-reddit"></i>
          </a>
@@ -225,7 +220,7 @@
      </span>
      <ul class="list-inline clearfix date-info navbar-btn">
       <li class="no-pad">
-       <span ng-if="video.published_at">Published on {{video.published_at | date:'yyyy-MM-dd HH:mm:ss'}} </span>
+       <span ng-if="video.published_at">Published on {{video.published_at | timeAgo}} </span>
       </li>
       <li class="navbar-btn">
        <span class="text-light">by</span> <a ng-if="!video.is_facebook_video" class="small text-muted" title="{{video.channel_name}}" href="#!/channels/{{video.channels_slug}}" ng-show="video.name && !embed_view">{{video.channel_name}}</a> <a ng-if="video.is_facebook_video" class="small" title="{{video.users_username}}" href="#!/users/{{video.users_username}}" ng-show="video.name && !embed_view">{{video.users_username}}</a>
@@ -274,10 +269,10 @@
    </div>
   </div>
  </div>
- <div class=" btn-block section-header">
+ <div class=" btn-block section-header clsRelatedVideos">
   <div class="video-wrapper video-wrapper2 relatedVideos" ng-if="is_create_scope" id="videoViewVideo1">
    <div class="container">
-    <module-video title="Related Videos" video_id="{{videoId}}" type="related" limit="4" dom_parent_id="videoViewVideo1"></module-video>
+    <module-video title="Related Videos" video_id="{{videoId}}" type="related" limit="4" display-type="grid" is_infinite_scroll="false" dom_parent_id="videoViewVideo1"></module-video>
    </div>
   </div>
   <div class="container">

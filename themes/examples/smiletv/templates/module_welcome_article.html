@@ -1,6 +1,6 @@
 <div class="clearfix ">
  <div class="bot-space">
-  <h2 class="text-22 no-mar ng-binding">Welcome to Smile TV</h2>
+  <h2 class="text-22 no-mar ng-binding">Welcome to SmileTV</h2>
  </div>
  <div class="ng-scope">
   <div id="search-videolist" class="collapse in clearfix">
@@ -12,7 +12,7 @@
      <li ng-repeat="article in articles" class="col-sm-4 js-video-list ng-scope">
       <div class="mobileBotSpace">
        <div class="pr no-mar user-video-block">
-        <a title="{{article.name}}" data-placement="right" data-toggle="popover" data-container="body" class="row pr no-mar user-video-block popover-html show" href="#!/videos/8673">
+        <a title="{{article.name}}" data-placement="right" data-toggle="popover" data-container="body" class="row pr no-mar user-video-block popover-html show" href="#!/videos/{{article.video_name}}" ng-if="article.video_name">
          <div class="image-holder default-effect">
           <div class="">
            <div class="clsThumbImg clsH196">
@@ -21,7 +21,24 @@
             <div class="entry-overlay">
              <div class="view-more">
               <i class="fa fa-play-circle-o"></i>
-              <span>view</span>
+              <span>play</span>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+         <!-- ngIf: video.duration != 0 -->
+        </a>
+        <a title="{{article.name}}" data-placement="right" data-toggle="popover" data-container="body" class="row pr no-mar user-video-block popover-html show" href="#!/articles/{{article.id}}" ng-if="!article.video_name">
+         <div class="image-holder default-effect">
+          <div class="">
+           <div class="clsThumbImg clsH196">
+            <img ng-src="{{$root.AWS_BASE_URL}}/{{article.medium_thumb_thumbnail}}" alt="[Image: {{article.name}} Image]" title="{{article.name}} Image" /> </div>
+           <div class="overlay-effect">
+            <div class="entry-overlay">
+             <div class="view-more">
+              <i class="fa fa-search"></i>
+              <span>View</span>
              </div>
             </div>
            </div>
@@ -31,7 +48,10 @@
         </a>
        </div>
        <div class="item-head video-head">
-        <h5 class="clearfix top-sspace no-mar"><a class="hdTruncate  ng-binding" href="#!/videos/8673">{{article.name}}</a></h5>
+        <h5 class="clearfix top-sspace no-mar">
+         <a class="hdTruncate  ng-binding" ng-if="article.video_name" href="#!/videos/{{article.video_name}}">{{article.name}}</a>
+         <a class="hdTruncate  ng-binding" ng-if="!article.video_name" href="#!/articles/{{article.id}}">{{article.name}}</a>
+        </h5>
         <p class="text-12 htruncate-mml3 ng-binding">{{article.description}}</p>
         <div class="panel panel-default no-shad no-round space ver-mar clearfix">
          <div class="views-block">
@@ -49,8 +69,12 @@
             </a>
            </li>
            <li class="pull-right">
-            <a class="play-icon" title="play" href="#!/videos/8673">
+            <a class="play-icon" title="play" href="#!/videos/{{article.video_name}}" ng-if="article.video_name">
              <span class="text-muted hor-space">play</span>
+             <i class="fa fa fa-angle-right text-primary text-center"></i>
+            </a>
+            <a class="play-icon" title="view" href="#!/articles/{{article.id}}" ng-if="!article.video_name">
+             <span class="text-muted hor-space">view</span>
              <i class="fa fa fa-angle-right text-primary text-center"></i>
             </a>
            </li>
